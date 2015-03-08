@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Index{% endblock %}
+{% block body_block %}
+
+{% if user.is_authenticated %}
+    <div class="page-header">
+        <h1>Welcome to OneClickVitals, {{ user.username }}!</h1>
+        {% else %}
+        <h1>Welcome to Oneclickvitals</h1>
+        {% endif %}
+    </div>
+
+
+        <title>OneClickVitals</title>
+        <link rel="stylesheet" href="{% static "css/base.css" %}" /> <!-- CSS -->
+        <script src="{% static "js/jquery.js" %}"></script> <!-- JavaScript -->
+
+
+        <img src="{% static "images/vitals.jpg" %}" alt="Our Logo" /><br /> <!-- Images -->
+
+
+
+{% endblock %}
