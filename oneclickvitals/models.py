@@ -6,11 +6,11 @@ from django.contrib.auth.models import User
 
 class Newpatient(models.Model):
     author = models.ForeignKey('auth.User')
-    patient_first_name = models.CharField(max_length=15, null = True)
-    patient_last_name = models.CharField(max_length=15, null = True)
-    patient_phone_number = models.CharField(max_length=10, null = True)
-    patient_date_of_birth = models.DateField(max_length=8)
-    patient_address = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=15, null = True)
+    last_name = models.CharField(max_length=15, null = True)
+    phone_number = models.CharField(max_length=10, null = True)
+    date_of_birth = models.DateField(max_length=8)
+    address = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
 
     '''
@@ -25,14 +25,14 @@ class Newpatient(models.Model):
         self.save()
 
     def __str__(self):
-        return self.patient_last_name
+        return self.last_name
 
 
 class Appointment(models.Model):
     author = models.ForeignKey('auth.User')
-    patient_first_name = models.CharField(max_length=15, null = True)
-    patient_last_name = models.CharField(max_length=15, null = True)
-    patient_phone_number = models.CharField(max_length=10, null = True)
+    first_name = models.CharField(max_length=15, null = True)
+    last_name = models.CharField(max_length=15, null = True)
+    phone_number = models.CharField(max_length=10, null = True)
     #patient_name = models.CharField(max_length=15)
     #phone_numer = models.PhoneNumberField()
     reason = models.TextField()
@@ -42,11 +42,11 @@ class Appointment(models.Model):
             blank=True, null=True)
 
     def __str__(self):
-        return self.patient_last_name
+        return self.last_name
 
 class PageAdmin(admin.ModelAdmin):
 
-    list_display = ('patient_last_name', 'patient_phone_number')
+    list_display = ('last_name', 'phone_number')
 
     def __str__(self):
         return self.list_display

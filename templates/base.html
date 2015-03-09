@@ -39,7 +39,9 @@
                     {% if user.is_authenticated %}
 
                         <li><a href="{% url 'auth_logout' %}?next=/oneclickvitals/">Logout</a></li>
-                        
+                        <li><a href="{% url 'add_newpatient' %}">Add a New Patient</a></li>
+
+
                     {% else %}
                         <li><a href="{% url 'registration_register' %}">Register Here</a></li>
                         <li><a href="{% url 'auth_login' %}">Login</a></li>
