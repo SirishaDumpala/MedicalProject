@@ -1,0 +1,11 @@
+{% if pats %}
+    <ul class="nav nav-sidebar">
+    {% for p in pats %}
+        <li><a href="{% url 'patient_details' %}">{{ p.last_name }}</a></li>
+    {% endfor %}
+
+{% else %}
+    <li> <strong >There are no patients present.</strong></li>
+
+    </ul>
+{% endif %}

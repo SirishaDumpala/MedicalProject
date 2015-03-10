@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %}AddNewPatient{% endblock %}
-{% block body_block %}
-    <div class="page-header">
-          <h1>Add New Patient Profile</h1>
-    </div>
+{% block title %}AddAppointment{% endblock %}
 
-    <form action="{{ action }}" method="POST">
-      {% csrf_token %}
+{% block body_block %}
+
+    <div class="page-header">
+          <h1>Add New Appointment</h1>
+    </div>
+    <form action="{{ action }}" method="POST">{% csrf_token %}
       <ul>
         {{ form.as_ul }}
       </ul>

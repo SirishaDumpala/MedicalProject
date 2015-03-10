@@ -7,10 +7,9 @@ urlpatterns = patterns('',
         url(r'^$', views.index, name='index'),
         url(r'^about', views.about, name='about'),
         url(r'^add_newpatient/$', views.add_newpatient, name='add_newpatient'),
-        #url(r'^register/$', views.register, name='register'),
-        #url(r'^login/$', views.user_login, name='login'),
-        #url(r'^restricted/', views.restricted, name='restricted'),
-        #url(r'^logout/$', views.user_logout, name='logout'),
+        url(r'^appointment/$', views.appointment, name='appointment'),
+        url(r'^patient_details/$', views.patient_details, name='patient_details'),
+        url(r'^appointment_detail/$', views.appointment_detail, name='appointment_detail'),
         )
 if settings.DEBUG:
     urlpatterns += patterns(

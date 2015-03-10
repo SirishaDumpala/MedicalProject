@@ -12,13 +12,8 @@ class Newpatient(models.Model):
     date_of_birth = models.DateField(max_length=8)
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
-
-    '''
-    #registration_date = models.DateTimeField(
-            blank=True, null=True)
-    #patient_name = models.CharField(max_length=15)
-    #phone_numer = models.PhoneNumberField()
-    '''
+    created_date = models.DateTimeField(
+            default=timezone.now)
 
     def confirm_newpatient(self): #function for confirming new patient registration
         self.newpatient_date = timezone.now()
@@ -33,9 +28,7 @@ class Appointment(models.Model):
     first_name = models.CharField(max_length=15, null = True)
     last_name = models.CharField(max_length=15, null = True)
     phone_number = models.CharField(max_length=10, null = True)
-    #patient_name = models.CharField(max_length=15)
-    #phone_numer = models.PhoneNumberField()
-    reason = models.TextField()
+    reason = models.CharField(max_length=50, null = True)
     created_date = models.DateTimeField(
             default=timezone.now)
     appointment_date = models.DateTimeField(

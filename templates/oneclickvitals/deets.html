@@ -1,0 +1,10 @@
+{% if deets %}
+    <ul class="nav nav-sidebar">
+      
+      {% for d in deets %}
+          <li><a href="{% url 'patient_details' %}">{{ d.last_name }}</a></li>
+      {% endfor %}
+
+
+    </ul>
+{% endif %}
