@@ -9,7 +9,7 @@ urlpatterns = patterns('',
         url(r'^add_newpatient/$', views.add_newpatient, name='add_newpatient'),
         url(r'^appointment/$', views.appointment, name='appointment'),
         url(r'^patient_details/$', views.patient_details, name='patient_details'),
-        url(r'^appointment_detail/$', views.appointment_detail, name='appointment_detail'),
+        url(r'^appointment_details/$', views.appointment_details, name='appointment_details'),
         )
 if settings.DEBUG:
     urlpatterns += patterns(

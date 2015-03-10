@@ -24,6 +24,5 @@ class NewPatientForm(forms.ModelForm):
 class AppointmentForm(forms.ModelForm):
 
     class Meta:
-        # Provide an association between the ModelForm and a model
         model = Appointment
         fields = ('first_name','last_name','phone_number', 'reason', 'appointment_date',)

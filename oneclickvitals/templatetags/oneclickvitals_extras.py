@@ -10,8 +10,3 @@ def get_appointment_list():
 @register.inclusion_tag('oneclickvitals/pats.html')
 def get_patient_list():
     return {'pats': Newpatient.objects.all()}
-'''
-@register.inclusion_tag('oneclickvitals/deets.html')
-def get_details_list():
-    return {'deets': Newpatient.objects.all()}
-'''

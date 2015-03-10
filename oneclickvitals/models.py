@@ -15,7 +15,7 @@ class Newpatient(models.Model):
     created_date = models.DateTimeField(
             default=timezone.now)
 
-    def confirm_newpatient(self): #function for confirming new patient registration
+    def confirm_newpatient(self): 
         self.newpatient_date = timezone.now()
         self.save()
 

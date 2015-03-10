@@ -1,11 +1,10 @@
 {% if appt %}
     <ul class="nav nav-sidebar">
-    {% for a in appt %}
-        <li><a href="{% url 'appointment_detail' %}">{{ a.last_name }}</a></li>
-    {% endfor %}
+
+      <li><a href="{% url 'appointment_details' %}">Appointments</a></li>
 
 {% else %}
-    <li> <strong >There are no appointments present.</strong></li>
+      <li> <strong >There are no appointments present.</strong></li>
 
     </ul>
 {% endif %}

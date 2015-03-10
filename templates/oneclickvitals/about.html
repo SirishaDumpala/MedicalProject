@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %} <!-- New line -->
+{% load staticfiles %}
 
 {% block title %}About{% endblock %}
 {% block body_block %}
@@ -15,8 +15,9 @@
         <div class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">Appointments</h3>
-    </div>
-</div>
+          </div>
+        </div>
+
         <!--<div class="row placeholders">
             <div class="col-xs-12 col-sm-6 placeholder">
                <h4>Appointments</h4>-->
@@ -28,11 +29,10 @@
                 <li class="list-group-item"> {{ appointment.appointment_date }}</li>
                 <li class="list-group-item"> {{ appointment.patient_phone_number }}</li>
                 {% endfor %}
-            </ul>
+        </ul>
         {% else %}
             <strong>There are no appointments present.</strong>
         {% endif %}
-
 
         <a href="/oneclickvitals/">Index</a><br />
 
