@@ -12,13 +12,11 @@
 
     <title>OneClickVitals - {% block title %}Medical project!{% endblock %}</title>
 
-    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
-
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet"> -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
     <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
-    <link rel="icon" href="{% static 'media/ocv_icon.ico' %}">
+    <link rel="icon" href="{% static 'images/ocv_icon.ico' %}">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -40,19 +38,34 @@
 
           <a class="navbar-brand" href="/oneclickvitals/"><img src="{% static "media/heartbeat-line-68.png" %}" alt="logo"/></a>
         </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav ">
-                <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="#">About</a></li>
-                                            <li><a href="{% url 'auth_logout' %}?next=/accounts/logout/">Logout</a></li>
-                        <form class="navbar-form navbar-right">
-                                    <input type="text" class="form-control" placeholder="Search...">
-                        </form>
+        <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/patient/">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li class="Appointment">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Appointment <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">View</a></li>
+                    <li><a href="#">New</a></li>
+                    <li><a href="#">Edit/Cancel</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Prescription</a></li>
+                <li><a href="#">Diagnosis</a></li>
+                <li class="Profile">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Profile <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">View</a></li>
+                    <li><a href="#">Edit</a></li>
+                  </ul>
+                </li>
+                  <li><a href="/accounts/logout">Logout</a></li>
+              </ul>
+            <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+            </form>
+            </div>
 
-                        <li><a href="{% url 'registration_register' %}">Register New User</a></li>
-          </ul>
-
-        </div>
       </div>
     </div>
     <div class="welcome">
@@ -60,21 +73,27 @@
           <p>Welcome, {{ user.first_name }} {{user.last_name }}</p>
 
         {% else %}
-          <p>Welcome, Guest</p>
+          <p>Welcome, Guest </p>
         {% endif %}
         </div>
 
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
 
-    <form class="form-signin" role="form" method="post" action=".">
-    {% csrf_token %}
+                {% block side_block %}
 
-    <h2 class="form-signin-heading">Please sign in</h2>
-    <input class="form-control" placeholder="Username" id="id_username" maxlength="254" name="username" type="text" required autofocus=""/>
-    <input type="password" class="form-control" placeholder="Password" id="id_password" name="password" type="password" required />
+                {% endblock %}
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit" />Sign in</button>
-            </form>
+        </div>
 
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+           <div>
+                {% block body_block %}{% endblock %}
+                </div>
+        </div>
+      </div>
 
 
 

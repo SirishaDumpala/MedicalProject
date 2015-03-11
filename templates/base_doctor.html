@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+{% load staticfiles %}
 <html lang="en">
 
   <head>
@@ -13,7 +13,10 @@
     <title>OneClickVitals - {% block title %}Medical project!{% endblock %}</title>
 
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+    <!-- <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet"> -->
+    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'media/ocv_icon.ico' %}">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -33,27 +36,39 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="/oneclickvitals/">OneClickVitals</a>
+          <a class="navbar-brand" href="/oneclickvitals/"><img src="{% static "media/heartbeat-line-68.png" %}" alt="logo"/></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav ">
                 <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="#">About</a></li>
                     {% if user.is_authenticated %}
-
-                        <li><a href="{% url 'add_newpatient' %}">Add New Patient</a></li>
-                        <li><a href="{% url 'appointment' %}">Make Appointment</a></li>
-                        <li><a href="{% url 'auth_logout' %}?next=/accounts/logout/">Logout</a></li>
-
-                    {% else %}
-                        <li><a href="{% url 'registration_register' %}">Register Here</a></li>
                         <li class="Patient">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Patient <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                              <li><a href="#">Account</a></li>
-                              <li><a href="#">Diagnosis</a></li>
-                            </ul>
-                          </li>
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Patient <span class="caret"></span></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="/add_newpatient/">Add</a></li>
+                            <li><a href="/patient_details/">View</a></li>
+                            <li><a href="#">Edit</a></li>
+                          </ul>
+                        </li>
+
+                        <li class="Appointment">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Appointment <span class="caret"></span></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="/appointment/">Add</a></li>
+                            <li><a href="/appointment_details/">View</a></li>
+                            <li><a href="#">Edit</a></li>
+                          </ul>
+                        </li>
+
+                        <li><a href="{% url 'registration_register' %}">Register Here</a></li>
+                        <li><a href="{% url 'auth_logout' %}?next=/accounts/logout/">Logout</a></li>
+                        <form class="navbar-form navbar-right">
+                                    <input type="text" class="form-control" placeholder="Search...">
+                        </form>
+                    {% else %}
+                        <li><a href="{% url 'registration_register' %}">Register New User</a></li>
+
                         <li><a href="{% url 'auth_login' %}">Login</a></li>
                     {% endif %}
 
@@ -63,10 +78,10 @@
     </div>
     <div class="welcome">
         {% if user.is_authenticated %}
-          <p>Welcome, {{ user.first_name }} {{user.last_name }}  <a href="/accounts/logout">[Logout]</a></p>
+          <p>Welcome, {{ user.first_name }} {{user.last_name }}</p>
 
         {% else %}
-          <p>Welcome, Guest <a href="/accounts/login">[Login]</a></p>
+          <p>Welcome, Guest</p>
         {% endif %}
         </div>
 
@@ -92,7 +107,7 @@
         </div>
       </div>
 
-    </div>
+
 
 
 

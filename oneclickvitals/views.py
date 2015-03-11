@@ -1,21 +1,72 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from oneclickvitals.models import Newpatient, Appointment, PageAdmin
 from oneclickvitals.forms import UserForm, UserProfileForm, NewPatientForm, AppointmentForm
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.contrib.auth import logout
+from django.contrib.auth.models import User, Group, Permission
+from django.contrib.contenttypes.models import ContentType
+from django.core.context_processors import csrf
+from django.contrib import auth
+
+
+def is_patient(user):
+    return user.groups.filter(name="patient").exists()
+
+def is_doctor(user):
+    return user.groups.filter(name="doctor").exists()
+
+def is_staff(user):
+    return user.groups.filter(name="staff").exists()
 
 
 def index(request):
+    return render(request, 'index.html')
 
-    return render(request, 'oneclickvitals/index.html')
+def index_patient(request):
+    context_dict = {'boldmessage': "I am patient"}
+    return render(request, 'index_patient.html', context_dict)
+
+def index_doctor(request):
+    context_dict = {'boldmessage': "I am patient"}
+    return render(request, 'index_doctor.html', context_dict)
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None and user.is_active:
+
+            if user.groups.filter(name="patient").exists():
+                # Correct password, and the user is marked "active"
+                login(request, user)
+                # Redirect to a success page.
+                return HttpResponseRedirect("/patient/")
+            else:
+                # Correct password, and the user is marked "active"
+                login(request, user)
+                return HttpResponseRedirect("/oneclickvitals/")
+        else:
+            return render(request, "registration/invalid_login.html")
+    else:
+        return render(request, 'registration/login.html')
+
+def logout_view(request):
+    auth.logout(request)
+    # Redirect to a success page.
+    return render(request, 'registration/logout.html')
+
+def invalid_login_view(request):
+    if not user.is_authenticated():
+         return render(request, 'registration/invalid_login.html')
 
 @login_required
 def about(request):
     appointment_list = Appointment.objects.order_by('appointment_date')
     context_dict = {'appointments': appointment_list}
-    return render(request, 'oneclickvitals/about.html', context_dict)
+    return render(request, '/about.html', context_dict)
 
 def add_newpatient(request):
     if request.method == 'POST':
@@ -56,7 +107,7 @@ def appointment(request):
     else:
         # If the request was not a POST, display the form to enter details.
         form = AppointmentForm()
-        
+
     # Render the form with error messages (if any)
     return render(request, 'oneclickvitals/appointment.html', {'form': form})
 

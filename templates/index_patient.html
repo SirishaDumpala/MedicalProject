@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'base_patient.html' %}
 
 {% load static %}
 
-{% block title %}Index{% endblock %}
+{% block title %}IndexPatient{% endblock %}
 {% block body_block %}
 
 {% if user.is_authenticated %}
@@ -17,6 +17,6 @@
         <link rel="stylesheet" href="{% static "css/base.css" %}" /> <!-- CSS -->
         <script src="{% static "js/jquery.js" %}"></script> <!-- JavaScript -->
 
-        <img src="{% static "images/vitals.jpg" %}" alt="Our Logo" /><br /> <!-- Images -->
+        <img src="{% static "media/vitals.jpg" %}" alt="Our Logo" /><br /> <!-- Images -->
 
 {% endblock %}

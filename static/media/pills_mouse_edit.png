@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Language" content="en">
     
     
-    <title>542_oneClickVitals/heartbeat-line-68.png at master · ylavinia/542_oneClickVitals</title>
+    <title>542_oneClickVitals/pills_mouse_edit.png at master · ylavinia/542_oneClickVitals</title>
     <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
     <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png">
@@ -32,7 +32,7 @@
     <meta name="selected-link" value="repo_source" data-pjax-transient>
       <meta name="google-analytics" content="UA-3769691-2">
 
-    <meta content="collector.githubapp.com" name="octolytics-host" /><meta content="collector-cdn.github.com" name="octolytics-script-host" /><meta content="github" name="octolytics-app-id" /><meta content="62A4DCF9:7889:1D8EA57:54FF35D4" name="octolytics-dimension-request_id" /><meta content="10456628" name="octolytics-actor-id" /><meta content="SirishaDumpala" name="octolytics-actor-login" /><meta content="bcba32729d214984a0c355567499b39a02098e62ba9b3b28d4527c621d4d2c4d" name="octolytics-actor-hash" />
+    <meta content="collector.githubapp.com" name="octolytics-host" /><meta content="collector-cdn.github.com" name="octolytics-script-host" /><meta content="github" name="octolytics-app-id" /><meta content="62A4DCF9:73D9:29D13EA:54FF54DE" name="octolytics-dimension-request_id" /><meta content="10456628" name="octolytics-actor-id" /><meta content="SirishaDumpala" name="octolytics-actor-login" /><meta content="bcba32729d214984a0c355567499b39a02098e62ba9b3b28d4527c621d4d2c4d" name="octolytics-actor-hash" />
     
     <meta content="Rails, view, blob#show" name="analytics-event" />
 
@@ -41,7 +41,7 @@
 
 
     <meta content="authenticity_token" name="csrf-param" />
-<meta content="RD1A0bFRfD8Nq8T9v7HXXXPsXKEva5lSYrq8ryDEIXARDF1ZbZplgSc3Z6HORRQrwfrntQxoxs4Bw/MHVNxMtw==" name="csrf-token" />
+<meta content="Ynlxc4Uu2iN4xWZnPzvk/FTifU+JuCgMCTYDjDtVn+MurB6ipZRZGlO7Jzg6RjkpjYyZ5IDbwN9b6PYoooGJfw==" name="csrf-token" />
 
     <link href="https://assets-cdn.github.com/assets/github-928d6711d0e2b8553a8ad09c40303249229e43320d9ebd7fa17e5a3947767863.css" media="all" rel="stylesheet" />
     <link href="https://assets-cdn.github.com/assets/github2-942b039bbbe1f16f9d482b96c2f2ecb5e4c1f36c47549d649dbefd3c14879c54.css" media="all" rel="stylesheet" />
@@ -161,7 +161,7 @@
   </li>
 
   <li class="header-nav-item">
-    <form accept-charset="UTF-8" action="/logout" class="logout-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="0e5S0/0Bdi1HQBXcUgRP5BscmosxfbVLvnMFlSU5SivCHKaV8N7dhPjvY/70JxDOZgdXk4pmXzckKCkbfBpcIQ==" /></div>
+    <form accept-charset="UTF-8" action="/logout" class="logout-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="WEYSos+m8w6ZfVQGFbbgFxDIbd2aMj0dsi6DN+eUwA1uUuja2HPuKJlFBA1cWxfCurdIrFdtwiQDDr61IT3UVA==" /></div>
       <button class="header-nav-link sign-out-button tooltipped tooltipped-s" aria-label="Sign out" data-ga-click="Header, sign out, icon:logout">
         <span class="octicon octicon-sign-out"></span>
       </button>
@@ -190,7 +190,7 @@
 <ul class="pagehead-actions">
 
   <li>
-      <form accept-charset="UTF-8" action="/notifications/subscribe" class="js-social-container" data-autosubmit="true" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="BAnWC//dMwDjkKvkHcRzNHz5KpaCbxFzqF1V4hZkXGHDh8DoYd9Tt7ZhfuUjxSLneihQTZz0mugBx5b0tTxkTA==" /></div>    <input id="repository_id" name="repository_id" type="hidden" value="31944033" />
+      <form accept-charset="UTF-8" action="/notifications/subscribe" class="js-social-container" data-autosubmit="true" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="CKfvjVHmsKn5Ce94ffnMmn13zU70u4dwZSOnfQitGBFAOG5O9YgZ7VvqruN136SJJYuQV89/7VocgfFFFvLnUA==" /></div>    <input id="repository_id" name="repository_id" type="hidden" value="31944033" />
 
       <div class="select-menu js-menu-container js-select-menu">
         <a class="social-count js-social-count" href="/ylavinia/542_oneClickVitals/watchers">
@@ -265,7 +265,7 @@
     
   <div class="js-toggler-container js-social-container starring-container ">
 
-    <form accept-charset="UTF-8" action="/ylavinia/542_oneClickVitals/unstar" class="js-toggler-form starred js-unstar-button" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="2xDaVwzGRFWW6PiPo4P8r9OVkLrX8Skg9+pL1xoeUGpB+wBUsj/4R4EEDw4qLh2Gzm9OI1zuGWJCDCpRuHrhFw==" /></div>
+    <form accept-charset="UTF-8" action="/ylavinia/542_oneClickVitals/unstar" class="js-toggler-form starred js-unstar-button" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="jFiUVIEX48HsBm4Yp1B60JlVHg7lvGIFvH0QExLZUnPflTlKHOFsLmWsqjHXOLXoWI5jrPkVT0Wm5vYM69Ei2w==" /></div>
       <button
         class="minibutton with-count js-toggler-target"
         aria-label="Unstar this repository" title="Unstar ylavinia/542_oneClickVitals"
@@ -277,7 +277,7 @@
           0
         </a>
 </form>
-    <form accept-charset="UTF-8" action="/ylavinia/542_oneClickVitals/star" class="js-toggler-form unstarred js-star-button" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="rZCTh6nUViFUu0upvyUXpETuL/eoIMBxY4IJ6xhFJsohTcYpBfyUPMU8hLjCJ3CjK86z2/oDebpMXHGwA55SXg==" /></div>
+    <form accept-charset="UTF-8" action="/ylavinia/542_oneClickVitals/star" class="js-toggler-form unstarred js-star-button" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="M4V90U4jnoJoK83pCovPlg2QaPfi23QuoVcnO18TYKZj1Slyi4aaMaMRdblWaVL+yy4uE2k1KpJE7DohDKbplA==" /></div>
       <button
         class="minibutton with-count js-toggler-target"
         aria-label="Star this repository" title="Star ylavinia/542_oneClickVitals"
@@ -293,7 +293,7 @@
   </li>
 
         <li>
-          <form accept-charset="UTF-8" action="/ylavinia/542_oneClickVitals/fork" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="h474j7g9TVrIcYEnv5B24VBDFVx8kG7mbEeIYq1fDloQLF8Ay6YH9dgvZHgNbSkH5aeiOc0RA9fTApgV21vNrQ==" /></div>
+          <form accept-charset="UTF-8" action="/ylavinia/542_oneClickVitals/fork" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="2e8GB2OAdpEi9DoCD6qT3fo3fTltSBueg8YPA5WCFOYP5l3mDJ8UV9VejfVViVx8uV4SN/9TbLZC7ZfuWs8/0g==" /></div>
             <button
                 type="submit"
                 class="minibutton with-count"
@@ -445,9 +445,9 @@
         <div id="js-repo-pjax-container" class="repository-content context-loader-container" data-pjax-container>
           
 
-<a href="/ylavinia/542_oneClickVitals/blob/c1ec18929213ebb37511febbdd3a00ff5eb06d8c/static/media/heartbeat-line-68.png" class="hidden js-permalink-shortcut" data-hotkey="y">Permalink</a>
+<a href="/ylavinia/542_oneClickVitals/blob/c1ec18929213ebb37511febbdd3a00ff5eb06d8c/static/media/pills_mouse_edit.png" class="hidden js-permalink-shortcut" data-hotkey="y">Permalink</a>
 
-<!-- blob contrib key: blob_contributors:v21:789083a9e187b2ff859d1a2fefabb577 -->
+<!-- blob contrib key: blob_contributors:v21:4d65ec9396c98dec27337fc95dedc310 -->
 
 <div class="file-navigation js-zeroclipboard-container">
   
@@ -492,7 +492,7 @@
 
 
             <a class="select-menu-item js-navigation-item js-navigation-open selected"
-               href="/ylavinia/542_oneClickVitals/blob/master/static/media/heartbeat-line-68.png"
+               href="/ylavinia/542_oneClickVitals/blob/master/static/media/pills_mouse_edit.png"
                data-name="master"
                data-skip-pjax="true"
                rel="nofollow">
@@ -531,11 +531,11 @@
   </div>
 
   <div class="breadcrumb js-zeroclipboard-target">
-    <span class='repo-root js-repo-root'><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/ylavinia/542_oneClickVitals" class="" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">542_oneClickVitals</span></a></span></span><span class="separator">/</span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/ylavinia/542_oneClickVitals/tree/master/static" class="" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">static</span></a></span><span class="separator">/</span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/ylavinia/542_oneClickVitals/tree/master/static/media" class="" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">media</span></a></span><span class="separator">/</span><strong class="final-path">heartbeat-line-68.png</strong>
+    <span class='repo-root js-repo-root'><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/ylavinia/542_oneClickVitals" class="" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">542_oneClickVitals</span></a></span></span><span class="separator">/</span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/ylavinia/542_oneClickVitals/tree/master/static" class="" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">static</span></a></span><span class="separator">/</span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/ylavinia/542_oneClickVitals/tree/master/static/media" class="" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">media</span></a></span><span class="separator">/</span><strong class="final-path">pills_mouse_edit.png</strong>
   </div>
 </div>
 
-<include-fragment class="commit commit-loader file-history-tease" src="/ylavinia/542_oneClickVitals/contributors/master/static/media/heartbeat-line-68.png">
+<include-fragment class="commit commit-loader file-history-tease" src="/ylavinia/542_oneClickVitals/contributors/master/static/media/pills_mouse_edit.png">
   <div class="file-history-tease-header">
     Fetching contributors&hellip;
   </div>
@@ -549,13 +549,13 @@
   <div class="file-header">
     <div class="file-actions">
       <div class="button-group">
-        <a href="/ylavinia/542_oneClickVitals/raw/master/static/media/heartbeat-line-68.png" class="minibutton " id="raw-url">Raw</a>
-        <a href="/ylavinia/542_oneClickVitals/commits/master/static/media/heartbeat-line-68.png" class="minibutton " rel="nofollow">History</a>
+        <a href="/ylavinia/542_oneClickVitals/raw/master/static/media/pills_mouse_edit.png" class="minibutton " id="raw-url">Raw</a>
+        <a href="/ylavinia/542_oneClickVitals/commits/master/static/media/pills_mouse_edit.png" class="minibutton " rel="nofollow">History</a>
       </div><!-- /.button-group -->
 
 
 
-          <form accept-charset="UTF-8" action="/ylavinia/542_oneClickVitals/delete/master/static/media/heartbeat-line-68.png" aria-label="Fork this project and delete file" class="tooltipped tooltipped-s inline-form delete-file-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="qInN6vMg14Ps1UC0N+o8OPmLBjNq0WCa0m/XJ3yegdpWTKW2mIUcTYLGd0SmcQFqHYKIeJAtFWALqqijCvRMAw==" /></div>
+          <form accept-charset="UTF-8" action="/ylavinia/542_oneClickVitals/delete/master/static/media/pills_mouse_edit.png" aria-label="Fork this project and delete file" class="tooltipped tooltipped-s inline-form delete-file-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="m/uWrYSJIjgswSUbjMaFZ9JnneHDbSlHrx8jt+w+BaA7eiq5yKS5O4vRXm3yZzcobqsWuXsJUBVTpsJ4nLD+hw==" /></div>
             <button class="web-edit-button"
                     type="submit"
                     data-disable-with>
@@ -564,13 +564,13 @@
 </form>      </a>
     </div><!-- /.actions -->
     <div class="file-info">
-      6.688 kb
+      240.737 kb
     </div>
   </div>
   
   <div class="blob-wrapper data type-text">
       <div class="image">
-          <span class="border-wrap"><img src="/ylavinia/542_oneClickVitals/blob/master/static/media/heartbeat-line-68.png?raw=true" alt="heartbeat-line-68.png"></span>
+          <span class="border-wrap"><img src="/ylavinia/542_oneClickVitals/blob/master/static/media/pills_mouse_edit.png?raw=true" alt="pills_mouse_edit.png"></span>
       </div>
   </div>
 
@@ -610,7 +610,7 @@
       <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
 </a>
     <ul class="site-footer-links">
-      <li>&copy; 2015 <span title="0.10375s from github-fe127-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+      <li>&copy; 2015 <span title="0.15499s from github-fe134-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
         <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
         <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
         <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
