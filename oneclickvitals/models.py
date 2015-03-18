@@ -4,30 +4,8 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 
 
-class Newpatient(models.Model):
-    author = models.ForeignKey('auth.User')
-    first_name = models.CharField(max_length=15, null = True)
-    last_name = models.CharField(max_length=15, null = True)
-    phone_number = models.CharField(max_length=10, null = True)
-    date_of_birth = models.DateField(max_length=8)
-    address = models.CharField(max_length=100)
-    city = models.CharField(max_length=50)
-    created_date = models.DateTimeField(
-            default=timezone.now)
-
-    def confirm_newpatient(self): 
-        self.newpatient_date = timezone.now()
-        self.save()
-
-    def __str__(self):
-        return self.last_name
-
-
 class Appointment(models.Model):
-    author = models.ForeignKey('auth.User')
-    first_name = models.CharField(max_length=15, null = True)
-    last_name = models.CharField(max_length=15, null = True)
-    phone_number = models.CharField(max_length=10, null = True)
+    user = models.ForeignKey('auth.User')
     reason = models.CharField(max_length=50, null = True)
     created_date = models.DateTimeField(
             default=timezone.now)
@@ -44,12 +22,14 @@ class PageAdmin(admin.ModelAdmin):
     def __str__(self):
         return self.list_display
 
-class UserProfile(models.Model):
+class UserDetail(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
 
     # The additional attributes we wish to include.
-    role = models.CharField(max_length=15, null=False)
+    phone_number = models.CharField(max_length=10, null = True)
+    address = models.CharField(max_length=100)
+    city = models.CharField(max_length=50)
 
     def __str__(self):
         return self.user.username

@@ -1,6 +1,6 @@
 from django import forms
-from django.contrib.auth.models import User
-from oneclickvitals.models import Appointment, Newpatient, UserProfile
+from django.contrib.auth.models import User, Group
+from oneclickvitals.models import Appointment,UserDetail
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -9,20 +9,20 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('username', 'email', 'password',)
 
-class UserProfileForm(forms.ModelForm):
+class UserDetailForm(forms.ModelForm):
     class Meta:
-        model = UserProfile
-        fields = ('role',)
+        model = UserDetail
+        fields = ('phone_number','address','city')
 
 class NewPatientForm(forms.ModelForm):
 
     class Meta:
         # Provide an association between the ModelForm and a model
-        model = Newpatient
-        fields = ('first_name','last_name','phone_number', 'date_of_birth', 'address', 'city',)
+        model = User
+        fields = ('username','first_name','last_name','email', 'password', 'groups',)
 
 class AppointmentForm(forms.ModelForm):
 
     class Meta:
         model = Appointment
-        fields = ('first_name','last_name','phone_number', 'reason', 'appointment_date',)
+        fields = ('user','reason', 'appointment_date',)

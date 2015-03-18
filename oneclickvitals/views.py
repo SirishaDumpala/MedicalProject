@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponse
-from oneclickvitals.models import Newpatient, Appointment, PageAdmin
-from oneclickvitals.forms import UserForm, UserProfileForm, NewPatientForm, AppointmentForm
+from oneclickvitals.models import Appointment, PageAdmin, UserDetail
+from oneclickvitals.forms import UserForm, UserDetailForm, NewPatientForm, AppointmentForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.contrib.auth import logout
@@ -70,25 +70,31 @@ def about(request):
 
 def add_newpatient(request):
     if request.method == 'POST':
-        form = NewPatientForm(request.POST)
+        formA = NewPatientForm(request.POST)
+        formB = UserDetailForm(request.POST)
 
-        if form.is_valid():
+        if formA.is_valid() and formB.is_valid():
             # Save the new category to the database.
-            patient = form.save(commit=False)
-            patient.author = request.user
-            patient.save()
+            patientUser = formA.save()
+            patientInfo = formB.save(commit=False)
+            patientInfo.user = patientUser
+            #patient.author = request.user
+            patientInfo.save()
+            print('patient: ', patientInfo)
+            patientUser.groups.add(Group.objects.get(name='patient'))
 
             # The user will be shown the patient profile page view.
             return patient_details(request)
         else:
             # The supplied form contained errors - just print them to the terminal.
-            print (form.errors)
+            print(form.errors)
     else:
         # If the request was not a POST, display the form to enter details.
-        form = NewPatientForm()
+        formA = NewPatientForm()
+        formB = UserDetailForm()
 
     # Render the form with error messages (if any), if no form supplied
-    return render(request, 'oneclickvitals/add_newpatient.html', {'form': form})
+    return render(request, 'oneclickvitals/add_newpatient.html', {'formA': formA, 'formB': formB})
 
 def appointment(request):
     if request.method == 'POST':
@@ -97,7 +103,8 @@ def appointment(request):
         if form.is_valid():
             # Save the new category to the database.
             patient = form.save(commit=False)
-            patient.author = request.user
+            patient.user = patient
+            #patient.author = request.user
             patient.save()
 
             # The user will be shown the appointment detail page view.
@@ -113,7 +120,7 @@ def appointment(request):
 
 @login_required
 def patient_details(request):
-    details_list = Newpatient.objects.all()
+    details_list = UserDetail.objects.all()
 
     return render(request, 'oneclickvitals/patient_details.html', {'details': details_list})
 

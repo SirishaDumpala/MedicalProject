@@ -1,5 +1,5 @@
 from django import template
-from oneclickvitals.models import Appointment, Newpatient
+from oneclickvitals.models import Appointment, UserDetail
 
 register = template.Library()
 
@@ -9,4 +9,4 @@ def get_appointment_list():
 
 @register.inclusion_tag('oneclickvitals/pats.html')
 def get_patient_list():
-    return {'pats': Newpatient.objects.all()}
+    return {'pats': UserDetail.objects.all()}

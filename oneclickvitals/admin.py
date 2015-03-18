@@ -1,7 +1,5 @@
 from django.contrib import admin
-from oneclickvitals.models import Newpatient, Appointment, PageAdmin
-from oneclickvitals.models import UserProfile
+from oneclickvitals.models import Appointment, UserDetail
 
-admin.site.register(Newpatient, PageAdmin)
-admin.site.register(Appointment, PageAdmin)
-admin.site.register(UserProfile)
+admin.site.register(Appointment)
+admin.site.register(UserDetail)

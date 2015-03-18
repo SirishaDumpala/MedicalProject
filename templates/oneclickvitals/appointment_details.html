@@ -21,8 +21,8 @@
         <tbody>
           {% for n in appointment %}
             <tr>
-                <td>{{n.first_name}}</td>
-                <td>{{n.last_name}}</td>
+                <td>{{n.user.first_name}}</td>
+                <td>{{n.user.last_name}}</td>
                 <td>{{n.appointment_date}}</td>
                 <td>{{n.phone_number}}</td>
                 <td>{{n.reason}}</td>
