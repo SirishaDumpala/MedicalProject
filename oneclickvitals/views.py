@@ -78,7 +78,6 @@ def add_newpatient(request):
             patientUser = formA.save()
             patientInfo = formB.save(commit=False)
             patientInfo.user = patientUser
-            #patient.author = request.user
             patientInfo.save()
             print('patient: ', patientInfo)
             patientUser.groups.add(Group.objects.get(name='patient'))
@@ -102,10 +101,8 @@ def appointment(request):
 
         if form.is_valid():
             # Save the new category to the database.
-            patient = form.save(commit=False)
-            patient.user = patient
-            #patient.author = request.user
-            patient.save()
+            appointment = form.save(commit=False)
+            appointment.save()
 
             # The user will be shown the appointment detail page view.
             return appointment_details(request)

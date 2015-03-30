@@ -21,7 +21,7 @@
         <tbody>
           {% for n in details %}
             <tr>
-                <td>{{n.user.first_name}}</td>
+                <td><a href="/patient_profile/">{{n.user.first_name}}</a></td>
                 <td>{{n.user.last_name}}</td>
                 <td>{{n.phone_number}}</td>
                 <td>{{n.date_of_birth}}</td>
