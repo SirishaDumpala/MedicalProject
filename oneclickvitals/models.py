@@ -31,6 +31,23 @@ class UserDetail(models.Model):
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
     insurance = models.CharField(max_length=50, null = True)
+    date_of_birth = models.DateField(blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username
+
+class EmergencyContact(models.Model):
+    # This line is required. Links UserProfile to a User model instance.
+    user = models.OneToOneField(User)
+
+    # The additional attributes we wish to include.
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    relationship = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=10, null = True)
+    address = models.CharField(max_length=100)
+    city = models.CharField(max_length=50)
+
 
     def __str__(self):
         return self.user.username

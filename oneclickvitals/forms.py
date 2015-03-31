@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User, Group
-from oneclickvitals.models import Appointment,UserDetail
+from oneclickvitals.models import Appointment,UserDetail, EmergencyContact
 from datetimewidget.widgets import DateWidget, DateTimeWidget, TimeWidget
 
 class UserForm(forms.ModelForm):
@@ -13,7 +13,8 @@ class UserForm(forms.ModelForm):
 class UserDetailForm(forms.ModelForm):
     class Meta:
         model = UserDetail
-        fields = ('insurance','phone_number','address','city')
+        widgets = {'date_of_birth': DateWidget(attrs={'id':"yourdateid"}, usel10n = True, bootstrap_version=3)}
+        fields = ('date_of_birth','insurance','phone_number','address','city',)
 
 class NewPatientForm(forms.ModelForm):
 
@@ -29,3 +30,10 @@ class AppointmentForm(forms.ModelForm):
         model = Appointment
         widgets = {'appointment_date': DateWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3)}
         fields = ('user','reason', 'appointment_date',)
+
+class EmergencyContactForm(forms.ModelForm):
+
+    class Meta:
+        # Provide an association between the ModelForm and a model
+        model = EmergencyContact
+        fields = ('first_name','last_name','relationship', 'phone_number', 'address','city',)

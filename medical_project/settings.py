@@ -68,6 +68,10 @@ DATABASES = {
     }
 }
 
+SUIT_CONFIG = {
+    'SHOW_REQUIRED_ASTERISK': True
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponse
-from oneclickvitals.models import Appointment, PageAdmin, UserDetail
-from oneclickvitals.forms import UserForm, UserDetailForm, NewPatientForm, AppointmentForm
+from oneclickvitals.models import Appointment, PageAdmin, UserDetail, EmergencyContact
+from oneclickvitals.forms import UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.contrib.auth import logout
@@ -72,28 +72,32 @@ def add_newpatient(request):
     if request.method == 'POST':
         formA = NewPatientForm(request.POST)
         formB = UserDetailForm(request.POST)
+        formC = EmergencyContactForm(request.POST)
 
-        if formA.is_valid() and formB.is_valid():
+        if formA.is_valid() and formB.is_valid() and formC.is_valid():
             # Save the new category to the database.
             patientUser = formA.save()
             patientInfo = formB.save(commit=False)
             patientInfo.user = patientUser
             patientInfo.save()
-            print('patient: ', patientInfo)
+            emergecyContact = formC.save(commit = False)
+            emergencyContact.user = patientUser
+            emergencyContact.save()
             patientUser.groups.add(Group.objects.get(name='patient'))
 
             # The user will be shown the patient profile page view.
             return patient_details(request)
         else:
             # The supplied form contained errors - just print them to the terminal.
-            print(form.errors)
+            print(formA.errors)
     else:
         # If the request was not a POST, display the form to enter details.
         formA = NewPatientForm()
         formB = UserDetailForm()
+        formC = EmergencyContactForm()
 
     # Render the form with error messages (if any), if no form supplied
-    return render(request, 'oneclickvitals/add_newpatient.html', {'formA': formA, 'formB': formB})
+    return render(request, 'oneclickvitals/add_newpatient.html', {'formA': formA, 'formB': formB, 'formC': formC})
 
 def appointment(request):
     if request.method == 'POST':
