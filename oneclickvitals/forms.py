@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User, Group
-from oneclickvitals.models import Appointment,UserDetail, EmergencyContact
+from oneclickvitals.models import Appointment,UserDetail, EmergencyContact, PatientMedicalHistory
 from datetimewidget.widgets import DateWidget, DateTimeWidget, TimeWidget
 
 class UserForm(forms.ModelForm):
@@ -37,3 +37,10 @@ class EmergencyContactForm(forms.ModelForm):
         # Provide an association between the ModelForm and a model
         model = EmergencyContact
         fields = ('first_name','last_name','relationship', 'phone_number', 'address','city',)
+
+class PatientMedicalHistoryForm(forms.ModelForm):
+
+    class Meta:
+        # Provide an association between the ModelForm and a model
+        model = PatientMedicalHistory
+        fields = ('allergies','current_medications','chief_complaint', 'surgical_history', 'medical_history','social_habits',)

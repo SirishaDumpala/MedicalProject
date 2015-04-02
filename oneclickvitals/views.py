@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponse
-from oneclickvitals.models import Appointment, PageAdmin, UserDetail, EmergencyContact
-from oneclickvitals.forms import UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm
+from oneclickvitals.models import Appointment, PageAdmin, UserDetail, EmergencyContact, PatientMedicalHistory
+from oneclickvitals.forms import UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm, PatientMedicalHistoryForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.contrib.auth import logout
@@ -73,6 +73,7 @@ def add_newpatient(request):
         formA = NewPatientForm(request.POST)
         formB = UserDetailForm(request.POST)
         formC = EmergencyContactForm(request.POST)
+        formD = PatientMedicalHistoryForm(request.POST)
 
         if formA.is_valid() and formB.is_valid() and formC.is_valid():
             # Save the new category to the database.
@@ -80,9 +81,12 @@ def add_newpatient(request):
             patientInfo = formB.save(commit=False)
             patientInfo.user = patientUser
             patientInfo.save()
-            emergecyContact = formC.save(commit = False)
+            emergencyContact = formC.save(commit = False)
             emergencyContact.user = patientUser
             emergencyContact.save()
+            patientMedicalHistory = formD.save(commit = False)
+            patientMedicalHistory.user = patientUser
+            patientMedicalHistory.save()
             patientUser.groups.add(Group.objects.get(name='patient'))
 
             # The user will be shown the patient profile page view.
@@ -95,9 +99,10 @@ def add_newpatient(request):
         formA = NewPatientForm()
         formB = UserDetailForm()
         formC = EmergencyContactForm()
+        formD = PatientMedicalHistoryForm()
 
     # Render the form with error messages (if any), if no form supplied
-    return render(request, 'oneclickvitals/add_newpatient.html', {'formA': formA, 'formB': formB, 'formC': formC})
+    return render(request, 'oneclickvitals/add_newpatient.html', {'formA': formA, 'formB': formB, 'formC': formC, 'formD': formD})
 
 def appointment(request):
     if request.method == 'POST':

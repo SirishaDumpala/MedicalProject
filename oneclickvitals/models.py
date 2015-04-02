@@ -39,14 +39,32 @@ class UserDetail(models.Model):
 class EmergencyContact(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
-
+    RELATIONSHIP_CHOICES =  (('parent', 'Parent'),('brother', 'Brother'),('sister', 'Sister'),
+                                ('boyfriend', 'Boyfriend'), ('girlfriend', 'Girlfriend'), ('other', 'Other'),)
     # The additional attributes we wish to include.
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    relationship = models.CharField(max_length=50)
+    relationship = models.CharField(max_length=50, choices=RELATIONSHIP_CHOICES)
     phone_number = models.CharField(max_length=10, null = True)
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
+
+
+    def __str__(self):
+        return self.user.username
+
+class PatientMedicalHistory(models.Model):
+    # This line is required. Links UserProfile to a User model instance.
+    user = models.OneToOneField(User)
+    HABIT_CHOICES = (('smoking', 'Smoking'),('alcohol', 'Alcohol'),('exercise', 'Exercise'),
+                        ('street drugs', 'Street drugs'),)
+    # The additional attributes we wish to include.
+    allergies = models.CharField(max_length=500)
+    current_medications = models.CharField(max_length=500)
+    chief_complaint = models.CharField(max_length=500)
+    surgical_history = models.CharField(max_length=500)
+    medical_history = models.CharField(max_length=500)
+    social_habits = models.CharField(max_length=50, choices=HABIT_CHOICES)
 
 
     def __str__(self):
