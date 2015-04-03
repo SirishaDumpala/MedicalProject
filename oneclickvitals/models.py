@@ -59,11 +59,11 @@ class PatientMedicalHistory(models.Model):
     HABIT_CHOICES = (('smoking', 'Smoking'),('alcohol', 'Alcohol'),('exercise', 'Exercise'),
                         ('street drugs', 'Street drugs'),)
     # The additional attributes we wish to include.
-    allergies = models.CharField(max_length=500)
-    current_medications = models.CharField(max_length=500)
-    chief_complaint = models.CharField(max_length=500)
-    surgical_history = models.CharField(max_length=500)
-    medical_history = models.CharField(max_length=500)
+    allergies = models.TextField(max_length=100)
+    current_medications = models.TextField(max_length=500)
+    chief_complaint = models.TextField(max_length=500)
+    surgical_history = models.TextField(max_length=500)
+    medical_history = models.TextField(max_length=500)
     social_habits = models.CharField(max_length=50, choices=HABIT_CHOICES)
 
 
