@@ -61,11 +61,11 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="/oneclickvitals/"><img src="{% static "media/heartbeat-line-68.png" %}" alt="logo"/></a>
+          <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static "media/heartbeat-line-68.png" %}" alt="logo"/></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav ">
-                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="/oneclickvitals/">Home</a></li>
                 <li><a href="#">About</a></li>
                     {% if user.is_authenticated %}
                         <li class="Patient">

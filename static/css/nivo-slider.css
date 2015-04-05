@@ -3,19 +3,29 @@
 /*============================*/
 #slider-wrapper {
 /*    background:url(images/slider.png) no-repeat;*/
-    position: relative; 
+    position: absolute; 
+    width:75%;
+    margin: 0 auto;
+    height: 75%;
+/*
     width:900px;
     height:600px;
+*/
 /*    margin: 0 auto;*/
+/*
     padding-right: 0px;
     padding-top:0px;
     margin-left: 160px;
     margin-top: 0px;
+*/
 
 }
  
 #slider {
     position: relative;
+    height: 75%;
+    width: 75%;
+/*
     padding-right: 0px;
     padding-left: 20px;
     padding-top: 0px;
@@ -24,17 +34,20 @@
     margin-left: 160px;
     margin-top: 0px;
    
+*/
 /*    background:url(images/loading.gif) no-repeat 50% 50%;*/
 }
 #slider img {
     position: absolute;
+/*
     top:20px;
     left:40px;
     padding-top: 0px;
     padding-right: 0px;
     padding-left: 20px;
-    display:none;
-    margin-top: 0px;
+*/
+    display:block;
+/*    margin-top: 0px;*/
 }
 #slider a {
     border:0;
@@ -42,10 +55,10 @@
 }
  
 .nivo-controlNav {
-    position: absolute;
+    position: relative;
     left:0px;
     right:0px;
-    text-align: center;
+/*    text-align: center;*/
 /*    bottom:-42px;*/
 }
 .nivo-controlNav a {
@@ -92,3 +105,7 @@ a.nivo-prevNav {
 }
 
 .nivo-directionNav a{top: 40%;}
+
+.clear {
+	clear:both;
+}
