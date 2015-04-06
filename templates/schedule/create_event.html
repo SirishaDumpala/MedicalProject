@@ -1,0 +1,24 @@
+{% extends "schedule/edit_occurrence.html"%}
+{% load staticfiles %}
+
+{% block form_action %}{% url calendar_create_event %}{% endblock%}
+
+{% block recurrence %}
+
+<div class="block">
+          <p>
+              {{form.end_recurring_period.label_tag}}
+              {{form.end_recurring_period}}
+              {{form.end_recurring_period.errors}}
+          </p>
+          <p>
+              <label>Repetition rule</label>{{form.rule}}          
+          </p>
+               <!-- 
+          	Admin or Front-end ?
+             
+              <a href="{% url myagenda_create_rule %}">[+]</a>
+
+           -->
+</div>
+{% endblock%}

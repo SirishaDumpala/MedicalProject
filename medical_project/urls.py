@@ -2,6 +2,8 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from registration.backends.simple.views import RegistrationView
 from django.contrib.auth.views import login, logout
+from django.conf import settings
+from django.views.generic.simple import direct_to_template
 
 class MyRegistrationView(RegistrationView):
     def get_success_url(self,request, user):
@@ -17,5 +19,11 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^patient/$', 'oneclickvitals.views.index_patient'),
     url(r'^oneclickvitals/$', 'oneclickvitals.views.index_doctor'),
+    url(r'^', include('myagenda.urls')),
 
 )
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    )

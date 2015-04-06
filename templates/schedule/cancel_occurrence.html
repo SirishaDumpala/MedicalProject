@@ -1,0 +1,14 @@
+{% load i18n %}
+{% load staticfiles %}
+{% load scheduletags %}
+
+
+<h1>{% trans "Delete" %}</h1>
+{% trans "Are you sure that you really want to cancel this occurrence?" %}
+
+<form action="{{occurrence.get_cancel_url}}" method="POST">{% csrf_token %}
+    {% detail occurrence %}
+    <input type="submit" value="{% trans "Delete" %}" name="submit" />
+    <input type="button" value="{% trans "Cancel" %}" onclick="window.location='/'"/>
+    <input type="hidden" name="next" value="/"/>
+</form>
