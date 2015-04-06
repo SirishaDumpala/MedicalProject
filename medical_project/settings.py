@@ -40,13 +40,7 @@ INSTALLED_APPS = (
     'oneclickvitals',
     'registration',
     'datetimewidget',
-    'django_extensions',
-    'django.contrib.sites',
-    'django.contrib.comments',
-    'django.contrib.sitemaps',
-    'django.contrib.syndication',
-    'guardian',
-    'myagenda',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -64,7 +58,7 @@ ROOT_URLCONF = 'medical_project.urls'
 
 WSGI_APPLICATION = 'medical_project.wsgi.application'
 
-SILENCED_SYSTEM_CHECKS = ["E300"]
+#SILENCED_SYSTEM_CHECKS = ["E300"]
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
@@ -111,19 +105,19 @@ TEMPLATE_DIRS = (
     TEMPLATE_PATH,
 )
 
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.load_template_source',
-    'django.template.loaders.app_directories.load_template_source',
-    'django.template.loaders.eggs.load_template_source',
-)
+#TEMPLATE_LOADERS = (
+#    'django.template.loaders.filesystem.load_template_source',
+#    'django.template.loaders.app_directories.load_template_source',
+#    'django.template.loaders.eggs.load_template_source',
+#)
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.core.context_processors.request",
-    "django.contrib.auth.context_processors.auth",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.media",
-    "django.contrib.messages.context_processors.messages")
+#TEMPLATE_CONTEXT_PROCESSORS = (
+#    "django.core.context_processors.request",
+#    "django.contrib.auth.context_processors.auth",
+#    "django.core.context_processors.debug",
+#    "django.core.context_processors.i18n",
+#    "django.core.context_processors.media",
+#    "django.contrib.messages.context_processors.messages")
 
 #MEDIA_URL = '/media/'
 
