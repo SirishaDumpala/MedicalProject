@@ -3,20 +3,25 @@
 <html lang="en">
 
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet"> -->
     <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
     <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
     <link rel="icon" href="{% static 'media/ocv_icon.ico' %}">
+      
+    <link rel="stylesheet" href="{% static "calendarium/css/calendar.css" %}">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="{% static "calendarium/css/bootstrap.min.css" %}">
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      
+<!--
+    <script language="javascript" type="text/javascript">
+  function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+  }
+    </script>
+-->
 
 
     <!--[if lt IE 9]>
@@ -26,8 +31,10 @@
 
 
     <link href="{% static 'css/jquery-ui.css' %}" rel="stylesheet" type="text/css">
+<!--
     <script src="{% static 'js/jquery.js' %}" type="text/javasript"></script>
     <script src="{% static 'js/jquery-ui.js' %}" type="text/javasript"></script>
+-->
     <script src="{% static 'js/jquery-ui.min.js' %}" type="text/javasript"></script>
 
   </head>
@@ -84,6 +91,7 @@
         </div>
       </div>
     </div>
+<!--
     <div class="welcome">
         {% if user.is_authenticated %}
           <p>Welcome, {{ user.first_name }} {{user.last_name }}</p>
@@ -92,6 +100,7 @@
           <p>Welcome, Guest</p>
         {% endif %}
         </div>
+-->
 
     <div class="container-fluid">
       <div class="row">
@@ -109,9 +118,10 @@
                   {% endif %}
                 {% endblock %}
 
-        </div>
+            </div>
 
         </div>
+        
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
            <div>
                 {% block body_block %}{% endblock %}

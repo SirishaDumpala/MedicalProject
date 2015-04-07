@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^patient/$', 'oneclickvitals.views.index_patient'),
     url(r'^oneclickvitals/$', 'oneclickvitals.views.index_doctor'),
-
+    url(r'^calendar/', include('calendarium.urls')),
 
 )
 
