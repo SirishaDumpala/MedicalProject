@@ -8,7 +8,7 @@
           <h1>Appointment Details</h1>
 
     <div class="table-responsive">
-    <table class="table table-hover">
+    <table id="appointment" class="table table-hover">
         <thead>
             <tr>
                 <th>First Name</th>
@@ -31,4 +31,23 @@
         </tbody>
     </table>
   </div>
+</div>
+  <script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(window).load(function() {
+      $('#appointment').filterable({
+        prependWild: true,
+    // If a wild card should be added to the start of all filter input
+        appendWild: true, // If a wild card should be added to the end of all filter input
+
+        ignoreCase: true, // If case should be ignored
+        ignoreColumns: [], // Array. Column indexes to not make filterable
+        onlyColumns: null, // Array. Column indexes to make filterable, all other columns are left non-filterable.
+      });
+    });
+});
+
+</script>
+
+
 {% endblock %}

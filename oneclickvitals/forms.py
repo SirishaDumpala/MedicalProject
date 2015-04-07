@@ -14,7 +14,7 @@ class UserDetailForm(forms.ModelForm):
     class Meta:
         model = UserDetail
         widgets = {'date_of_birth': DateWidget(attrs={'id':"yourdateid"}, usel10n = True, bootstrap_version=3)}
-        fields = ('date_of_birth','insurance','phone_number','address','city',)
+        fields = ('date_of_birth','insurance','phone_number','address','city','pharmacy_name','pharmacy_address','pharmacy_phone_number')
 
 class NewPatientForm(forms.ModelForm):
 
@@ -36,7 +36,7 @@ class EmergencyContactForm(forms.ModelForm):
     class Meta:
         # Provide an association between the ModelForm and a model
         model = EmergencyContact
-        fields = ('first_name','last_name','relationship', 'phone_number', 'address','city',)
+        fields = ('contact_first_name','contact_last_name','relationship', 'contact_phone_number', 'contact_address','contact_city',)
 
 class PatientMedicalHistoryForm(forms.ModelForm):
 

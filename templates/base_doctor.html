@@ -16,10 +16,25 @@
     <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
     <link rel="icon" href="{% static 'media/ocv_icon.ico' %}">
 
+    <link href="{% static 'css/jquery-ui.css' %}" rel="stylesheet" type="text/css">
+
+
+    <link href="{% static 'css/bootstrap-filetrable.css' %}" rel="stylesheet" type="text/css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.4/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/bootstrap-filterable.css" rel="stylesheet" type="text/css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript">var switchTo5x=true;</script>
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
     <script type="text/javascript">stLight.options({publisher: "48952996-13d3-49f3-9854-e6438041a4b3", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+
+    <script src="{% static 'js/jquery.js' %}" type="text/javasript"></script>
+    <script src="{% static 'js/jquery-ui.js' %}" type="text/javasript"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}" type="text/javasript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.4/bootstrap-editable/js/bootstrap-editable.min.js"></script>
+    <script src="src/jquery.filterable.js"></script>
+    <script src="{% static 'js/jquery.filterable.js' %}" type="text/javasript"></script>
 
     {% if bootstrap == 3 %}
     <!-- Latest compiled and minified CSS -->
@@ -36,16 +51,6 @@
     {{ form.media }}
     {% endif %}
 
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-
-    <link href="{% static 'css/jquery-ui.css' %}" rel="stylesheet" type="text/css">
-    <script src="{% static 'js/jquery.js' %}" type="text/javasript"></script>
-    <script src="{% static 'js/jquery-ui.js' %}" type="text/javasript"></script>
-    <script src="{% static 'js/jquery-ui.min.js' %}" type="text/javasript"></script>
 
   </head>
 
@@ -135,8 +140,6 @@
                 </div>
         </div>
       </div>
-
-
 
 
 

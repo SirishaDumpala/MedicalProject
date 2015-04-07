@@ -88,6 +88,7 @@ def add_newpatient(request):
             patientMedicalHistory.user = patientUser
             patientMedicalHistory.save()
             patientUser.groups.add(Group.objects.get(name='patient'))
+            print("saved new patient")
 
             # The user will be shown the patient profile page view.
             return patient_details(request)
@@ -134,3 +135,13 @@ def patient_details(request):
 def appointment_details(request):
     appointment_list = Appointment.objects.all()
     return render(request, 'oneclickvitals/appointment_details.html', {'appointment': appointment_list})
+
+@login_required
+def patient_profile(request):
+
+    profile_list = UserDetail.objects.all()
+    emergency_contact_list = EmergencyContact.objects.all()
+    medical_history_list = PatientMedicalHistory.objects.all()
+    context_dict = {'profile': profile_list, 'emergency': emergency_contact_list, 'medical': medical_history_list}
+    print("in patient profile")
+    return render(request, 'oneclickvitals/patient_profile.html', context_dict)

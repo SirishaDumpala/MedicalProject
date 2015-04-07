@@ -31,6 +31,9 @@ class UserDetail(models.Model):
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
     insurance = models.CharField(max_length=50, null = True)
+    pharmacy_name = models.CharField(max_length=50, null = True)
+    pharmacy_address = models.CharField(max_length=50, null = True)
+    pharmacy_phone_number = models.CharField(max_length=10, null = True)
     date_of_birth = models.DateField(blank=True, null=True)
 
     def __str__(self):
@@ -42,12 +45,12 @@ class EmergencyContact(models.Model):
     RELATIONSHIP_CHOICES =  (('parent', 'Parent'),('brother', 'Brother'),('sister', 'Sister'),
                                 ('boyfriend', 'Boyfriend'), ('girlfriend', 'Girlfriend'), ('other', 'Other'),)
     # The additional attributes we wish to include.
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    relationship = models.CharField(max_length=50, choices=RELATIONSHIP_CHOICES)
-    phone_number = models.CharField(max_length=10, null = True)
-    address = models.CharField(max_length=100)
-    city = models.CharField(max_length=50)
+    contact_first_name = models.CharField(max_length=50, null = True)
+    contact_last_name = models.CharField(max_length=50, null = True)
+    relationship = models.CharField(max_length=50, choices=RELATIONSHIP_CHOICES, null = True)
+    contact_phone_number = models.CharField(max_length=10, null = True)
+    contact_address = models.CharField(max_length=100, null = True)
+    contact_city = models.CharField(max_length=50, null = True)
 
 
     def __str__(self):
@@ -62,6 +65,7 @@ class PatientMedicalHistory(models.Model):
     allergies = models.TextField(max_length=100)
     current_medications = models.TextField(max_length=500)
     chief_complaint = models.TextField(max_length=500)
+    #surgery = models.BooleanField(initial=False)
     surgical_history = models.TextField(max_length=500)
     medical_history = models.TextField(max_length=500)
     social_habits = models.CharField(max_length=50, choices=HABIT_CHOICES)

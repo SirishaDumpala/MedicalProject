@@ -1,5 +1,5 @@
 {% extends 'base_doctor.html' %}
-
+{% load staticfiles %}
 {% block title %}PatientDetails{% endblock %}
 {% block body_block %}
 {% if user.is_authenticated %}
@@ -31,7 +31,8 @@
         </tbody>
     </table>
   </div>
-
+  
 
 {% endif %}
+
 {% endblock %}

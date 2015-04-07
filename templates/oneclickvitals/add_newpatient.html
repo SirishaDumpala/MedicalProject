@@ -35,7 +35,7 @@
       <td> {{ formA.as_table }} </td>
     </table> <br/><br/><br/>
 
-      <button type="submit" class="save btn btn-primary">Save</button>
+
       <a class="btn btn-primary btnNext" >Next</a>
   </div>
   <div role="tabpanel" class="tab-pane" id="tabs-2">
@@ -45,8 +45,8 @@
       <td> {{ formB.as_table }} </td>
     </table> <br/><br/><br/>
 
-      <button type="submit" class="save btn btn-primary">Save</button><br/><br/>
-      <div class="btn-group btn-group-xs" role="group" aria-label="...">
+
+      <div class="btn-group" role="group" aria-label="...">
       <a class="btn btn-primary btnPrevious" >Previous</a>
       <a class="btn btn-primary btnNext" >Next</a>
     </div>
@@ -59,8 +59,8 @@
         <td> {{ formC.as_table }} </td>
       </table> <br/><br/><br/>
 
-      <button type="submit" class="save btn btn-primary">Save</button><br/><br/>
-      <div class="btn-group btn-group-xs" role="group" aria-label="...">
+
+      <div class="btn-group" role="group" aria-label="...">
       <a class="btn btn-primary btnPrevious" >Previous</a>
       <a class="btn btn-primary btnNext" >Next</a>
     </div>
@@ -69,7 +69,7 @@
     <form action="{{ action }}" method="POST">
       {% csrf_token %}
       <table>
-        
+
         <td> {{ formD.as_table }} </td>
       </table>
       <a class="btn btn-primary btnPrevious" >Previous</a>

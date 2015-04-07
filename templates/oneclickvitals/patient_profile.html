@@ -1,0 +1,44 @@
+{% extends 'base_doctor.html' %}
+{% load staticfiles %}
+
+{% block title %}PatientProfile{% endblock %}
+{% block body_block %}
+
+{% if user.is_authenticated %}
+
+    <div class="page-header">
+          <h1>Patient Profile</h1>
+    </div>
+    <div class="table-responsive">
+
+
+      {% for n in profile %}
+      {% if n.user.last_name == user.last_name %}
+      <table class="table table-bordered">
+      <tbody>
+        <tr>
+            <th scope="row" class="col-md-1">First Name</th>
+            <td>>{{n.user.first_name}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Last Name</th>
+            <td>{{n.user.last_name}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Phone Number</th>
+            <td>{{n.phone_number}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Date of Birth</th>
+            <td>{{n.date_of_birth}}</td>
+        </tr>
+      {% endif %}
+
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+{% endif %}
+{% endblock %}
