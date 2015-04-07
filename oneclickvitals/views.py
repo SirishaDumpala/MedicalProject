@@ -25,12 +25,10 @@ def index(request):
     return render(request, 'index.html')
 
 def index_patient(request):
-    context_dict = {'boldmessage': "I am patient"}
-    return render(request, 'index_patient.html', context_dict)
+    return render(request, 'index_patient.html')
 
 def index_doctor(request):
-    context_dict = {'boldmessage': "I am patient"}
-    return render(request, 'index_doctor.html', context_dict)
+    return render(request, 'index_doctor.html')
 
 def login_view(request):
     if request.method == 'POST':
@@ -134,3 +132,12 @@ def patient_details(request):
 def appointment_details(request):
     appointment_list = Appointment.objects.all()
     return render(request, 'oneclickvitals/appointment_details.html', {'appointment': appointment_list})
+
+@login_required
+def patient_appointment_details(request):
+    appointment_list = Appointment.objects.all()
+    return render(request, 'oneclickvitals/patient_appointment_details.html', {'appointment': appointment_list})
+
+@login_required
+def add_radiology(request):
+    return render(request, 'oneclickvitals/add_radiology.html')

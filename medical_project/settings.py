@@ -40,11 +40,6 @@ INSTALLED_APPS = (
     'oneclickvitals',
     'registration',
     'datetimewidget',
-    'filer',
-    'mptt',
-    'easy_thumbnails',
-    'calendarium',
-
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,10 +55,10 @@ MIDDLEWARE_CLASSES = (
 
 SILENCED_SYSTEM_CHECKS = ["1_6.W002"] 
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.request',
-)
+#TEMPLATE_CONTEXT_PROCESSORS = (
+#    'django.contrib.auth.context_processors.auth',
+#    'django.core.context_processors.request',
+#)
 
 ROOT_URLCONF = 'medical_project.urls'
 

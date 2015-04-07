@@ -45,26 +45,12 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="/patient/">Home</a></li>
+                <li><a href="/patient/">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li class="Appointment">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Appointment <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">View</a></li>
-                    <li><a href="#">New</a></li>
-                    <li><a href="#">Edit/Cancel</a></li>
-                  </ul>
-                </li>
+                <li class="Appointment"><a href="/patient_appointment_details/" >Appointment</a></li>
                 <li><a href="#">Prescription</a></li>
                 <li><a href="#">Diagnosis</a></li>
-                <li class="Profile">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Profile <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">View</a></li>
-                    <li><a href="#">Edit</a></li>
-                  </ul>
-                </li>
-                  <li><a href="/accounts/logout">Logout</a></li>
+                <li><a href="/accounts/logout">Logout</a></li>
               </ul>
             <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -87,7 +73,18 @@
         <div class="col-sm-3 col-md-2 sidebar">
 
                 {% block side_block %}
-
+                    <div class="text-left">
+                        <h4>Grand Pasteur Clinic</h4>
+                        <p>515 Hamilton Ave</p>
+                        <p>Laguna Hills, CA 92652</p>
+                        <p>(717) 444-0880</p>
+                        <br/>
+                        <br/>
+                        <h4>Central Pharmacy</h4>
+                        <p>8367 Central Dr</p>
+                        <p>Laguna Hills, CA 92652</p>
+                        <p>(717) 601-8021</p>                        
+                    </div>
                 {% endblock %}
 
         </div>
