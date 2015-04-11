@@ -8,7 +8,6 @@
           <h1>Add New Patient Profile</h1>
     </div>
 
-
       <div class="container">
         <div class="header">
         <ul style="padding-right:60px" class="nav nav-pills pull-right">
@@ -17,7 +16,6 @@
         </ul>
 
     </div>
-
 
   <div role="tabpanel">
   <ul class="nav nav-tabs">
@@ -29,6 +27,7 @@
   </ul>
   <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="tabs-1">
+    <br/>
     <form action="{{ action }}" method="POST">
       {% csrf_token %}
       <table>
@@ -39,6 +38,7 @@
       <a class="btn btn-primary btnNext" >Next</a>
   </div>
   <div role="tabpanel" class="tab-pane" id="tabs-2">
+    <br/>
     <form action="{{ action }}" method="POST">
       {% csrf_token %}
       <table>
@@ -52,6 +52,7 @@
     </div>
   </div>
   <div role="tabpanel" class="tab-pane" id="tabs-3">
+    <br/>
     <form action="{{ action }}" method="POST">
       {% csrf_token %}
 
@@ -66,6 +67,7 @@
     </div>
   </div>
   <div role="tabpanel" class="tab-pane" id="tabs-4">
+    <br/>
     <form action="{{ action }}" method="POST">
       {% csrf_token %}
       <table>
@@ -76,7 +78,7 @@
       <button type="submit" class="save btn btn-primary">Save</button>
   </div>
 </div>
-
+</div>
     </div>
     <script type="text/javascript">
     $('.btnNext').click(function(){

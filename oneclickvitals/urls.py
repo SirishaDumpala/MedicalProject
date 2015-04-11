@@ -10,7 +10,14 @@ urlpatterns = patterns('',
         url(r'^appointment/$', views.appointment, name='appointment'),
         url(r'^patient_details/$', views.patient_details, name='patient_details'),
         url(r'^appointment_details/$', views.appointment_details, name='appointment_details'),
-        url(r'^patient_profile/$', views.patient_profile, name='patient_profile'),
+
+        #url(r'^patient_profile/$', views.patient_profile, name='patient_profile'),
+
+        url(r'^patient_appointment_details/$', views.patient_appointment_details, name='patient_appointment_details'),
+        url(r'^add_radiology/$', views.add_radiology, name='add_radiology'),
+        url(r'^patient_profile/(?P<pk>[0-9]+)/$', views.patient_profile,name='patient_profile'),
+        url(r'^profile/(?P<pk>[0-9]+)/edit/$', views.add_newpatient, name='add_newpatient'),
+        url(r'^personal_profile/$', views.personal_profile, name='personal_profile'),
         )
 if settings.DEBUG:
     urlpatterns += patterns(

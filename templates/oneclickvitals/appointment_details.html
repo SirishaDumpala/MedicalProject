@@ -7,47 +7,46 @@
     <div class="page-header">
           <h1>Appointment Details</h1>
 
-    <div class="table-responsive">
-    <table id="appointment" class="table table-hover">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Appointment Date</th>
-                <th>Phone No.</th>
-                <th>Reason</th>
-            </tr>
-        </thead>
-        <tbody>
-          {% for n in appointment %}
-            <tr>
-                <td><a href="/patient_profile/">{{n.user.first_name}}</a></td>
-                <td>{{n.user.last_name}}</td>
-                <td>{{n.appointment_date}}</td>
-                <td>{{n.phone_number}}</td>
-                <td>{{n.reason}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-  </div>
-</div>
-  <script type="text/javascript">
-  jQuery(document).ready(function($) {
-    $(window).load(function() {
-      $('#appointment').filterable({
-        prependWild: true,
-    // If a wild card should be added to the start of all filter input
-        appendWild: true, // If a wild card should be added to the end of all filter input
 
-        ignoreCase: true, // If case should be ignored
-        ignoreColumns: [], // Array. Column indexes to not make filterable
-        onlyColumns: null, // Array. Column indexes to make filterable, all other columns are left non-filterable.
-      });
-    });
-});
+            <div class="table-responsive">
+            <table id="appointment" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Appointment Date</th>
+                        <th>Phone No.</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for n in appointment %}
+                    <tr>
+                        <td><a href="/patient_profile/{{n.user.id}}">{{n.user.first_name}}</a></td>
+                        <td>{{n.user.last_name}}</td>
+                        <td>{{n.appointment_date}}</td>
+                        <td>{{n.phone_number}}</td>
+                        <td>{{n.reason}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+          </div>
+    </div>
 
-</script>
+    <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $(window).load(function() {
 
+                    $('#appointment').filterable({
+                    prependWild: true, // If a wild card should be added to the start of all filter input
+                    appendWild: true, // If a wild card should be added to the end of all filter input
+                    ignoreCase: true, // If case should be ignored
+                    ignoreColumns: [], // Array. Column indexes to not make filterable
+                    onlyColumns: null, // Array. Column indexes to make filterable, all other columns are left non-filterable.
+                    });
+                });
+            });
+        </script>
 
 {% endblock %}

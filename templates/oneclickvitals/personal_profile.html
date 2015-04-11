@@ -1,4 +1,4 @@
-{% extends 'base_doctor.html' %}
+{% extends 'base_patient.html' %}
 {% load staticfiles %}
 
 {% block title %}PatientProfile{% endblock %}
@@ -67,7 +67,7 @@
         </table>
         </div><br/><br/>
           <a class="btn btn-primary btnNext" >Next</a>
-          <a class="btn btn-default" href="{% url 'add_newpatient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
       </div>
         <div role="tabpanel" class="tab-pane" id="tabs-2">
           <br/>
@@ -99,7 +99,7 @@
           <div class="btn-group" role="group" aria-label="...">
           <a class="btn btn-primary btnPrevious" >Previous</a>
           <a class="btn btn-primary btnNext" >Next</a>
-          <a class="btn btn-default" href="{% url 'add_newpatient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
         </div>
         </div>
 
@@ -116,7 +116,7 @@
               </table>
               </div><br/><br/>
               <a class="btn btn-primary btnPrevious" >Previous</a>
-              <a class="btn btn-default" href="{% url 'add_newpatient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+              
 
               </div>
               </div>

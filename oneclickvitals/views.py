@@ -25,12 +25,10 @@ def index(request):
     return render(request, 'index.html')
 
 def index_patient(request):
-    context_dict = {'boldmessage': "I am patient"}
-    return render(request, 'index_patient.html', context_dict)
+    return render(request, 'index_patient.html')
 
 def index_doctor(request):
-    context_dict = {'boldmessage': "I am patient"}
-    return render(request, 'index_doctor.html', context_dict)
+    return render(request, 'index_doctor.html')
 
 def login_view(request):
     if request.method == 'POST':
@@ -137,11 +135,47 @@ def appointment_details(request):
     return render(request, 'oneclickvitals/appointment_details.html', {'appointment': appointment_list})
 
 @login_required
-def patient_profile(request):
-
-    profile_list = UserDetail.objects.all()
-    emergency_contact_list = EmergencyContact.objects.all()
-    medical_history_list = PatientMedicalHistory.objects.all()
-    context_dict = {'profile': profile_list, 'emergency': emergency_contact_list, 'medical': medical_history_list}
-    print("in patient profile")
+def patient_profile(request, pk):
+    me = User.objects.get(id=pk)
+    profile = UserDetail.objects.get(user=me)
+    #profile_list = UserDetail.objects.all()
+    emergency_contact= EmergencyContact.objects.get(user=me)
+    medical_history = PatientMedicalHistory.objects.get(user=me)
+    context_dict = {'profile':profile, 'emergency': emergency_contact, 'medical_history': medical_history}
+    print("in patient profile: ", me.username)
     return render(request, 'oneclickvitals/patient_profile.html', context_dict)
+
+def patient_appointment_details(request):
+    appointment_list = Appointment.objects.all()
+    return render(request, 'oneclickvitals/patient_appointment_details.html', {'appointment': appointment_list})
+
+@login_required
+def add_radiology(request):
+    return render(request, 'oneclickvitals/add_radiology.html')
+
+def profile_edit(request, pk):
+    profile = get_object_or_404(UserDetail, pk=pk)
+    if request.method == "POST":
+        form = UserDetailForm(request.POST, instance=profile)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.author = request.user
+            profile.save()
+            return redirect('oneclickvitals.views.patient_profile', pk=user.pk)
+    else:
+        form = UserDetailForm(instance=profile)
+    return render(request, 'oneclickvitals/add_newpatient.html', {'form': form})
+
+
+@login_required
+def personal_profile(request):
+    #me = User.objects.get(id=pk)
+    me = request.user
+    print (me.username)
+    profile = UserDetail.objects.get(user=me)
+    #profile_list = UserDetail.objects.all()
+    emergency_contact= EmergencyContact.objects.get(user=me)
+    medical_history = PatientMedicalHistory.objects.get(user=me)
+    context_dict = {'profile':profile, 'emergency': emergency_contact, 'medical_history': medical_history}
+    print("in patient profile: ", me.username)
+    return render(request, 'oneclickvitals/personal_profile.html', context_dict)

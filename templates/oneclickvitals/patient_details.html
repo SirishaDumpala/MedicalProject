@@ -21,7 +21,7 @@
         <tbody>
           {% for n in details %}
             <tr>
-                <td><a href="/patient_profile/">{{n.user.first_name}}</a></td>
+                <td><a href="/patient_profile/{{n.user.id}}">{{n.user.first_name}}</a></td>
                 <td>{{n.user.last_name}}</td>
                 <td>{{n.phone_number}}</td>
                 <td>{{n.date_of_birth}}</td>
@@ -31,7 +31,7 @@
         </tbody>
     </table>
   </div>
-  
+
 
 {% endif %}
 

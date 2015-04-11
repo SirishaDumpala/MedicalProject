@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * filterable
  * jQuery plugin that filters an HTML table based on column-specific values using x-editable
@@ -10,6 +11,8 @@
  * @version 0.1.3
  */
 
+=======
+>>>>>>> 9ea3ceed5814c923d207b9d778405e4bc64d0e00
 (function( $ ) {
   $.fn.filterable = function(opts) {
 

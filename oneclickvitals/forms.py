@@ -29,7 +29,7 @@ class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
         widgets = {'appointment_date': DateWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3)}
-        fields = ('user','reason', 'appointment_date',)
+        fields = ('user','reason', 'phone_number','appointment_date',)
 
 class EmergencyContactForm(forms.ModelForm):
 

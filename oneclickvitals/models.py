@@ -7,6 +7,7 @@ from datetimewidget.widgets import DateWidget, DateTimeWidget, TimeWidget
 class Appointment(models.Model):
     user = models.ForeignKey('auth.User')
     reason = models.CharField(max_length=50, null = True)
+    phone_number = models.CharField(max_length=10, null = True)
     created_date = models.DateTimeField(
             default=timezone.now)
     appointment_date = models.DateField(
@@ -42,8 +43,7 @@ class UserDetail(models.Model):
 class EmergencyContact(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
-    RELATIONSHIP_CHOICES =  (('parent', 'Parent'),('brother', 'Brother'),('sister', 'Sister'),
-                                ('boyfriend', 'Boyfriend'), ('girlfriend', 'Girlfriend'), ('other', 'Other'),)
+    RELATIONSHIP_CHOICES =  (('spouse', 'Spouse'),('parent', 'Parent'),('brother', 'Brother'),('sister', 'Sister'), ('boyfriend', 'Boyfriend'), ('girlfriend', 'Girlfriend'), ('other', 'Other'),)
     # The additional attributes we wish to include.
     contact_first_name = models.CharField(max_length=50, null = True)
     contact_last_name = models.CharField(max_length=50, null = True)
