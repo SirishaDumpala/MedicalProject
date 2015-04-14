@@ -22,6 +22,7 @@
       <li role="presentation" class="active"><a href="#tabs-1" aria-controls="tabs-1" role="tab" data-toggle="tab">Personal Information</a></li>
       <li role="presentation"><a href="#tabs-2" aria-controls="tabs-2" role="tab" data-toggle="tab">Emergency Contact</a></li>
       <li role="presentation"><a href="#tabs-3" aria-controls="tabs-3" role="tab" data-toggle="tab">Medical History</a></li>
+      
     </ul>
 
 
@@ -67,7 +68,7 @@
         </table>
         </div><br/><br/>
           <a class="btn btn-primary btnNext" >Next</a>
-          <a class="btn btn-default" href="{% url 'add_newpatient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+          <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
       </div>
         <div role="tabpanel" class="tab-pane" id="tabs-2">
           <br/>
@@ -99,7 +100,7 @@
           <div class="btn-group" role="group" aria-label="...">
           <a class="btn btn-primary btnPrevious" >Previous</a>
           <a class="btn btn-primary btnNext" >Next</a>
-          <a class="btn btn-default" href="{% url 'add_newpatient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+          <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
         </div>
         </div>
 
@@ -116,9 +117,11 @@
               </table>
               </div><br/><br/>
               <a class="btn btn-primary btnPrevious" >Previous</a>
-              <a class="btn btn-default" href="{% url 'add_newpatient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+              <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 
               </div>
+
+
               </div>
 
 

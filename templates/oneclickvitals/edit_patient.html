@@ -1,11 +1,11 @@
 {% extends 'base_doctor.html' %}
 {% load staticfiles %}
 
-{% block title %}AddNewPatient{% endblock %}
+{% block title %}EditPatient{% endblock %}
 {% block body_block %}
 
     <div class="page-header">
-          <h1>Add New Patient Profile</h1>
+          <h1>Edit Patient Profile</h1>
     </div>
 
       <div class="container">
@@ -23,7 +23,6 @@
     <li role="presentation"><a href="#tabs-2" aria-controls="tabs-2" role="tab" data-toggle="tab">Patient Details</a></li>
     <li role="presentation"><a href="#tabs-3" aria-controls="tabs-3" role="tab" data-toggle="tab">Emergency Contact</a></li>
     <li role="presentation"><a href="#tabs-4" aria-controls="tabs-4" role="tab" data-toggle="tab">Medical History</a></li>
-    <li role="presentation"><a href="#tabs-5" aria-controls="tabs-5" role="tab" data-toggle="tab">Family History</a></li>
 
   </ul>
   <div class="tab-content">
@@ -74,18 +73,6 @@
       <table>
 
         <td> {{ formD.as_table }} </td>
-      </table>
-      <a class="btn btn-primary btnPrevious" >Previous</a>
-      <a class="btn btn-primary btnNext" >Next</a>
-  </div>
-
-  <div role="tabpanel" class="tab-pane" id="tabs-5">
-    <br/>
-    <form action="{{ action }}" method="POST">
-      {% csrf_token %}
-      <table>
-
-        <td> {{ formE.as_table }} </td>
       </table>
       <a class="btn btn-primary btnPrevious" >Previous</a>
       <button type="submit" class="save btn btn-primary">Save</button>

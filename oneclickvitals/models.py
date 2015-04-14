@@ -10,7 +10,7 @@ class Appointment(models.Model):
     phone_number = models.CharField(max_length=10, null = True)
     created_date = models.DateTimeField(
             default=timezone.now)
-    appointment_date = models.DateField(
+    appointment_date = models.DateTimeField(
             blank=True, null=True)
 
     def __str__(self):
@@ -69,6 +69,27 @@ class PatientMedicalHistory(models.Model):
     surgical_history = models.TextField(max_length=500)
     medical_history = models.TextField(max_length=500)
     social_habits = models.CharField(max_length=50, choices=HABIT_CHOICES)
+
+
+    def __str__(self):
+        return self.user.username
+
+
+class FamilyMedicalHistory(models.Model):
+    # This line is required. Links UserProfile to a User model instance.
+    user = models.OneToOneField(User)
+    # The additional attributes we wish to include.
+    stroke = models.BooleanField()
+    cancer = models.BooleanField()
+    high_bp = models.BooleanField()
+    tuberculosis = models.BooleanField()
+    diabetes = models.BooleanField()
+    leukemia = models.BooleanField()
+    bleeding_tendency = models.BooleanField()
+    heart_attack = models.BooleanField()
+    kidney_disease = models.BooleanField()
+    rheumatic_heart = models.BooleanField()
+    heart_failure = models.BooleanField()
 
 
     def __str__(self):

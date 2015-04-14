@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponse
-from oneclickvitals.models import Appointment, PageAdmin, UserDetail, EmergencyContact, PatientMedicalHistory
-from oneclickvitals.forms import UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm, PatientMedicalHistoryForm
+from oneclickvitals.models import Appointment, PageAdmin, UserDetail, EmergencyContact, PatientMedicalHistory, FamilyMedicalHistory
+from oneclickvitals.forms import UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm, PatientMedicalHistoryForm, FamilyMedicalHistoryForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.contrib.auth import logout
@@ -72,8 +72,9 @@ def add_newpatient(request):
         formB = UserDetailForm(request.POST)
         formC = EmergencyContactForm(request.POST)
         formD = PatientMedicalHistoryForm(request.POST)
+        formE = FamilyMedicalHistoryForm(request.POST)
 
-        if formA.is_valid() and formB.is_valid() and formC.is_valid():
+        if formA.is_valid() and formB.is_valid() and formC.is_valid() and formD.is_valid() and formE.is_valid():
             # Save the new category to the database.
             patientUser = formA.save()
             patientInfo = formB.save(commit=False)
@@ -85,8 +86,11 @@ def add_newpatient(request):
             patientMedicalHistory = formD.save(commit = False)
             patientMedicalHistory.user = patientUser
             patientMedicalHistory.save()
+            familyMedicalHistory = formE.save(commit = False)
+            familyMedicalHistory.user = patientUser
+            familyMedicalHistory.save()
             patientUser.groups.add(Group.objects.get(name='patient'))
-            print("saved new patient")
+            #print("saved new patient")
 
             # The user will be shown the patient profile page view.
             return patient_details(request)
@@ -99,9 +103,10 @@ def add_newpatient(request):
         formB = UserDetailForm()
         formC = EmergencyContactForm()
         formD = PatientMedicalHistoryForm()
+        formE = FamilyMedicalHistoryForm()
 
     # Render the form with error messages (if any), if no form supplied
-    return render(request, 'oneclickvitals/add_newpatient.html', {'formA': formA, 'formB': formB, 'formC': formC, 'formD': formD})
+    return render(request, 'oneclickvitals/add_newpatient.html', {'formA': formA, 'formB': formB, 'formC': formC, 'formD': formD, 'formE': formE})
 
 def appointment(request):
     if request.method == 'POST':
@@ -164,7 +169,7 @@ def profile_edit(request, pk):
             return redirect('oneclickvitals.views.patient_profile', pk=user.pk)
     else:
         form = UserDetailForm(instance=profile)
-    return render(request, 'oneclickvitals/add_newpatient.html', {'form': form})
+    return render(request, 'oneclickvitals/edit_patient.html', {'form': form})
 
 
 @login_required
@@ -176,6 +181,48 @@ def personal_profile(request):
     #profile_list = UserDetail.objects.all()
     emergency_contact= EmergencyContact.objects.get(user=me)
     medical_history = PatientMedicalHistory.objects.get(user=me)
-    context_dict = {'profile':profile, 'emergency': emergency_contact, 'medical_history': medical_history}
+    context_dict = {'profile':profile, 'emergency': emergency_contact, 'medical_history': medical_history, }
     print("in patient profile: ", me.username)
     return render(request, 'oneclickvitals/personal_profile.html', context_dict)
+
+def edit_patient(request, pk):
+    if request.method == 'POST':
+        formA = NewPatientForm(request.POST)
+        formB = UserDetailForm(request.POST)
+        formC = EmergencyContactForm(request.POST)
+        formD = PatientMedicalHistoryForm(request.POST)
+        formE = FamilyMedicalHistoryForm(request.POST)
+
+        if formA.is_valid() and formB.is_valid() and formC.is_valid():
+            # Save the new category to the database.
+            patientUser = formA.save()
+            patientInfo = formB.save(commit=False)
+            patientInfo.user = patientUser
+            patientInfo.save()
+            emergencyContact = formC.save(commit = False)
+            emergencyContact.user = patientUser
+            emergencyContact.save()
+            patientMedicalHistory = formD.save(commit = False)
+            patientMedicalHistory.user = patientUser
+            patientMedicalHistory.save()
+            familyMedicalHistory = formE.save(commit = False)
+            familyMedicalHistory.user = patientUser
+            familyMedicalHistory.save()
+            patientUser.groups.add(Group.objects.get(name='patient'))
+            print("saved new patient")
+
+            # The user will be shown the patient profile page view.
+            return patient_details(request)
+        else:
+            # The supplied form contained errors - just print them to the terminal.
+            print(formA.errors)
+    else:
+        # If the request was not a POST, display the form to enter details.
+        formA = NewPatientForm()
+        formB = UserDetailForm()
+        formC = EmergencyContactForm()
+        formD = PatientMedicalHistoryForm()
+        formE = FamilyMedicalHistoryForm()
+
+    # Render the form with error messages (if any), if no form supplied
+    return render(request, 'oneclickvitals/edit_patient.html', {'formA': formA, 'formB': formB, 'formC': formC, 'formD': formD, 'formE': formE})
