@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response, RequestContext
 from django.http import HttpResponseRedirect, HttpResponse
-from oneclickvitals.models import Appointment, PageAdmin, UserDetail, EmergencyContact, PatientMedicalHistory
-from oneclickvitals.forms import UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm, PatientMedicalHistoryForm
+from oneclickvitals.models import Appointment, PageAdmin, UserDetail, EmergencyContact, PatientMedicalHistory, Radiology
+from oneclickvitals.forms import UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm, PatientMedicalHistoryForm, PatientRadiologyImageForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.contrib.auth import logout
@@ -9,6 +9,9 @@ from django.contrib.auth.models import User, Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.context_processors import csrf
 from django.contrib import auth
+from medical_project.settings import MEDIA_URL, MEDIA_ROOT
+from django.utils import timezone
+from django.template import RequestContext
 
 
 def is_patient(user):
@@ -139,5 +142,55 @@ def patient_appointment_details(request):
     return render(request, 'oneclickvitals/patient_appointment_details.html', {'appointment': appointment_list})
 
 @login_required
-def add_radiology(request):
-    return render(request, 'oneclickvitals/add_radiology.html')
+def patient_radiology_image(request):
+    if request.method == 'POST':
+        form = PatientRadiologyImageForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            # Save the new image to the database.
+            radiology_image = form.save(commit=False)
+            radiology_image.save()
+
+            # The user will be shown the image list.
+            return redirect('radiology_list')
+        else:
+            print (form.errors)
+    else:
+        # If the request was not a POST, display the form to enter details.
+        form = PatientRadiologyImageForm()
+
+    # Render the form with error messages (if any)
+    return render(request, 'oneclickvitals/add_radiology.html', {'form': form})
+
+@login_required
+def radiology_list(request):
+    radiology_images = Radiology.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
+    return render(request, 'oneclickvitals/radiology_list.html', {'radiology_images': radiology_images})
+        
+
+@login_required
+def view_radiology(request, pk):
+    img = get_object_or_404(Radiology, pk=pk)
+    return render_to_response('oneclickvitals/view_radiology.html', {'img':img}, context_instance=RequestContext(request) )
+
+@login_required
+def edit_radiology(request, pk):
+    img = get_object_or_404(Radiology, pk=pk)
+    if request.method == 'POST':
+        form = PatientRadiologyImageForm(request.POST, instance=img)
+
+        if form.is_valid():
+            # Save the new image to the database.
+            radiology_image = form.save(commit=False)
+            radiology_image.save()
+
+            # The user will be shown the image list.
+            return redirect('view_radiology', pk=img.pk)
+        else:
+            print (form.errors)
+    else:
+        # If the request was not a POST, display the form to enter details.
+        form = PatientRadiologyImageForm(instance=img)
+
+    # Render the form with error messages (if any)
+    return render(request, 'oneclickvitals/edit_radiology.html', {'form': form})

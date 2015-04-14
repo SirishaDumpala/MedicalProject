@@ -3,6 +3,11 @@ from django.utils import timezone
 from django.contrib import admin
 from django.contrib.auth.models import User
 from datetimewidget.widgets import DateWidget, DateTimeWidget, TimeWidget
+from django.core.urlresolvers import reverse
+from django.core.files import File
+from os.path import join as pjoin
+from tempfile import *
+from PIL import Image as PImage
 
 class Appointment(models.Model):
     user = models.ForeignKey('auth.User')
@@ -11,6 +16,8 @@ class Appointment(models.Model):
     created_date = models.DateTimeField(
             default=timezone.now)
     appointment_date = models.DateField(
+            blank=True, null=True)
+    appointment_time = models.TimeField(
             blank=True, null=True)
 
     def __str__(self):
@@ -69,3 +76,16 @@ class PatientMedicalHistory(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    
+class Radiology(models.Model):   
+    user = models.ForeignKey(User)
+    title = models.CharField(max_length=60, blank=True)
+    image = models.ImageField(upload_to='image')
+    created_date = models.DateField(blank=True, null=True)  
+    caption = models.CharField(max_length=60, blank=True)
+    
+    
+    def __str__(self):
+        return self.user.last_name
+    

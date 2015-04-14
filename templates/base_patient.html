@@ -18,6 +18,7 @@
     <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
     <link rel="icon" href="{% static 'images/ocv_icon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/nivo-slider.css' %}" type="text/css" media="screen" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -44,19 +45,15 @@
           <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static "media/heartbeat-line-68.png" %}" alt="logo"/></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li><a href="/patient/">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li class="Appointment"><a href="/patient_appointment_details/" >Appointment</a></li>
-                <li><a href="#">Prescription</a></li>
-                <li><a href="#">Diagnosis</a></li>
-                <li><a href="/accounts/logout">Logout</a></li>
-              </ul>
-            <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-            </form>
-            </div>
-
+          <ul class="nav navbar-nav">
+            <li><a href="/patient/">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li class="Appointment"><a href="/patient_appointment_details/" >Appointment</a></li>
+            <li><a href="#">Prescription</a></li>
+            <li><a href="#">Diagnosis</a></li>
+            <li><a href="/accounts/logout">Logout</a></li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="welcome">
@@ -70,7 +67,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+        <div id="patient_sidebar" class="col-sm-3 col-md-2 sidebar">
 
                 {% block side_block %}
                     <div class="text-left">

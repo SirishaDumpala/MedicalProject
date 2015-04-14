@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User, Group
-from oneclickvitals.models import Appointment,UserDetail, EmergencyContact, PatientMedicalHistory
+from oneclickvitals.models import Appointment,UserDetail, EmergencyContact, PatientMedicalHistory, Radiology
 from datetimewidget.widgets import DateWidget, DateTimeWidget, TimeWidget
 
 class UserForm(forms.ModelForm):
@@ -28,8 +28,9 @@ class AppointmentForm(forms.ModelForm):
     #appointment_date = forms.DateTimeField(widget = DateTimeWidget(usel10n = True, bootstrap_version = 3))
     class Meta:
         model = Appointment
-        widgets = {'appointment_date': DateWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3)}
-        fields = ('user','reason', 'phone_number','appointment_date',)
+        widgets = {'appointment_date': DateWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3),
+                  'appointment_time': TimeWidget(attrs= {'id':"yourtimeid"}, usel10n = True, bootstrap_version=3)}
+        fields = ('user','reason', 'phone_number','appointment_date','appointment_time',)
 
 class EmergencyContactForm(forms.ModelForm):
 
@@ -44,3 +45,10 @@ class PatientMedicalHistoryForm(forms.ModelForm):
         # Provide an association between the ModelForm and a model
         model = PatientMedicalHistory
         fields = ('allergies','current_medications','chief_complaint', 'surgical_history', 'medical_history','social_habits',)
+
+class PatientRadiologyImageForm(forms.ModelForm):
+    
+    class Meta:
+        model = Radiology
+        widgets = {'created_date': DateWidget(attrs={'id':"yourcreateddateid"}, usel10n = True, bootstrap_version=3)}
+        fields = ('user', 'title', 'created_date', 'caption', 'image',)
