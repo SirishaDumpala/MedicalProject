@@ -15,7 +15,7 @@ class UserDetailForm(forms.ModelForm):
     class Meta:
         model = UserDetail
         widgets = {'date_of_birth': DateWidget(attrs={'id':"yourdateid"}, usel10n = True, bootstrap_version=3)}
-        fields = ('date_of_birth','insurance','phone_number','address','city','pharmacy_name','pharmacy_address','pharmacy_phone_number')
+        fields = ('gender','date_of_birth','insurance','phone_number','address','city','pharmacy_name','pharmacy_address','pharmacy_phone_number')
 
 class NewPatientForm(forms.ModelForm):
 

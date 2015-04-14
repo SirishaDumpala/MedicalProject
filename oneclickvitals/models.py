@@ -26,6 +26,7 @@ class PageAdmin(admin.ModelAdmin):
 class UserDetail(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
+    GENDER_CHOICES = (('female', 'Female',), ('male', 'Male',))
 
     # The additional attributes we wish to include.
     phone_number = models.CharField(max_length=10, null = True)
@@ -36,6 +37,7 @@ class UserDetail(models.Model):
     pharmacy_address = models.CharField(max_length=50, null = True)
     pharmacy_phone_number = models.CharField(max_length=10, null = True)
     date_of_birth = models.DateField(blank=True, null=True)
+    gender = models.CharField(max_length=50, choices=GENDER_CHOICES, null = True)
 
     def __str__(self):
         return self.user.username
@@ -79,17 +81,17 @@ class FamilyMedicalHistory(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
     # The additional attributes we wish to include.
-    stroke = models.BooleanField()
-    cancer = models.BooleanField()
-    high_bp = models.BooleanField()
-    tuberculosis = models.BooleanField()
-    diabetes = models.BooleanField()
-    leukemia = models.BooleanField()
-    bleeding_tendency = models.BooleanField()
-    heart_attack = models.BooleanField()
-    kidney_disease = models.BooleanField()
-    rheumatic_heart = models.BooleanField()
-    heart_failure = models.BooleanField()
+    stroke = models.NullBooleanField()
+    cancer = models.NullBooleanField()
+    high_bp = models.NullBooleanField()
+    tuberculosis = models.NullBooleanField()
+    diabetes = models.NullBooleanField()
+    leukemia = models.NullBooleanField()
+    bleeding_tendency = models.NullBooleanField()
+    heart_attack = models.NullBooleanField()
+    kidney_disease = models.NullBooleanField()
+    rheumatic_heart = models.NullBooleanField()
+    heart_failure = models.NullBooleanField()
 
 
     def __str__(self):

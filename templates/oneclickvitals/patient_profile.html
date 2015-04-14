@@ -22,7 +22,8 @@
       <li role="presentation" class="active"><a href="#tabs-1" aria-controls="tabs-1" role="tab" data-toggle="tab">Personal Information</a></li>
       <li role="presentation"><a href="#tabs-2" aria-controls="tabs-2" role="tab" data-toggle="tab">Emergency Contact</a></li>
       <li role="presentation"><a href="#tabs-3" aria-controls="tabs-3" role="tab" data-toggle="tab">Medical History</a></li>
-      
+      <li role="presentation"><a href="#tabs-4" aria-controls="tabs-4" role="tab" data-toggle="tab">Family History</a></li>
+
     </ul>
 
 
@@ -43,6 +44,10 @@
             <tr>
                 <th scope="row" class="col-md-2">Date of Birth</th>
                 <td>{{profile.date_of_birth}}</td>
+            </tr>
+            <tr>
+                <th scope="row" class="col-md-2">Gender</th>
+                <td>{{profile.gender}}</td>
             </tr>
             <tr>
                 <th scope="row" class="col-md-2">Phone Number</th>
@@ -113,13 +118,91 @@
                       <th scope="row" class="col-md-2">Allergies</th>
                       <td>{{medical_history.allergies}}</td>
                   </tr>
+                  <tr>
+                      <th scope="row" class="col-md-2">Current Medications</th>
+                      <td>{{medical_history.current_medications}}</td>
+                  </tr>
+                  <tr>
+                      <th scope="row" class="col-md-2">Chief Complaint</th>
+                      <td>{{medical_history.chief_complaint}}</td>
+                  </tr>
+                  <tr>
+                      <th scope="row" class="col-md-2">Surgical History</th>
+                      <td>{{medical_history.surgical_history}}</td>
+                  </tr>
+                  <tr>
+                      <th scope="row" class="col-md-2">Medical History</th>
+                      <td>{{medical_history.medical_history}}</td>
+                  </tr>
+                  <tr>
+                      <th scope="row" class="col-md-2">Social Habits</th>
+                      <td>{{medical_history.social_habits}}</td>
+                  </tr>
                 </tbody>
               </table>
               </div><br/><br/>
               <a class="btn btn-primary btnPrevious" >Previous</a>
+              <a class="btn btn-primary btnNext" >Next</a>
               <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 
               </div>
+              <div role="tabpanel" class="tab-pane" id="tabs-4">
+                <br/>
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <tbody>
+                        <tr>
+                            <th scope="row" class="col-md-2">Stroke</th>
+                            <td>{{family_history.stroke}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-2">Cancer</th>
+                            <td>{{family_history.cancer}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-2">High Blood Pressure</th>
+                            <td>{{family_history.high_bp}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-2">Tuberculosis</th>
+                            <td>{{family_history.tuberculosis}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-2">Diabetes</th>
+                            <td>{{family_history.diabetes}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-2">Leukemia</th>
+                            <td>{{family_history.leukemia}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-2">Bleeding Tendency</th>
+                            <td>{{family_history.bleeding_tendency}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-2">Heart Attack</th>
+                            <td>{{family_history.heart_attack}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-2">Kidney Disease</th>
+                            <td>{{family_history.kidney_disease}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-2">Rheumatic Heart</th>
+                            <td>{{family_history.rheumatic_heart}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-2">Heart Failure</th>
+                            <td>{{family_history.heart_failure}}</td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                    </div><br/><br/>
+                    <a class="btn btn-primary btnPrevious" >Previous</a>
+                    <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+                    </div>
 
 
               </div>
