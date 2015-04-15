@@ -182,8 +182,9 @@ def personal_profile(request):
     #profile_list = UserDetail.objects.all()
     emergency_contact= EmergencyContact.objects.get(user=me)
     medical_history = PatientMedicalHistory.objects.get(user=me)
-    context_dict = {'profile':profile, 'emergency': emergency_contact, 'medical_history': medical_history, }
-    print("in patient profile: ", me.username)
+    family_history = FamilyMedicalHistory.objects.get(user=me)
+    context_dict = {'profile':profile, 'emergency': emergency_contact, 'medical_history': medical_history,'family_history': family_history }
+    print("in patient profile: ", profile.pharmacy_name)
     return render(request, 'oneclickvitals/personal_profile.html', context_dict)
 
 def edit_patient(request, pk):

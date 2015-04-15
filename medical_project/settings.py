@@ -50,10 +50,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+
 )
 
-SILENCED_SYSTEM_CHECKS = ["1_6.W002"] 
+SILENCED_SYSTEM_CHECKS = ["1_6.W002"]
 
 #TEMPLATE_CONTEXT_PROCESSORS = (
 #    'django.contrib.auth.context_processors.auth',

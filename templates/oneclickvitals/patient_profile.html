@@ -153,47 +153,91 @@
                       <tbody>
                         <tr>
                             <th scope="row" class="col-md-2">Stroke</th>
-                            <td>{{family_history.stroke}}</td>
+                            {% if family_history.stroke%}
+                            <td>Yes</td>
+                            {% else %}
+                            <td>No</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <th scope="row" class="col-md-2">Cancer</th>
-                            <td>{{family_history.cancer}}</td>
+                            {% if family_history.cancer %}
+                            <td>Yes</td>
+                            {% else %}
+                            <td>No</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <th scope="row" class="col-md-2">High Blood Pressure</th>
-                            <td>{{family_history.high_bp}}</td>
+                            {% if family_history.high_bp %}
+                            <td>Yes</td>
+                            {% else %}
+                            <td>No</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <th scope="row" class="col-md-2">Tuberculosis</th>
-                            <td>{{family_history.tuberculosis}}</td>
+                            {% if family_history.tuberculosis %}
+                            <td>Yes</td>
+                            {% else %}
+                            <td>No</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <th scope="row" class="col-md-2">Diabetes</th>
-                            <td>{{family_history.diabetes}}</td>
+                            {% if family_history.diabetes %}
+                            <td>Yes</td>
+                            {% else %}
+                            <td>No</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <th scope="row" class="col-md-2">Leukemia</th>
-                            <td>{{family_history.leukemia}}</td>
+                            {% if family_history.leukemia %}
+                            <td>Yes</td>
+                            {% else %}
+                            <td>No</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <th scope="row" class="col-md-2">Bleeding Tendency</th>
-                            <td>{{family_history.bleeding_tendency}}</td>
+                            {% if family_history.bleeding_tendency %}
+                            <td>Yes</td>
+                            {% else %}
+                            <td>No</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <th scope="row" class="col-md-2">Heart Attack</th>
-                            <td>{{family_history.heart_attack}}</td>
+                            {% if family_history.heart_attack %}
+                            <td>Yes</td>
+                            {% else %}
+                            <td>No</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <th scope="row" class="col-md-2">Kidney Disease</th>
-                            <td>{{family_history.kidney_disease}}</td>
+                            {% if family_history.kidney_disease %}
+                            <td>Yes</td>
+                            {% else %}
+                            <td>No</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <th scope="row" class="col-md-2">Rheumatic Heart</th>
-                            <td>{{family_history.rheumatic_heart}}</td>
+                            {% if family_history.rheumatic_heart %}
+                            <td>Yes</td>
+                            {% else %}
+                            <td>No</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <th scope="row" class="col-md-2">Heart Failure</th>
-                            <td>{{family_history.heart_failure}}</td>
+                            {% if family_history.heart_failure %}
+                            <td>Yes</td>
+                            {% else %}
+                            <td>No</td>
+                            {% endif %}
                         </tr>
 
                       </tbody>
@@ -203,11 +247,7 @@
                     <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 
                     </div>
-
-
               </div>
-
-
 </div>
 </div>
 

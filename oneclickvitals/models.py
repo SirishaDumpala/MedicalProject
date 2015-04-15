@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from datetimewidget.widgets import DateWidget, DateTimeWidget, TimeWidget
 
+
 class Appointment(models.Model):
     user = models.ForeignKey('auth.User')
     reason = models.CharField(max_length=50, null = True)
@@ -62,7 +63,7 @@ class PatientMedicalHistory(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
     HABIT_CHOICES = (('smoking', 'Smoking'),('alcohol', 'Alcohol'),('exercise', 'Exercise'),
-                        ('street drugs', 'Street drugs'),)
+                        ('street drugs', 'Street Drugs'),('other', 'Other'),('none', 'None'))
     # The additional attributes we wish to include.
     allergies = models.TextField(max_length=100)
     current_medications = models.TextField(max_length=500)
@@ -96,3 +97,52 @@ class FamilyMedicalHistory(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Diagnosis(models.Model):
+    user = models.ForeignKey('auth.User')
+    date = models.DateField(default=timezone.now)
+    complaint = models.TextField(max_length=500)
+    additional_comments = models.TextField(max_length=500)
+
+
+    def __str__(self):
+        return self.last_name
+'''
+class LabTest(models.Model):
+    # This line is required. Links UserProfile to a User model instance.
+    user = models.OneToOneField(User)
+    # The additional attributes we wish to include.
+    stroke = models.NullBooleanField()
+    cancer = models.NullBooleanField()
+    high_bp = models.NullBooleanField()
+    tuberculosis = models.NullBooleanField()
+    diabetes = models.NullBooleanField()
+    leukemia = models.NullBooleanField()
+    bleeding_tendency = models.NullBooleanField()
+    heart_attack = models.NullBooleanField()
+    kidney_disease = models.NullBooleanField()
+    rheumatic_heart = models.NullBooleanField()
+    heart_failure = models.NullBooleanField()
+
+
+    def __str__(self):
+        return self.user.username
+
+
+
+
+class LabTestOrder(models.Model):
+    user = models.ForeignKey('auth.User')
+    TEST_CHOICES = (('urine_culture', 'Urine Culture'),
+              ('blood_culture', 'Blood Culture'),
+              ('allergy_test', 'Allergy Test'),
+              ('blood_glucose', 'Blood Glucose'),
+              ('blood_type', 'Blood Type'),
+              ('thyroid', 'Thyroid'),
+              ('viral_test', 'Viral Test'),
+              ('pregnancy_test', 'Pregnancy Test'))
+    type_of_test = models.MultipleChoiceField(choices=TEST_CHOICES)
+
+    def __str__(self):
+        return self.last_name
+'''

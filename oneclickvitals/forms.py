@@ -69,3 +69,11 @@ class FamilyMedicalHistoryForm(forms.ModelForm):
                     'heart_failure': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
                     }
         fields = ('stroke','cancer','high_bp', 'tuberculosis', 'diabetes', 'leukemia', 'bleeding_tendency', 'heart_attack','kidney_disease', 'rheumatic_heart', 'heart_failure',)
+
+'''
+class LabTestOrderForm(forms.ModelForm):
+    class Meta:
+        model = LabTestOrder
+        widget=forms.CheckboxSelectMultiple(attrs={'checked' : 'checked'}))
+        fields = ('type_of_test')
+'''
