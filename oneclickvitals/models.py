@@ -84,7 +84,7 @@ class PatientMedicalHistory(models.Model):
     def __str__(self):
         return self.user.username
 
-<<<<<<< HEAD
+
 
 class FamilyMedicalHistory(models.Model):
     # This line is required. Links UserProfile to a User model instance.
@@ -156,22 +156,22 @@ class LabTestOrder(models.Model):
     def __str__(self):
         return self.last_name
 '''
-=======
-    
-class Radiology(models.Model):   
+
+
+class Radiology(models.Model):
     user = models.ForeignKey(User)
     title = models.CharField(max_length=60, blank=True)
     image = models.ImageField(upload_to='image')
-    created_date = models.DateField(blank=True, null=True)  
+    created_date = models.DateField(blank=True, null=True)
     caption = models.CharField(max_length=60, blank=True)
-    
-    
+
+
     def __str__(self):
         return self.user.last_name
-    
+
 class DoctorDetail(models.Model):
     # This line is required. Links UserProfile to a User model instance.
-    
+
     doctor_first_name = models.CharField(max_length=50)
     doctor_last_name = models.CharField(max_length=50)
     name_suffix = models.CharField(max_length=10)
@@ -192,10 +192,10 @@ class PharmacyDetail(models.Model):
     pharmacy_phone_number = models.CharField(max_length=10)
     ncpdp_id = models.CharField(max_length=7)
     pharmacy_email = models.EmailField(max_length=75, blank=True, null=True)
-    
+
     def __str__(self):
         return self.pharmacy_email
-    
+
 class Prescription(models.Model):
     DEFAULT_PK=1
     patient = models.ForeignKey(User, default=DEFAULT_PK)
@@ -213,7 +213,6 @@ class Prescription(models.Model):
     ndc_number = models.CharField(max_length=11)
     REFILLS_CHOICES = (('yes', 'Yes',), ('no', 'No',),)
     refills = models.CharField(max_length=5, choices=REFILLS_CHOICES)
-    
+
     def __str__(self):
         return self.drug_name
->>>>>>> 7e743adaeb60656cdeecba1dd05fd53c23f5d47b

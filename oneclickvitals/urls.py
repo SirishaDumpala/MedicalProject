@@ -19,14 +19,12 @@ urlpatterns = patterns('',
         #url(r'^patient_profile/$', views.patient_profile, name='patient_profile'),
 
         url(r'^patient_appointment_details/$', views.patient_appointment_details, name='patient_appointment_details'),
-<<<<<<< HEAD
-        url(r'^add_radiology/$', views.add_radiology, name='add_radiology'),
         url(r'^patient_profile/(?P<pk>[0-9]+)/$', views.patient_profile,name='patient_profile'),
         url(r'^profile/(?P<pk>[0-9]+)/edit/$', views.edit_patient, name='edit_patient'),
         url(r'^personal_profile/$', views.personal_profile, name='personal_profile'),
         url(r'^personal_diagnosis/$', views.personal_diagnosis, name='personal_diagnosis'),
-        )
-=======
+
+
         url(r'^add_radiology/$', views.patient_radiology_image, name='patient_radiology_image'),
         url(r'^radiology_list/$', views.radiology_list, name='radiology_list'),
         url(r'^view_radiology/(?P<pk>[0-9]+)/$', views.view_radiology, name='view_radiology'),
@@ -34,9 +32,9 @@ urlpatterns = patterns('',
         url(r'^add_prescription/$', views.add_prescription, name='add_prescription'),
         url(r'^prescription_list/$', views.prescription_list, name='prescription_list'),
         url(r'^email_confirmation/(?P<pk>[0-9]+)/$', views.email_pharmacy, name='email_confirmation'),
-                      )
+        )
 
->>>>>>> 7e743adaeb60656cdeecba1dd05fd53c23f5d47b
+
 if settings.DEBUG:
     urlpatterns += patterns(
         'django.views.static',

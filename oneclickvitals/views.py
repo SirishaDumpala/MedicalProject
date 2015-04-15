@@ -1,15 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response, RequestContext
 from django.http import HttpResponseRedirect, HttpResponse
-<<<<<<< HEAD
-from oneclickvitals.models import Appointment, PageAdmin, UserDetail, EmergencyContact, PatientMedicalHistory, FamilyMedicalHistory, Diagnosis
-from oneclickvitals.forms import UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm, PatientMedicalHistoryForm, FamilyMedicalHistoryForm, DiagnosisForm
-=======
-from oneclickvitals.models import Appointment, PageAdmin, UserDetail, EmergencyContact, PatientMedicalHistory, Radiology, DoctorDetail, PharmacyDetail, Prescription
-from oneclickvitals.forms import UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm, PatientMedicalHistoryForm, PatientRadiologyImageForm, DoctorDetailForm, PharmacyDetailForm, PrescriptionForm
->>>>>>> 7e743adaeb60656cdeecba1dd05fd53c23f5d47b
+
+from oneclickvitals.models import Appointment, PageAdmin, UserDetail, EmergencyContact, PatientMedicalHistory, Radiology, DoctorDetail, PharmacyDetail, Prescription, FamilyMedicalHistory, Diagnosis
+from oneclickvitals.forms import UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm, PatientMedicalHistoryForm, FamilyMedicalHistoryForm,DiagnosisForm, PatientRadiologyImageForm, DoctorDetailForm, PharmacyDetailForm, PrescriptionForm
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
-from django.contrib.auth import logout
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.context_processors import csrf
@@ -167,10 +163,6 @@ def patient_appointment_details(request):
     appointment_list = Appointment.objects.all()
     return render(request, 'oneclickvitals/patient_appointment_details.html', {'appointment': appointment_list})
 
-@login_required
-<<<<<<< HEAD
-def add_radiology(request):
-    return render(request, 'oneclickvitals/add_radiology.html')
 
 def profile_edit(request, pk):
     profile = get_object_or_404(UserDetail, pk=pk)
@@ -277,11 +269,10 @@ def diagnosis_details(request, pk):
 
 
 def personal_diagnosis(request):
-
     me = request.user
     diagnosis_info = Diagnosis.objects.filter(user=me)
     return render(request, 'oneclickvitals/personal_diagnosis.html', {'diagnosis_info': diagnosis_info})
-=======
+
 def patient_radiology_image(request):
     if request.method == 'POST':
         form = PatientRadiologyImageForm(request.POST, request.FILES)
@@ -300,7 +291,7 @@ def patient_radiology_image(request):
     else:
         # If the request was not a POST, display the form to enter details.
         form = PatientRadiologyImageForm()
-
+    
     # Render the form with error messages (if any)
     return render(request, 'oneclickvitals/add_radiology.html', {'form': form})
 
@@ -308,7 +299,7 @@ def patient_radiology_image(request):
 def radiology_list(request):
     radiology_images = Radiology.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
     return render(request, 'oneclickvitals/radiology_list.html', {'radiology_images': radiology_images})
-        
+
 
 @login_required
 def view_radiology(request, pk):
@@ -344,7 +335,7 @@ def add_prescription(request):
         formF = PharmacyDetailForm(request.POST)
         formG = PrescriptionForm(request.POST)
         #We use E, F, G, because the letters have not been used
-        
+
         if formE.is_valid() and formF.is_valid() and formG.is_valid():
             doctorDetail = formE.save(commit=False)
             doctorDetail.save()
@@ -356,7 +347,7 @@ def add_prescription(request):
             #doctorDetail.save()
             #prescription.doctor = doctorDetail
             prescription.save()
-            
+
             messages.success(request, 'Prescription added.')
             #return redirect('prescription_list')
         else:
@@ -373,27 +364,22 @@ def add_prescription(request):
 def prescription_list(request):
     prescription = Prescription.objects.all()
     return render(request, 'oneclickvitals/prescription_list.html', {'prescription': prescription})
-        
-    
+
+
 def email_pharmacy(request, pk):
     doctors = DoctorDetail.objects.all()
     pharmacyInfo = PharmacyDetail()
-    
+
     prescription = get_object_or_404(Prescription, pk=pk)
-    
+
     subject = "New prescription"
     message = ""
 
     message += "\n" + str(doctors)
-    
+
     message += "\n" + str(prescription)
     sender = EMAIL_HOST_USER
     recipient = ['bluishgrayfin@gmail.com']
     #recipient = [str(pharmacyInfo.pharmacy_email)]
     send_mail(subject, message, sender, recipient, fail_silently=False)
     return render_to_response('oneclickvitals/email_confirmation.html', context_instance=RequestContext(request) )
-
-    
-    
-    
->>>>>>> 7e743adaeb60656cdeecba1dd05fd53c23f5d47b

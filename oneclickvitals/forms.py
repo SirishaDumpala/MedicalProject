@@ -1,10 +1,10 @@
 from django import forms
 from django.contrib.auth.models import User, Group
-<<<<<<< HEAD
+
 from oneclickvitals.models import Appointment,UserDetail, EmergencyContact, PatientMedicalHistory, FamilyMedicalHistory, Diagnosis
-=======
+
 from oneclickvitals.models import Appointment,UserDetail, EmergencyContact, PatientMedicalHistory, Radiology, DoctorDetail, PharmacyDetail, Prescription
->>>>>>> 7e743adaeb60656cdeecba1dd05fd53c23f5d47b
+
 from datetimewidget.widgets import DateWidget, DateTimeWidget, TimeWidget
 from django.utils.safestring import mark_safe
 
@@ -33,14 +33,14 @@ class AppointmentForm(forms.ModelForm):
     #appointment_date = forms.DateTimeField(widget = DateTimeWidget(usel10n = True, bootstrap_version = 3))
     class Meta:
         model = Appointment
-<<<<<<< HEAD
+
         widgets = {'appointment_date': DateTimeWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3)}
         fields = ('user','reason', 'phone_number','appointment_date',)
-=======
+
         widgets = {'appointment_date': DateWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3),
                   'appointment_time': TimeWidget(attrs= {'id':"yourtimeid"}, usel10n = True, bootstrap_version=3)}
         fields = ('user','reason', 'phone_number','appointment_date','appointment_time',)
->>>>>>> 7e743adaeb60656cdeecba1dd05fd53c23f5d47b
+
 
 class EmergencyContactForm(forms.ModelForm):
 
@@ -56,7 +56,7 @@ class PatientMedicalHistoryForm(forms.ModelForm):
         model = PatientMedicalHistory
         fields = ('allergies','current_medications','chief_complaint', 'surgical_history', 'medical_history','social_habits',)
 
-<<<<<<< HEAD
+
 class HorizontalRadioRenderer(forms.RadioSelect.renderer):
   def render(self):
     return mark_safe(u'\n'.join([u'%s\n' % w for w in self]))
@@ -96,30 +96,28 @@ class LabTestOrderForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple(attrs={'checked' : 'checked'}))
         fields = ('type_of_test')
 '''
-=======
+
 class PatientRadiologyImageForm(forms.ModelForm):
-    
+
     class Meta:
         model = Radiology
-        widgets = {
-            'created_date': DateWidget(attrs={'id':"yourcreateddateid"}, usel10n = True, bootstrap_version=3)}
+        widgets = {'created_date': DateWidget(attrs={'id':"yourcreateddateid"}, usel10n = True, bootstrap_version=3)}
         fields = ('user', 'title', 'created_date', 'caption', 'image',)
-        
-        
+
+
 class DoctorDetailForm(forms.ModelForm):
     class Meta:
         model = DoctorDetail
         fields = ('doctor_first_name', 'doctor_last_name', 'name_suffix', 'prescription_network_id', 'dea', 'doctor_phone_number', 'doctor_address', 'doctor_city',)
-        
+
 class PharmacyDetailForm(forms.ModelForm):
     class Meta:
         model = PharmacyDetail
         fields = ('pharmacy_name', 'pharmacy_address', 'pharmacy_city', 'pharmacy_phone_number', 'ncpdp_id','pharmacy_email',)
-        
+
 class PrescriptionForm(forms.ModelForm):
     class Meta:
         model = Prescription
         widgets = {
             'date_of_issuance': DateWidget(attrs={'id':"yourissuancedate"}, usel10n = True, bootstrap_version=3)}
         fields = ('patient', 'gender', 'date_of_issuance', 'day_supply', 'drug_name', 'drug_strength', 'dosage_form', 'frequency', 'quantity', 'npi_number', 'ndc_number', 'refills',)
->>>>>>> 7e743adaeb60656cdeecba1dd05fd53c23f5d47b

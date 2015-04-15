@@ -132,14 +132,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
-<<<<<<< HEAD
-=======
+
 
 FILE_UPLOAD_HANDLERS = (
     "django.core.files.uploadhandler.MemoryFileUploadHandler",
-    "django.core.files.uploadhandler.TemporaryFileUploadHandler",   
+    "django.core.files.uploadhandler.TemporaryFileUploadHandler",
 )
->>>>>>> 7e743adaeb60656cdeecba1dd05fd53c23f5d47b
+
 
 PASSWORD_HASHERS = (
 'django.contrib.auth.hashers.PBKDF2PasswordHasher',

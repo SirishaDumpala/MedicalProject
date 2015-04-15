@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for radiology_image in radiology_images %}  
+                {% for radiology_image in radiology_images %}
                     <tr>
                         <td><a href="{% url 'view_radiology' radiology_image.pk %}">{{ radiology_image.title }}</a></td>
                         <td>{{ radiology_image.user.first_name }}</td>
@@ -33,18 +33,18 @@
 
 <!-- ------- JavaScript for Filter --------- -->
 
-    <script type="text/javascript"> 
-        
+    <script type="text/javascript">
+
             jQuery(document).ready(function($) {
-                $(window).load(function() { 
-                
+                $(window).load(function() {
+
                     $('#radiology').filterable({
                     prependWild: true, // If a wild card should be added to the start of all filter input
                     appendWild: true, // If a wild card should be added to the end of all filter input
                     ignoreCase: true, // If case should be ignored
                     ignoreColumns: [], // Array. Column indexes to not make filterable
                     onlyColumns: null, // Array. Column indexes to make filterable, all other columns are left non-filterable.
-                    });   
+                    });
                 });
             });
         </script>
