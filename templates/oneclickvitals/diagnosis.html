@@ -1,0 +1,30 @@
+
+{% extends 'base_doctor.html' %}
+{% load staticfiles %}
+
+{% block title %}AddDiagnosis{% endblock %}
+
+{% block body_block %}
+
+    <div class="page-header">
+          <h1>Diagnosis</h1>
+    </div>
+
+      <div class="container">
+        <div class="header">
+        <ul style="padding-right:60px" class="nav nav-pills pull-right">
+
+          <li {% if bootstrap == 3 %} class="active"{% endif %}><a href="/model_form_v3/">Bootstrap 3</a></li>
+        </ul>
+
+        </div>
+    <form action="{{ action }}" method="POST">{% csrf_token %}
+      <table>
+        <td> {{ form.as_table }} </td>
+      </table><br/><br/>
+      <button type="submit" class="save btn btn-primary">Save</button>
+
+    </form>
+    </div>
+
+{% endblock %}

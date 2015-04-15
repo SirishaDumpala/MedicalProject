@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User, Group
-from oneclickvitals.models import Appointment,UserDetail, EmergencyContact, PatientMedicalHistory, FamilyMedicalHistory
+from oneclickvitals.models import Appointment,UserDetail, EmergencyContact, PatientMedicalHistory, FamilyMedicalHistory, Diagnosis
 from datetimewidget.widgets import DateWidget, DateTimeWidget, TimeWidget
 from django.utils.safestring import mark_safe
 
@@ -69,6 +69,14 @@ class FamilyMedicalHistoryForm(forms.ModelForm):
                     'heart_failure': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
                     }
         fields = ('stroke','cancer','high_bp', 'tuberculosis', 'diabetes', 'leukemia', 'bleeding_tendency', 'heart_attack','kidney_disease', 'rheumatic_heart', 'heart_failure',)
+
+class DiagnosisForm(forms.ModelForm):
+
+    #appointment_date = forms.DateTimeField(widget = DateTimeWidget(usel10n = True, bootstrap_version = 3))
+    class Meta:
+        model = Diagnosis
+        widgets = {'date': DateWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3),'follow_up': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))) }
+        fields = ('user', 'date','complaint', 'follow_up','additional_comments',)
 
 '''
 class LabTestOrderForm(forms.ModelForm):

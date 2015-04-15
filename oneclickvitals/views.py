@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponse
-from oneclickvitals.models import Appointment, PageAdmin, UserDetail, EmergencyContact, PatientMedicalHistory, FamilyMedicalHistory
-from oneclickvitals.forms import UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm, PatientMedicalHistoryForm, FamilyMedicalHistoryForm
+from oneclickvitals.models import Appointment, PageAdmin, UserDetail, EmergencyContact, PatientMedicalHistory, FamilyMedicalHistory, Diagnosis
+from oneclickvitals.forms import UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm, PatientMedicalHistoryForm, FamilyMedicalHistoryForm, DiagnosisForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.contrib.auth import logout
@@ -147,8 +147,9 @@ def patient_profile(request, pk):
     emergency_contact= EmergencyContact.objects.get(user=me)
     medical_history = PatientMedicalHistory.objects.get(user=me)
     family_history = FamilyMedicalHistory.objects.get(user=me)
-    context_dict = {'profile':profile, 'emergency': emergency_contact, 'medical_history': medical_history, 'family_history': family_history}
-    print("in patient profile: ", me.username)
+    diagnosis_info = Diagnosis.objects.filter(user=me)
+    context_dict = {'profile':profile, 'emergency': emergency_contact, 'medical_history': medical_history, 'family_history': family_history,'diagnosis_info': diagnosis_info}
+    print("in patient profile: ", diagnosis_info[0].date)
     return render(request, 'oneclickvitals/patient_profile.html', context_dict)
 
 def patient_appointment_details(request):
@@ -165,9 +166,11 @@ def profile_edit(request, pk):
         form = UserDetailForm(request.POST, instance=profile)
         if form.is_valid():
             profile = form.save(commit=False)
-            profile.author = request.user
+            #profile.author = request.user
             profile.save()
-            return redirect('oneclickvitals.views.patient_profile', pk=user.pk)
+            return redirect('oneclickvitals.views.patient_profile', pk=profile.pk)
+        else:
+            print(form.errors)
     else:
         form = UserDetailForm(instance=profile)
     return render(request, 'oneclickvitals/edit_patient.html', {'form': form})
@@ -183,9 +186,11 @@ def personal_profile(request):
     emergency_contact= EmergencyContact.objects.get(user=me)
     medical_history = PatientMedicalHistory.objects.get(user=me)
     family_history = FamilyMedicalHistory.objects.get(user=me)
-    context_dict = {'profile':profile, 'emergency': emergency_contact, 'medical_history': medical_history,'family_history': family_history }
+    diagnosis_info = Diagnosis.objects.filter(user=me)
+    context_dict = {'profile':profile, 'emergency': emergency_contact, 'medical_history': medical_history,'family_history': family_history, 'diagnosis_info':diagnosis_info }
     print("in patient profile: ", profile.pharmacy_name)
     return render(request, 'oneclickvitals/personal_profile.html', context_dict)
+
 
 def edit_patient(request, pk):
     if request.method == 'POST':
@@ -228,3 +233,39 @@ def edit_patient(request, pk):
 
     # Render the form with error messages (if any), if no form supplied
     return render(request, 'oneclickvitals/edit_patient.html', {'formA': formA, 'formB': formB, 'formC': formC, 'formD': formD, 'formE': formE})
+
+
+def diagnosis(request):
+    if request.method == 'POST':
+        form = DiagnosisForm(request.POST)
+
+        if form.is_valid():
+            # Save the new category to the database.
+            diagnosis = form.save(commit=False)
+            diagnosis.save()
+
+            # The user will be shown the appointment detail page view.
+            #return diagnosis_details(request)
+            print ("Do I have the user id: ", diagnosis.pk)
+            return diagnosis_details(request, diagnosis.pk)
+        else:
+            print (form.errors)
+    else:
+        # If the request was not a POST, display the form to enter details.
+        form = DiagnosisForm()
+
+    # Render the form with error messages (if any)
+    return render(request, 'oneclickvitals/diagnosis.html', {'form': form})
+
+
+def diagnosis_details(request, pk):
+    #me = User.objects.get(id=pk)
+    diagnosis_info = get_object_or_404(Diagnosis, pk=pk)
+    return render(request, 'oneclickvitals/diagnosis_details.html', {'diagnosis_info': diagnosis_info})
+
+
+def personal_diagnosis(request):
+
+    me = request.user
+    diagnosis_info = Diagnosis.objects.filter(user=me)
+    return render(request, 'oneclickvitals/personal_diagnosis.html', {'diagnosis_info': diagnosis_info})

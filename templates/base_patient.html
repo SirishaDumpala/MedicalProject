@@ -49,7 +49,7 @@
                 <li class="Profile"><a href="/personal_profile/" >Profile</a></li>
                 <li class="Appointment"><a href="/patient_appointment_details/" >Appointment</a></li>
                 <li><a href="#">Prescription</a></li>
-                <li><a href="#">Diagnosis</a></li>
+                <li class="Diagnosis"><a href="/personal_diagnosis/" >Diagnosis</a></li>
                 <li><a href="/accounts/logout">Logout</a></li>
               </ul>
             <form class="navbar-form navbar-right">
@@ -81,10 +81,10 @@
                         <br/>
                         <br/>
                         <h4>My Pharmacy:</h4>
-                        <h4>{{profile.pharmacy_name}}</h4>
-                        <p>{{profile.pharmacy_address}}</p>
-                        <p>{{profile.pharmacy_phone_number}}</p>
-                        
+                        <h4>Name: {{profile.pharmacy_name}}</h4>
+                        <p>Address: {{profile.pharmacy_address}}</p>
+                        <p>Phone Number: {{profile.pharmacy_phone_number}}</p>
+
                     </div>
                 {% endblock %}
 

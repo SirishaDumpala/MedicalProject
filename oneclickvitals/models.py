@@ -102,11 +102,13 @@ class Diagnosis(models.Model):
     user = models.ForeignKey('auth.User')
     date = models.DateField(default=timezone.now)
     complaint = models.TextField(max_length=500)
+    follow_up = models.NullBooleanField()
     additional_comments = models.TextField(max_length=500)
 
 
     def __str__(self):
         return self.last_name
+
 '''
 class LabTest(models.Model):
     # This line is required. Links UserProfile to a User model instance.

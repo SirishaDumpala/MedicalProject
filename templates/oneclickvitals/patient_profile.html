@@ -23,9 +23,9 @@
       <li role="presentation"><a href="#tabs-2" aria-controls="tabs-2" role="tab" data-toggle="tab">Emergency Contact</a></li>
       <li role="presentation"><a href="#tabs-3" aria-controls="tabs-3" role="tab" data-toggle="tab">Medical History</a></li>
       <li role="presentation"><a href="#tabs-4" aria-controls="tabs-4" role="tab" data-toggle="tab">Family History</a></li>
+      <li role="presentation"><a href="#tabs-5" aria-controls="tabs-5" role="tab" data-toggle="tab">Diagnosis</a></li>
 
     </ul>
-
 
         <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tabs-1">
@@ -244,9 +244,43 @@
                     </table>
                     </div><br/><br/>
                     <a class="btn btn-primary btnPrevious" >Previous</a>
+                    <a class="btn btn-primary btnNext" >Next</a>
                     <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 
                     </div>
+
+                    <div role="tabpanel" class="tab-pane" id="tabs-5">
+                      <br/>
+                        <div class="table-responsive">
+                          {% for n in diagnosis_info %}
+                          <table class="table table-bordered">
+                            <tbody>
+
+                              <tr>
+                                  <th scope="row" class="col-md-2">Date</th>
+                                  <td>{{n.date}}</td>
+                              </tr>
+                              <tr>
+                                  <th scope="row" class="col-md-2">Complaint</th>
+                                  <td>{{n.complaint}}</td>
+                              </tr>
+                              <tr>
+                                  <th scope="row" class="col-md-2">Follow Up Required</th>
+                                  <td>{{n.follow_up}}</td>
+                              </tr>
+                              <tr>
+                                  <th scope="row" class="col-md-2">Additional Comments</th>
+                                  <td>{{n.additional_comments}}</td>
+                              </tr>
+
+                          </tbody>
+                          </table>
+                          {% endfor %}
+                          </div><br/><br/>
+                          <a class="btn btn-primary btnPrevious" >Previous</a>
+
+                          </div>
+
               </div>
 </div>
 </div>
