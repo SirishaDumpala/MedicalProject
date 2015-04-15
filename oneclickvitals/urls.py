@@ -17,6 +17,9 @@ urlpatterns = patterns('',
         url(r'^radiology_list/$', views.radiology_list, name='radiology_list'),
         url(r'^view_radiology/(?P<pk>[0-9]+)/$', views.view_radiology, name='view_radiology'),
         url(r'^view_radiology/(?P<pk>[0-9]+)/edit/$', views.edit_radiology, name='edit_radiology'),
+        url(r'^add_prescription/$', views.add_prescription, name='add_prescription'),
+        url(r'^prescription_list/$', views.prescription_list, name='prescription_list'),
+        url(r'^email_confirmation/(?P<pk>[0-9]+)/$', views.email_pharmacy, name='email_confirmation'),
                       )
 
 if settings.DEBUG:

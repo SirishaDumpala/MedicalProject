@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User, Group
-from oneclickvitals.models import Appointment,UserDetail, EmergencyContact, PatientMedicalHistory, Radiology
+from oneclickvitals.models import Appointment,UserDetail, EmergencyContact, PatientMedicalHistory, Radiology, DoctorDetail, PharmacyDetail, Prescription
 from datetimewidget.widgets import DateWidget, DateTimeWidget, TimeWidget
 
 class UserForm(forms.ModelForm):
@@ -50,5 +50,24 @@ class PatientRadiologyImageForm(forms.ModelForm):
     
     class Meta:
         model = Radiology
-        widgets = {'created_date': DateWidget(attrs={'id':"yourcreateddateid"}, usel10n = True, bootstrap_version=3)}
+        widgets = {
+            'created_date': DateWidget(attrs={'id':"yourcreateddateid"}, usel10n = True, bootstrap_version=3)}
         fields = ('user', 'title', 'created_date', 'caption', 'image',)
+        
+        
+class DoctorDetailForm(forms.ModelForm):
+    class Meta:
+        model = DoctorDetail
+        fields = ('doctor_first_name', 'doctor_last_name', 'name_suffix', 'prescription_network_id', 'dea', 'doctor_phone_number', 'doctor_address', 'doctor_city',)
+        
+class PharmacyDetailForm(forms.ModelForm):
+    class Meta:
+        model = PharmacyDetail
+        fields = ('pharmacy_name', 'pharmacy_address', 'pharmacy_city', 'pharmacy_phone_number', 'ncpdp_id','pharmacy_email',)
+        
+class PrescriptionForm(forms.ModelForm):
+    class Meta:
+        model = Prescription
+        widgets = {
+            'date_of_issuance': DateWidget(attrs={'id':"yourissuancedate"}, usel10n = True, bootstrap_version=3)}
+        fields = ('patient', 'gender', 'date_of_issuance', 'day_supply', 'drug_name', 'drug_strength', 'dosage_form', 'frequency', 'quantity', 'npi_number', 'ndc_number', 'refills',)

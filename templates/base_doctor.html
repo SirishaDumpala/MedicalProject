@@ -19,9 +19,9 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.4/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
     <link href="{% static 'css/bootstrap-filterable.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'css/dragndrop.css' %}" rel="stylesheet">
     <link href="{% static 'css/datetimepicker.css' %}" rel="stylesheet">
-      
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
 <!-- --------- JavaScript ------------------------------- -->      
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script class="cssdesk" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js" type="text/javascript"></script>
@@ -97,6 +97,13 @@
                         </li>
 
                         <li><a href="{% url 'registration_register' %}">Register Here</a></li>
+                        <li class="Prescription">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Prescription <span class="caret"></span></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="/add_prescription/">Add</a></li>
+                            <li><a href="/prescription_list/">View</a></li>
+                          </ul>
+                        </li>
                         <li class="Radiology">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Radiology <span class="caret"></span></a>
                           <ul class="dropdown-menu" role="menu">
