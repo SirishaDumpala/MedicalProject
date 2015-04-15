@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'oneclickvitals',
     'registration',
     'datetimewidget',
+    'widget_tweaks',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -117,22 +118,41 @@ TEMPLATE_DIRS = (
 #    'django.template.loaders.eggs.load_template_source',
 #)
 
-#TEMPLATE_CONTEXT_PROCESSORS = (
-#    "django.core.context_processors.request",
-#    "django.contrib.auth.context_processors.auth",
-#    "django.core.context_processors.debug",
-#    "django.core.context_processors.i18n",
-#    "django.core.context_processors.media",
-#    "django.contrib.messages.context_processors.messages")
+TEMPLATE_CONTEXT_PROCESSORS = (
+
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.contrib.messages.context_processors.messages",
+    "django.core.context_processors.request",
+)
 
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
+<<<<<<< HEAD
+=======
+
+FILE_UPLOAD_HANDLERS = (
+    "django.core.files.uploadhandler.MemoryFileUploadHandler",
+    "django.core.files.uploadhandler.TemporaryFileUploadHandler",   
+)
+>>>>>>> 7e743adaeb60656cdeecba1dd05fd53c23f5d47b
 
 PASSWORD_HASHERS = (
 'django.contrib.auth.hashers.PBKDF2PasswordHasher',
 'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
 )
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'yukhe.kasherman@gmail.com'
+EMAIL_HOST_PASSWORD = '7yghjuujhgy7'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 REGISTRATION_OPEN = True                # If True, users can register
 #ACCOUNT_ACTIVATION_DAYS = 7     # One-week activation window; you may, of course, use a different value.

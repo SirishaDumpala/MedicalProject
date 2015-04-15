@@ -1,0 +1,90 @@
+{% extends 'base_doctor.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block title %}Add Prescription{% endblock %}
+{% block body_block %}
+
+<div class="page-header">
+      <h1>Add Prescription</h1>
+</div>
+
+
+<div class="container">
+    <div class="header">
+        <ul style="padding-right:60px" class="nav nav-pills pull-right">
+            <li {% if bootstrap == 3 %} class="active"{% endif %}><a href="/model_form_v3/"></a></li>
+        </ul>
+    </div>
+
+
+    <div role="tabpanel">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#tabs-1" aria-controls="tabs-1" role="tab" data-toggle="tab">Doctor Information</a></li>
+            <li role="presentation"><a href="#tabs-2" aria-controls="tabs-3" role="tab" data-toggle="tab">Pharmacy Information</a></li>
+            <li role="presentation"><a href="#tabs-3" aria-controls="tabs-4" role="tab" data-toggle="tab">Prescription</a></li>
+        </ul>
+        
+        <form action="{{ action }}" method="POST">
+                    {% csrf_token %}
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="tabs-1">
+                    <br/>
+                        <table>
+                            <td> {{ formE.as_table }} </td>
+                        </table> <br/><br/><br/>
+
+
+                      <a class="btn btn-primary btnNext" >Next</a>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tabs-2">
+                    <br/>
+                        <table>
+                            <td> {{ formF.as_table }} </td>
+                        </table> <br/><br/><br/>
+
+
+                      <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                      <a class="btn btn-primary btnPrevious" >Previous</a>
+                      <a class="btn btn-primary btnNext" >Next</a>
+                      </div>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tabs-3">
+                    <br/>
+                        <table>
+                            <td> {{ formG.as_table }} </td>
+                        </table>
+
+                      <a class="btn btn-primary btnPrevious" >Previous</a>
+                      <button type="submit" class="save btn btn-primary">Save</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <div class="ocv-messages">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <h4{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h4>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</div> 
+
+<!-- JavaScript for Tabs -->
+
+    <script type="text/javascript">
+    $('.btnNext').click(function(){
+$('.nav-tabs > .active').next('li').find('a').trigger('click');
+});
+
+$('.btnPrevious').click(function(){
+$('.nav-tabs > .active').prev('li').find('a').trigger('click');
+});
+    </script>
+{% endblock %}

@@ -21,9 +21,11 @@
 #calendar {
     width: 58%;
     margin: 0;
+    padding-left: 50px;
 }
 
 #dr_sidebar {
+<<<<<<< HEAD
   padding: 20px 0 0 0;
 
 }
@@ -34,8 +36,22 @@
   margin: 0;
   width: 90%;
   text-align: center;
+=======
+    padding: 20px 0 0 0;
+    background: -webkit-linear-gradient(#d8d8d8, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#d8d8d8, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#d8d8d8, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#d8d8d8, white); /* Standard syntax */
+>>>>>>> 7e743adaeb60656cdeecba1dd05fd53c23f5d47b
 }
 
+.nav-sidebar li {
+    font-size: 1.5em;
+    padding:0;
+    margin:0;
+    width: 92%;
+    text-align: center; 
+}
 <!---------------------------------------------->
 
 
