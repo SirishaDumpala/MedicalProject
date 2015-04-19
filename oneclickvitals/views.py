@@ -67,11 +67,11 @@ def invalid_login_view(request):
     if not user.is_authenticated():
          return render(request, 'registration/invalid_login.html')
 
-@login_required
+
 def about(request):
-    appointment_list = Appointment.objects.order_by('appointment_date')
-    context_dict = {'appointments': appointment_list}
-    return render(request, '/about.html', context_dict)
+    #appointment_list = Appointment.objects.order_by('appointment_date')
+    #context_dict = {'appointments': appointment_list}
+    return render(request, 'oneclickvitals/about.html')
 
 def add_newpatient(request):
     if request.method == 'POST':
@@ -291,7 +291,7 @@ def patient_radiology_image(request):
     else:
         # If the request was not a POST, display the form to enter details.
         form = PatientRadiologyImageForm()
-    
+
     # Render the form with error messages (if any)
     return render(request, 'oneclickvitals/add_radiology.html', {'form': form})
 
@@ -340,12 +340,8 @@ def add_prescription(request):
             doctorDetail = formE.save(commit=False)
             doctorDetail.save()
             pharmacyDetail = formF.save(commit=False)
-            #doctorDetail.save()
-            #pharmacyDetail.save()
+            pharmacyDetail.save()
             prescription = formG.save(commit=False)
-            #doctorDetail.prescription = formG.save(commit=False)
-            #doctorDetail.save()
-            #prescription.doctor = doctorDetail
             prescription.save()
 
             messages.success(request, 'Prescription added.')

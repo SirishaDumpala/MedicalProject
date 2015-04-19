@@ -16,14 +16,15 @@
 
               <li {% if bootstrap == 3 %} class="active"{% endif %}><a href="/model_form_v3/"></a></li>
             </ul>
-        </div>   
-             
+        </div>
+
             <form action="{{ action }}" method="POST">{% csrf_token %}
-                
+
               <table>
+
                   <div class="fieldWrapper">
                       <tr>
-                <td> 
+                <td>
                     <p><label class="col-sm-3" for="{{ form.user.id_for_label }}">Patient Username</label></p>
                     <div class="col-sm-4">{{ form.user|add_class:"form-control" }}</div>
 <!--                    {{ form.as_table }} -->
@@ -32,16 +33,26 @@
                   </div>
                   <div class="fieldWrapper">
                       <tr>
-                <td> 
-                    <p><label class="col-sm-3" for="{{ form.reason.id_for_label }}">Reason</label></p>
-                    <div class="col-sm-4">{{ form.reason|add_class:"form-control" }}</div>
+                <td>
+                    <p><label class="col-sm-3" for="{{ form.user.id_for_label }}">Type of Appointment</label></p>
+                    <div class="col-sm-4">{{ form.type_of_appointment|add_class:"form-control" }}</div>
+<!--                    {{ form.as_table }} -->
+                  </td>
+                          </tr>
+                  </div>
+
+                  <div class="fieldWrapper">
+                      <tr>
+                <td>
+                    <p><label class="col-sm-3" for="{{ form.reason.id_for_label }}">Reason for Appointment</label></p>
+                    <div class="col-sm-4">{{ form.reason_for_appointment|add_class:"form-control" }}</div>
 <!--                    {{ form.as_table }} -->
                   </td>
                           </tr>
                   </div>
                   <div class="fieldWrapper">
                       <tr>
-                <td> 
+                <td>
                     <p><label class="col-sm-3" for="{{ form.phone_number.id_for_label }}">Phone Number</label></p>
                     <div class="col-sm-4">{{ form.phone_number|add_class:"form-control" }}</div>
 <!--                    {{ form.as_table }} -->
@@ -50,7 +61,7 @@
                   </div>
                   <div class="fieldWrapper">
                       <tr>
-                <td> 
+                <td>
                     <p><label class="col-sm-3" for="{{ form.user.id_for_label }}">Appointment Date</label></p>
                     <div class="col-sm-4">{{ form.appointment_date|add_class:"form-control" }}</div>
 <!--                    {{ form.as_table }} -->
@@ -59,7 +70,7 @@
                   </div>
                   <div class="fieldWrapper">
                       <tr>
-                <td> 
+                <td>
                     <p><label class="col-sm-3" for="{{ form.user.id_for_label }}">Appointment Time</label></p>
                     <div class="col-sm-4">{{ form.appointment_time|add_class:"form-control" }}</div>
 <!--                    {{ form.as_table }} -->
@@ -68,9 +79,9 @@
                   </div>
               </table><br/><br/>
               <button type="submit" class="save btn btn-primary" style="margin-left:18px;">Save</button>
-               
+
             </form>
-        
+
     </div>
 
 {% endblock %}

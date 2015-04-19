@@ -8,11 +8,20 @@ from django.core.files import File
 from os.path import join as pjoin
 from tempfile import *
 from PIL import Image as PImage
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Appointment(models.Model):
     user = models.ForeignKey('auth.User')
-    reason = models.CharField(max_length=50, null = True)
+    APPOINTMENT_CHOICES = (('routine_preventive_care', 'Routine Preventive Care',),
+                            ('follow_up', 'Follow-Up',),
+                            ('routine_problem_visit', 'Routine Problem Visit'),
+                            ('urgent_same_day_appointment', 'Urgent/Same Day Appointment'),
+                            ('nurse_visit', 'Nurse Visit'),
+                            ('allergy_shots', 'Allergy Shots'),
+                            ('new_patients_and_referrals', 'New Patients and Referrals'),)
+    type_of_appointment = models.CharField(max_length=100, choices=APPOINTMENT_CHOICES, null = True)
+    reason_for_appointment = models.CharField(max_length=50, null = True)
     phone_number = models.CharField(max_length=10, null = True)
     created_date = models.DateTimeField(
             default=timezone.now)
@@ -35,16 +44,19 @@ class UserDetail(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
     GENDER_CHOICES = (('female', 'Female',), ('male', 'Male',))
+    YEAR_CHOICES = (('1900', '1901', '1902', '1903'))
+    MONTH_CHOICES = (('January', 'February', 'March'))
+    DAY_CHOICES = (('1', '2', '3', '4'))
 
     # The additional attributes we wish to include.
-    phone_number = models.CharField(max_length=10, null = True)
+    phone_number = PhoneNumberField(null = True)
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
     insurance = models.CharField(max_length=50, null = True)
     pharmacy_name = models.CharField(max_length=50, null = True)
     pharmacy_address = models.CharField(max_length=50, null = True)
     pharmacy_phone_number = models.CharField(max_length=10, null = True)
-    date_of_birth = models.DateField(blank=True, null=True)
+    date_of_birth = models.CharField(blank=True, null=True)
     gender = models.CharField(max_length=50, choices=GENDER_CHOICES, null = True)
 
     def __str__(self):
@@ -72,6 +84,9 @@ class PatientMedicalHistory(models.Model):
     HABIT_CHOICES = (('smoking', 'Smoking'),('alcohol', 'Alcohol'),('exercise', 'Exercise'),
                         ('street drugs', 'Street Drugs'),('other', 'Other'),('none', 'None'))
     # The additional attributes we wish to include.
+    height = models.PositiveIntegerField(max_length=5, null = True)
+    weight = models.FloatField(max_length=10, null = True)
+    blood_type = models.CharField(max_length=4, null = True)
     allergies = models.TextField(max_length=100)
     current_medications = models.TextField(max_length=500)
     chief_complaint = models.TextField(max_length=500)

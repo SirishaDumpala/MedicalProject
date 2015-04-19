@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from oneclickvitals.views import view_radiology
 from medical_project.settings import MEDIA_ROOT
 
+
 urlpatterns = patterns('',
         url(r'^$', views.index, name='index'),
         url(r'^about/$', views.about, name='about'),
@@ -33,7 +34,6 @@ urlpatterns = patterns('',
         url(r'^prescription_list/$', views.prescription_list, name='prescription_list'),
         url(r'^email_confirmation/(?P<pk>[0-9]+)/$', views.email_pharmacy, name='email_confirmation'),
         )
-
 
 if settings.DEBUG:
     urlpatterns += patterns(
