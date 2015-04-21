@@ -19,11 +19,12 @@ urlpatterns = patterns('',
 
         #url(r'^patient_profile/$', views.patient_profile, name='patient_profile'),
 
-        url(r'^patient_appointment_details/$', views.patient_appointment_details, name='patient_appointment_details'),
+        url(r'^personal_appointment/$', views.personal_appointment, name='personal_appointment'),
         url(r'^patient_profile/(?P<pk>[0-9]+)/$', views.patient_profile,name='patient_profile'),
         url(r'^profile/(?P<pk>[0-9]+)/edit/$', views.edit_patient, name='edit_patient'),
         url(r'^personal_profile/$', views.personal_profile, name='personal_profile'),
         url(r'^personal_diagnosis/$', views.personal_diagnosis, name='personal_diagnosis'),
+        url(r'^personal_prescription/$', views.personal_prescription, name='personal_prescription'),
 
 
         url(r'^add_radiology/$', views.patient_radiology_image, name='patient_radiology_image'),

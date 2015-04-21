@@ -20,10 +20,11 @@
     <div role="tabpanel">
     <ul class="nav nav-tabs">
       <li role="presentation" class="active"><a href="#tabs-1" aria-controls="tabs-1" role="tab" data-toggle="tab">Personal Information</a></li>
-      <li role="presentation"><a href="#tabs-2" aria-controls="tabs-2" role="tab" data-toggle="tab">Emergency Contact</a></li>
-      <li role="presentation"><a href="#tabs-3" aria-controls="tabs-3" role="tab" data-toggle="tab">Medical History</a></li>
-      <li role="presentation"><a href="#tabs-4" aria-controls="tabs-4" role="tab" data-toggle="tab">Family History</a></li>
-      <li role="presentation"><a href="#tabs-5" aria-controls="tabs-5" role="tab" data-toggle="tab">Diagnosis</a></li>
+      <li role="presentation"><a href="#tabs-2" aria-controls="tabs-2" role="tab" data-toggle="tab">Pharmacy</a></li>
+      <li role="presentation"><a href="#tabs-3" aria-controls="tabs-3" role="tab" data-toggle="tab">Emergency Contact</a></li>
+      <li role="presentation"><a href="#tabs-4" aria-controls="tabs-4" role="tab" data-toggle="tab">Medical History</a></li>
+      <li role="presentation"><a href="#tabs-5" aria-controls="tabs-5" role="tab" data-toggle="tab">Family History</a></li>
+      <li role="presentation"><a href="#tabs-6" aria-controls="tabs-6" role="tab" data-toggle="tab">Diagnosis</a></li>
 
     </ul>
 
@@ -34,12 +35,8 @@
           <table class="table table-bordered">
             <tbody>
             <tr>
-                <th scope="row" class="col-md-2">First Name</th>
-                <td>{{profile.user.first_name}}</td>
-            </tr>
-            <tr>
-                <th scope="row" class="col-md-2">Last Name</th>
-                <td>{{profile.user.last_name}}</td>
+                <th scope="row" class="col-md-2">Name</th>
+                <td>{{profile.user.first_name}} {{profile.user.last_name}}</td>
             </tr>
             <tr>
                 <th scope="row" class="col-md-2">Date of Birth</th>
@@ -55,34 +52,58 @@
             </tr>
             <tr>
                 <th scope="row" class="col-md-2">Address</th>
-                <td>{{profile.address}}</td>
+                <td>{{profile.address_1}} {{profile.address_2}} , {{profile.city}}, {{profile.state}}, {{profile.zip_code}}</td>
             </tr>
             <tr>
                 <th scope="row" class="col-md-2">Insurance</th>
                 <td>{{profile.insurance}}</td>
             </tr>
-            <tr>
-                <th scope="row" class="col-md-2">Pharmacy</th>
-                <td>{{profile.pharmacy_name}}</td>
-            </tr>
-            <tr>
-                <th scope="row" class="col-md-2">Pharmacy Phone Number</th>
-                <td>{{profile.pharmacy_phone_number}}</td>
-            </tr>
+
           </tbody>
         </table>
         </div><br/><br/>
           <a class="btn btn-primary btnNext" >Next</a>
           <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
       </div>
-        <div role="tabpanel" class="tab-pane" id="tabs-2">
+
+      <div role="tabpanel" class="tab-pane" id="tabs-2">
+        <br/>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                  <th scope="row" class="col-md-2">Preferred Pharmacy</th>
+                  <td>{{pharmacy.pharmacy_name}}</td>
+              </tr>
+              <tr>
+                  <th scope="row" class="col-md-2">Phone Number</th>
+                  <td>{{pharmacy.pharmacy_phone_number}}</td>
+              </tr>
+              <tr>
+                  <th scope="row" class="col-md-2">Address</th>
+                  <td>{{pharmacy.address_1}} {{pharmacy.address_2}}, {{pharmacy.city}}, {{pharmacy.state}}, {{pharmacy.zip_code}}</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+      <br/><br/><br/>
+
+
+        <div class="btn-group" role="group" aria-label="...">
+        <a class="btn btn-primary btnPrevious" >Previous</a>
+        <a class="btn btn-primary btnNext" >Next</a>
+        <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+      </div>
+      </div>
+
+        <div role="tabpanel" class="tab-pane" id="tabs-3">
           <br/>
           <div class="table-responsive">
             <table class="table table-bordered">
               <tbody>
               <tr>
                   <th scope="row" class="col-md-2">Emergency Contact</th>
-                  <td>{{emergency.contact_first_name}}</td>
+                  <td>{{emergency.contact_first_name}} {{emergency.contact_last_name}} </td>
               </tr>
               <tr>
                   <th scope="row" class="col-md-2">Relationship</th>
@@ -94,9 +115,10 @@
               </tr>
               <tr>
                   <th scope="row" class="col-md-2">Address</th>
-                  <td>{{emergency.contact_address}}</td>
+                  <td>{{emergency.address_1}} {{emergency.address_2}}, {{emergency.city}}, {{emergency.state}}, {{emergency.zip_code}}</td>
               </tr>
-            </tbody>
+
+              </tbody>
           </table>
         </div>
         <br/><br/><br/>
@@ -109,7 +131,7 @@
         </div>
         </div>
 
-        <div role="tabpanel" class="tab-pane" id="tabs-3">
+        <div role="tabpanel" class="tab-pane" id="tabs-4">
           <br/>
             <div class="table-responsive">
               <table class="table table-bordered">
@@ -158,7 +180,7 @@
               <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 
               </div>
-              <div role="tabpanel" class="tab-pane" id="tabs-4">
+              <div role="tabpanel" class="tab-pane" id="tabs-5">
                 <br/>
                   <div class="table-responsive">
                     <table class="table table-bordered">
@@ -261,7 +283,7 @@
 
                     </div>
 
-                    <div role="tabpanel" class="tab-pane" id="tabs-5">
+                    <div role="tabpanel" class="tab-pane" id="tabs-6">
                       <br/>
                         <div class="table-responsive">
                           {% for n in diagnosis_info %}

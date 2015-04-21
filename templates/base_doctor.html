@@ -105,7 +105,14 @@
                           </ul>
                         </li>
 
-                        <li><a href="{% url 'registration_register' %}">Register Here</a></li>
+                        <li class="Radiology">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Radiology <span class="caret"></span></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="/add_radiology/">Add</a></li>
+                            <li><a href="/radiology_list/">View</a></li>
+                          </ul>
+                        </li>
+
                         <li class="Prescription">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Prescription <span class="caret"></span></a>
                           <ul class="dropdown-menu" role="menu">
@@ -113,11 +120,10 @@
                             <li><a href="/prescription_list/">View</a></li>
                           </ul>
                         </li>
-                        <li class="Radiology">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Radiology <span class="caret"></span></a>
+                        <li class="Summary">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Summary <span class="caret"></span></a>
                           <ul class="dropdown-menu" role="menu">
-                            <li><a href="/add_radiology/">Add</a></li>
-                            <li><a href="/radiology_list/">View</a></li>
+                            <li><a href="/visit_summary/">Create</a></li>
                           </ul>
                         </li>
                         <li><a href="{% url 'auth_logout' %}?next=/accounts/logout/">Logout</a></li>

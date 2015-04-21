@@ -20,41 +20,58 @@
 
     <div role="tabpanel">
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#tabs-1" aria-controls="tabs-1" role="tab" data-toggle="tab">Doctor Information</a></li>
+            <li role="presentation" class="active"><a href="#tabs-1" aria-controls="tabs-1" role="tab" data-toggle="tab">Prescription Details</a></li>
             <li role="presentation"><a href="#tabs-2" aria-controls="tabs-3" role="tab" data-toggle="tab">Pharmacy Information</a></li>
-            <li role="presentation"><a href="#tabs-3" aria-controls="tabs-4" role="tab" data-toggle="tab">Prescription</a></li>
+            <li role="presentation"><a href="#tabs-3" aria-controls="tabs-4" role="tab" data-toggle="tab">Doctor Information</a></li>
         </ul>
-        
+
         <form action="{{ action }}" method="POST">
                     {% csrf_token %}
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="tabs-1">
                     <br/>
                         <table>
-                            <td> {{ formE.as_table }} </td>
+                            <td> {{ formI.as_table }} </td>
                         </table> <br/><br/><br/>
 
 
                       <a class="btn btn-primary btnNext" >Next</a>
 
                 </div>
+
                 <div role="tabpanel" class="tab-pane" id="tabs-2">
-                    <br/>
-                        <table>
-                            <td> {{ formF.as_table }} </td>
-                        </table> <br/><br/><br/>
+                  <br/>
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <tbody>
+                        <tr>
+                            <th scope="row" class="col-md-2">Preferred Pharmacy</th>
+                            <td>{{pharmacy.pharmacy_name}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-2">Phone Number</th>
+                            <td>{{pharmacy.pharmacy_phone_number}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-2">Address</th>
+                            <td>{{pharmacy.address_1}} {{pharmacy.address_2}}, {{pharmacy.city}}, {{pharmacy.state}}, {{pharmacy.zip_code}}</td>
+                        </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <br/><br/><br/>
 
 
-                      <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                      <a class="btn btn-primary btnPrevious" >Previous</a>
-                      <a class="btn btn-primary btnNext" >Next</a>
-                      </div>
+                  <div class="btn-group" role="group" aria-label="...">
+                  <a class="btn btn-primary btnPrevious" >Previous</a>
+                  <a class="btn btn-primary btnNext" >Next</a>
 
+                </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="tabs-3">
                     <br/>
                         <table>
-                            <td> {{ formG.as_table }} </td>
+                            <td> {{ formH.as_table }} </td>
                         </table>
 
                       <a class="btn btn-primary btnPrevious" >Previous</a>
@@ -64,7 +81,7 @@
             </div>
         </form>
     </div>
-    
+
     <div class="ocv-messages">
         {% if messages %}
             <ul class="messages">
@@ -74,7 +91,7 @@
             </ul>
         {% endif %}
     </div>
-</div> 
+</div>
 
 <!-- JavaScript for Tabs -->
 

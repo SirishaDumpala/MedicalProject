@@ -9,6 +9,9 @@ from os.path import join as pjoin
 from tempfile import *
 from PIL import Image as PImage
 from phonenumber_field.modelfields import PhoneNumberField
+from django.utils.translation import ugettext as _
+from django_localflavor_us.models import USStateField
+
 
 
 class Appointment(models.Model):
@@ -44,23 +47,34 @@ class UserDetail(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
     GENDER_CHOICES = (('female', 'Female',), ('male', 'Male',))
-    YEAR_CHOICES = (('1900', '1901', '1902', '1903'))
-    MONTH_CHOICES = (('January', 'February', 'March'))
-    DAY_CHOICES = (('1', '2', '3', '4'))
-
     # The additional attributes we wish to include.
-    phone_number = PhoneNumberField(null = True)
-    address = models.CharField(max_length=100)
-    city = models.CharField(max_length=50)
+
+    phone_number = models.CharField(max_length=14, null = True)
+    address_1 = models.CharField(_("address"), max_length=128, blank = True)
+    address_2 = models.CharField(_("address cont'd"), max_length=128, blank=True)
+    city = models.CharField(_("city"), max_length=64, default="Fullerton")
+    state = USStateField(_("state"), default="CA")
+    zip_code = models.CharField(_("zip code"), max_length=5, default= '92614')
     insurance = models.CharField(max_length=50, null = True)
-    pharmacy_name = models.CharField(max_length=50, null = True)
-    pharmacy_address = models.CharField(max_length=50, null = True)
-    pharmacy_phone_number = models.CharField(max_length=10, null = True)
-    date_of_birth = models.CharField(blank=True, null=True)
+    date_of_birth = models.CharField(max_length=10, null = True)
     gender = models.CharField(max_length=50, choices=GENDER_CHOICES, null = True)
 
     def __str__(self):
         return self.user.username
+
+class Pharmacy(models.Model):
+    user = models.OneToOneField(User)
+    pharmacy_name = models.CharField(max_length=50, null = True)
+    pharmacy_phone_number = models.CharField(max_length=14, null = True)
+    address_1 = models.CharField(_("address"), max_length=128, blank = True)
+    address_2 = models.CharField(_("address cont'd"), max_length=128, blank=True)
+    city = models.CharField(_("city"), max_length=64, default="Fullerton")
+    state = USStateField(_("state"), default="CA")
+    zip_code = models.CharField(_("zip code"), max_length=5, default= '92614')
+
+    def __str__(self):
+        return self.user.username
+
 
 class EmergencyContact(models.Model):
     # This line is required. Links UserProfile to a User model instance.
@@ -70,9 +84,14 @@ class EmergencyContact(models.Model):
     contact_first_name = models.CharField(max_length=50, null = True)
     contact_last_name = models.CharField(max_length=50, null = True)
     relationship = models.CharField(max_length=50, choices=RELATIONSHIP_CHOICES, null = True)
-    contact_phone_number = models.CharField(max_length=10, null = True)
-    contact_address = models.CharField(max_length=100, null = True)
-    contact_city = models.CharField(max_length=50, null = True)
+    contact_phone_number = models.CharField(max_length=14, null = True)
+    address_1 = models.CharField(_("address"), max_length=128, blank = True)
+    address_2 = models.CharField(_("address cont'd"), max_length=128, blank=True)
+    city = models.CharField(_("city"), max_length=64, default="Fullerton")
+    state = USStateField(_("state"), default="CA")
+    zip_code = models.CharField(_("zip code"), max_length=5, default= '92614')
+    #contact_address = models.CharField(max_length=100, null = True)
+    #contact_city = models.CharField(max_length=50, null = True)
 
 
     def __str__(self):
@@ -192,14 +211,17 @@ class DoctorDetail(models.Model):
     name_suffix = models.CharField(max_length=10)
     prescription_network_id = models.CharField(max_length=13)
     dea = models.CharField(max_length=8)
-    doctor_phone_number = models.CharField(max_length=10)
-    doctor_address = models.CharField(max_length=100, blank=True)
-    doctor_city = models.CharField(max_length=50, blank=True)
+    doctor_phone_number = models.CharField(max_length=14, default= '(717) 444-0880' )
+    address_1 = models.CharField(_("address"), max_length=128, default="Grand Pasteur Clinic")
+    address_2 = models.CharField(_("address cont'd"), max_length=128, default="515 Hamilton Ave")
+    city = models.CharField(_("city"), max_length=64, default="Fullerton")
+    state = USStateField(_("state"), default="CA")
+    zip_code = models.CharField(_("zip code"), max_length=5, default= '92652')
 
 
     def __str__(self):
         return self.doctor_last_name
-
+'''
 class PharmacyDetail(models.Model):
     pharmacy_name = models.CharField(max_length=50)
     pharmacy_address = models.CharField(max_length=100)
@@ -210,24 +232,26 @@ class PharmacyDetail(models.Model):
 
     def __str__(self):
         return self.pharmacy_email
+'''
 
 class Prescription(models.Model):
-    DEFAULT_PK=1
-    patient = models.ForeignKey(User, default=DEFAULT_PK)
+    #DEFAULT_PK=1
+    user = models.ForeignKey('auth.User')
+    FREQUENCY_CHOICES = (('daily','Daily',),('every other day','Every Other Day',),('Twice a Day','BID/b.i.d.',),('Three Times a Day','TID/t.id',), ('Four Times a Day','QID/q.i.d.',), ('Every Bedtime','QHS',), ('Every 4 Hours','Q4h',), ('Every 4 to 6 Hours','Q4-6h',), ('Every Week','QWK',),)
     GENDER_CHOICES = (('male','Male'), ('female', 'Female'))
+    #REFILLS_CHOICES = (('yes', 'Yes',), ('no', 'No',),)
+    #patient = models.ForeignKey('auth.User')
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, null=True)
-    date_of_issuance = models.DateField(blank=True, null=True)
-    day_supply = models.CharField(max_length=5, blank=True, null=True)
+    date_of_issuance = models.CharField(max_length=10, null = True)
+    days_supply = models.CharField(max_length=5, blank=True, null=True)
     drug_name = models.CharField(max_length=100, blank=True, null=True)
     drug_strength = models.CharField(max_length=5, blank=True, null=True)
     dosage_form = models.CharField(max_length=20, blank=True, null=True)
-    FREQUENCY_CHOICES = (('daily','Daily',),('every other day','Every Other Day',),('Twice a Day','BID/b.i.d.',),('Three Times a Day','TID/t.id',), ('Four Times a Day','QID/q.i.d.',), ('Every Bedtime','QHS',), ('Every 4 Hours','Q4h',), ('Every 4 to 6 Hours','Q4-6h',), ('Every Week','QWK',),)
     frequency = models.CharField(max_length=50, choices=FREQUENCY_CHOICES)
     quantity = models.CharField(max_length=6, blank=True, null=True)
     npi_number = models.CharField(max_length=10)
     ndc_number = models.CharField(max_length=11)
-    REFILLS_CHOICES = (('yes', 'Yes',), ('no', 'No',),)
-    refills = models.CharField(max_length=5, choices=REFILLS_CHOICES)
+    refills = models.NullBooleanField()
 
     def __str__(self):
         return self.drug_name

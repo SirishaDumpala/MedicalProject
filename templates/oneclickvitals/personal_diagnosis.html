@@ -1,13 +1,13 @@
 {% extends 'base_patient.html' %}
 {% load staticfiles %}
 
-{% block title %}PatientProfile{% endblock %}
+{% block title %}My Diagnosis{% endblock %}
 {% block body_block %}
 
 {% if user.is_authenticated %}
 
     <div class="page-header">
-          <h1>Patient Profile</h1>
+          <h2><strong>MY DIAGNOSIS</strong></h2>
     </div>
     <div class="container">
       <div class="header">
@@ -31,7 +31,11 @@
           </tr>
           <tr>
               <th scope="row" class="col-md-2">Follow Up Required</th>
-              <td>{{n.follow_up}}</td>
+              {% if n.follow_up %}
+              <td>Yes <h5> (Please call @ (717) 444-0880 to make an appointment) </h5></td>
+              {% else %}
+              <td>No</td>
+              {% endif %}
           </tr>
           <tr>
               <th scope="row" class="col-md-2">Additional Comments</th>
