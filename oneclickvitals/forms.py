@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User, Group
 
-from oneclickvitals.models import Pharmacy, Appointment,UserDetail, EmergencyContact, PatientMedicalHistory, FamilyMedicalHistory, Diagnosis, Radiology, DoctorDetail, Prescription
+from oneclickvitals.models import LabTest, Pharmacy, Appointment,UserDetail, EmergencyContact, PatientMedicalHistory, FamilyMedicalHistory, Diagnosis, Radiology, DoctorDetail, Prescription
 from datetimewidget.widgets import DateWidget, DateTimeWidget, TimeWidget
 from django.utils.safestring import mark_safe
 
@@ -88,16 +88,24 @@ class DiagnosisForm(forms.ModelForm):
     #appointment_date = forms.DateTimeField(widget = DateTimeWidget(usel10n = True, bootstrap_version = 3))
     class Meta:
         model = Diagnosis
-        widgets = {'date': DateWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3),'follow_up': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))) }
-        fields = ('user', 'date','complaint', 'follow_up','additional_comments',)
+        widgets = {'date': DateWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3),
+                    'follow_up': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
+                    'lab_test': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),}
 
-'''
-class LabTestOrderForm(forms.ModelForm):
+        fields = ('user', 'date','complaint', 'diagnosis','additional_comments','follow_up', 'lab_test',)
+
+
+class LabTestForm(forms.ModelForm):
     class Meta:
-        model = LabTestOrder
-        widget=forms.CheckboxSelectMultiple(attrs={'checked' : 'checked'}))
-        fields = ('type_of_test')
-'''
+        model = LabTest
+        widgets = {'urine_culture': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
+                    'blood_culture': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
+                    'blood_glucose': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
+                    'allergy_test': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
+                    'thyroid': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
+                    'viral_test': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
+                    'pregnancy_test': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),}
+        fields = ('urine_culture', 'blood_culture', 'blood_glucose', 'allergy_test', 'thyroid', 'viral_test', 'pregnancy_test', 'x_ray',)
 
 class PatientRadiologyImageForm(forms.ModelForm):
 
@@ -126,3 +134,11 @@ class PrescriptionForm(forms.ModelForm):
         #widgets = {
         #    'date_of_issuance': DateWidget(attrs={'id':"yourissuancedate"}, usel10n = True, bootstrap_version=3)}
         fields = ('user', 'gender', 'date_of_issuance', 'days_supply', 'drug_name', 'drug_strength', 'dosage_form', 'frequency', 'quantity', 'npi_number', 'ndc_number', 'refills')
+'''
+class SummaryForm(forms.ModelForm):
+
+    class Meta:
+        # Provide an association between the ModelForm and a model
+        model = UserDetail
+        fields = ('user',)
+'''

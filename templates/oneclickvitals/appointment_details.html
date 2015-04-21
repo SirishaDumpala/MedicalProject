@@ -17,7 +17,8 @@
                         <th>Appointment Date</th>
                         <th>Appointment Time</th>
                         <th>Phone No.</th>
-                        <th>Reason for Appointment</th>
+                        <th>Reason</th>
+                        <th>Cancel / Edit</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +30,7 @@
                         <td>{{n.appointment_time}}</td>
                         <td>{{n.phone_number}}</td>
                         <td>{{n.reason_for_appointment}}</td>
+                        <td><button type="button" class="btn btn-primary">Cancel</button> <a class="btn btn-default" href="/appointment/"><span class="glyphicon glyphicon-pencil"></span></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -20,7 +20,9 @@
         </div>
     <form action="{{ action }}" method="POST">{% csrf_token %}
       <table>
-        <td> {{ form.as_table }} </td>
+        <td> {{ formJ.as_table }} </td>
+        <td> {{ formK.as_table }} </td>
+
       </table><br/><br/>
       <button type="submit" class="save btn btn-primary">Save</button>
 

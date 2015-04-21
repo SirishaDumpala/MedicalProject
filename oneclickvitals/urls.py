@@ -15,6 +15,7 @@ urlpatterns = patterns('',
         url(r'^appointment_details/$', views.appointment_details, name='appointment_details'),
         url(r'^diagnosis/$', views.diagnosis, name='diagnosis'),
         url(r'^diagnosis_details/$', views.diagnosis_details, name='diagnosis_details'),
+        url(r'^add_lab_test/$', views.add_lab_test, name='add_lab_test'),
 
 
         #url(r'^patient_profile/$', views.patient_profile, name='patient_profile'),
@@ -25,6 +26,8 @@ urlpatterns = patterns('',
         url(r'^personal_profile/$', views.personal_profile, name='personal_profile'),
         url(r'^personal_diagnosis/$', views.personal_diagnosis, name='personal_diagnosis'),
         url(r'^personal_prescription/$', views.personal_prescription, name='personal_prescription'),
+        url(r'^prescription_details/(?P<pk>[0-9]+)/$', views.prescription_details, name='prescription_details'),
+        url(r'^visit_summary/$', views.visit_summary, name='visit_summary'),
 
 
         url(r'^add_radiology/$', views.patient_radiology_image, name='patient_radiology_image'),

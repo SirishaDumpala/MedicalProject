@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response, RequestContext
 from django.http import HttpResponseRedirect, HttpResponse
 
-from oneclickvitals.models import Pharmacy, Appointment, PageAdmin, UserDetail, EmergencyContact, PatientMedicalHistory, Radiology, DoctorDetail, Prescription, FamilyMedicalHistory, Diagnosis
-from oneclickvitals.forms import PharmacyForm, UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm, PatientMedicalHistoryForm, FamilyMedicalHistoryForm,DiagnosisForm, PatientRadiologyImageForm, DoctorDetailForm, PrescriptionForm
+from oneclickvitals.models import LabTest, Pharmacy, Appointment, PageAdmin, UserDetail, EmergencyContact, PatientMedicalHistory, Radiology, DoctorDetail, Prescription, FamilyMedicalHistory, Diagnosis
+from oneclickvitals.forms import LabTestForm, PharmacyForm, UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm, PatientMedicalHistoryForm, FamilyMedicalHistoryForm,DiagnosisForm, PatientRadiologyImageForm, DoctorDetailForm, PrescriptionForm
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
@@ -170,8 +170,10 @@ def patient_profile(request, pk):
     return render(request, 'oneclickvitals/patient_profile.html', context_dict)
 
 def personal_appointment(request):
+    me = request.user
     appointment_list = Appointment.objects.all()
-    return render(request, 'oneclickvitals/personal_appointment.html', {'appointment': appointment_list})
+    pharmacy = Pharmacy.objects.get(user=me)
+    return render(request, 'oneclickvitals/personal_appointment.html', {'appointment': appointment_list, 'pharmacy': pharmacy})
 
 
 def profile_edit(request, pk):
@@ -257,25 +259,47 @@ def edit_patient(request, pk):
 
 def diagnosis(request):
     if request.method == 'POST':
-        form = DiagnosisForm(request.POST)
+        formJ = DiagnosisForm(request.POST)
 
-        if form.is_valid():
+        if formJ.is_valid():
             # Save the new category to the database.
-            diagnosis = form.save(commit=False)
+            diagnosis = formJ.save(commit=False)
             diagnosis.save()
 
             # The user will be shown the appointment detail page view.
             #return diagnosis_details(request)
-            print ("Do I have the user id: ", diagnosis.pk)
+            #print ("Do I have the user id: ", diagnosis.pk)
             return diagnosis_details(request, diagnosis.pk)
         else:
-            print (form.errors)
+            print (formJ.errors)
     else:
         # If the request was not a POST, display the form to enter details.
-        form = DiagnosisForm()
+        formJ = DiagnosisForm()
 
     # Render the form with error messages (if any)
-    return render(request, 'oneclickvitals/diagnosis.html', {'form': form})
+    return render(request, 'oneclickvitals/diagnosis.html', {'formJ': formJ})
+
+def add_lab_test(request):
+    if request.method == 'POST':
+        formK = LabTestForm(request.POST)
+
+        if formK.is_valid():
+            # Save the new category to the database.
+            lab_test = formK.save(commit=False)
+            lab_test.save()
+
+            # The user will be shown the appointment detail page view.
+            #return diagnosis_details(request)
+            #print ("Do I have the user id: ", diagnosis.pk)
+            return diagnosis_details(request, diagnosis.pk)
+        else:
+            print (formK.errors)
+    else:
+        # If the request was not a POST, display the form to enter details.
+        formK = LabTestForm()
+
+    # Render the form with error messages (if any)
+    return render(request, 'oneclickvitals/add_lab_test.html', {'formK': formK})
 
 
 def diagnosis_details(request, pk):
@@ -287,7 +311,8 @@ def diagnosis_details(request, pk):
 def personal_diagnosis(request):
     me = request.user
     diagnosis_info = Diagnosis.objects.filter(user=me)
-    return render(request, 'oneclickvitals/personal_diagnosis.html', {'diagnosis_info': diagnosis_info})
+    pharmacy = Pharmacy.objects.get(user=me)
+    return render(request, 'oneclickvitals/personal_diagnosis.html', {'diagnosis_info': diagnosis_info, 'pharmacy':pharmacy })
 
 def patient_radiology_image(request):
     if request.method == 'POST':
@@ -344,34 +369,78 @@ def edit_radiology(request, pk):
     # Render the form with error messages (if any)
     return render(request, 'oneclickvitals/edit_radiology.html', {'form': form})
 
+def add_prescription(request):
+    if request.method == 'POST':
+        form = PrescriptionForm(request.POST)
+
+        if form.is_valid():
+            # Save the new image to the database.
+            prescription = form.save(commit=False)
+            prescription.save()
+
+
+            messages.success(request, 'prescription added')
+
+        else:
+            messages.error(request, "Oops! You missed some fields. Please fill the required fields.")
+#            print (form.errors)
+    else:
+        # If the request was not a POST, display the form to enter details.
+        form = PrescriptionForm()
+
+    # Render the form with error messages (if any)
+    return render(request, 'oneclickvitals/add_prescription.html', {'form': form})
+
+
+def prescription_details(request, pk):
+    me = User.objects.get(id=pk)
+    profile = UserDetail.objects.filter(user=me)
+    #print("profile.user:",profile.first_name)
+    prescription = Prescription.objects.filter(user=me)
+    pharmacy = Pharmacy.objects.filter(user=me)
+    context_dict = {'profile':profile, 'prescription': prescription, 'pharmacy':pharmacy}
+    return render(request, 'oneclickvitals/prescription_details.html', context_dict)
+
+
+'''
 @login_required
 def add_prescription(request):
     #me = request.user
+    #print("me:", me.username)
+    #context_dict
     if request.method == 'POST':
-        formH = DoctorDetailForm(request.POST)
+        #formH = DoctorDetailForm(request.POST)
         #formF = PharmacyDetailForm(request.POST)
         formI = PrescriptionForm(request.POST)
         #We use H, I, because the letters have not been used
 
-        if formH.is_valid() and formI.is_valid():
-            doctorDetail = formH.save(commit=False)
-            prescription = formI.save(commit=False)
-            prescription.user = doctorDetail
+        if formI.is_valid():
+            print("iam here")
+            #doctorDetail = formH.save()
+            prescription = formI.save()
+            #prescription.user = doctorDetail
+            print("precription.user:", prescription.user.username)
             prescription.save()
-            #pharmacy = Pharmacy.objects.get(user=me)
+            pharmacy = Pharmacy.objects.get(user=prescription.user)
+            print("pharmacy.pharmacy_name:", pharmacy.pharmacy_name)
+            context_dict = ({'formI': formI, 'pharmacy':pharmacy})
             #doctorDetail.groups.add(Group.objects.get(name='patient'))
             messages.success(request, 'Prescription added.')
             #return redirect('prescription_list')
+            #return render(request, 'oneclickvitals/add_prescription.html', {'formI': formI}, {'pharmacy':pharmacy})
         else:
             messages.error(request, "Oops! You missed some fields. Please fill the required fields.")
     else:
         # If the request was not a POST, display the form to enter details.
-        formH = DoctorDetailForm()
+        #formH = DoctorDetailForm()
         #formF = PharmacyDetailForm()
         formI = PrescriptionForm()
+        context_dict = ({'formI': formI})
 
     # Render the form with error messages (if any), if no form supplied
-    return render(request, 'oneclickvitals/add_prescription.html', {'formH': formH, 'formI': formI})
+    #context_dict = ({'formI': formI, 'pharmacy':pharmacy})
+    return render(request, 'oneclickvitals/add_prescription.html', context_dict)
+'''
 
 def prescription_list(request):
     prescription = Prescription.objects.all()
@@ -380,7 +449,19 @@ def prescription_list(request):
 def personal_prescription(request):
     me = request.user
     prescription_info = Prescription.objects.filter(user=me)
-    return render(request, 'oneclickvitals/personal_prescription.html', {'prescription_info': prescription_info})
+    pharmacy = Pharmacy.objects.get(user=me)
+    context_dict = {'prescription_info': prescription_info, 'pharmacy': pharmacy }
+    return render(request, 'oneclickvitals/personal_prescription.html',context_dict)
+
+def visit_summary(request):
+    me = request.user
+    #form = SummaryForm(request.POST)
+    appointment_list = Appointment.objects.filter(user=me)
+    prescription_info = Prescription.objects.filter(user=me)
+    diagnosis_info = Diagnosis.objects.filter(user=me)
+    context_dict = {'appointment_list': appointment_list, 'prescription_info': prescription_info, 'diagnosis_info':diagnosis_info }
+
+    return render(request, 'oneclickvitals/visit_summary.html', context_dict)
 
 
 def email_pharmacy(request, pk):

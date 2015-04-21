@@ -144,37 +144,44 @@ class Diagnosis(models.Model):
     user = models.ForeignKey('auth.User')
     date = models.DateField(default=timezone.now)
     complaint = models.TextField(max_length=500)
+    diagnosis = models.TextField(max_length=500, null=True)
     follow_up = models.NullBooleanField()
     additional_comments = models.TextField(max_length=500)
+    lab_test = models.NullBooleanField()
 
 
     def __str__(self):
         return self.last_name
 
-'''
+
 class LabTest(models.Model):
     # This line is required. Links UserProfile to a User model instance.
-    user = models.OneToOneField(User)
+    user = models.ForeignKey('auth.User')
+    XRAY_CHOICES = (('finger', 'Finger'),('palm', 'Palm'),('wrist', 'Wrist'),
+                    ('right elbow', 'Right Elbow'),('left elbow', 'Left Elbow'),
+                    ('right shoulder', 'Right Shoulder'),('neck', 'Neck'),('upper back', 'Upper Back'),
+                    ('middle back', 'Middle Back'),('lower back', 'Lower Back'),
+                    ('right knee', 'Right Knee'),('left knee', 'Left Knee'),
+                    ('right leg', 'Right leg'),('left leg', 'Left Leg'),
+                    ('right ankle', 'Right Ankle'), ('left ankle', 'Left Ankle'),
+                    ('right foot', 'Right Foot'),('left foot', 'Left Foot'),('other', 'Other'), ('none', 'None'),)
     # The additional attributes we wish to include.
-    stroke = models.NullBooleanField()
-    cancer = models.NullBooleanField()
-    high_bp = models.NullBooleanField()
-    tuberculosis = models.NullBooleanField()
-    diabetes = models.NullBooleanField()
-    leukemia = models.NullBooleanField()
-    bleeding_tendency = models.NullBooleanField()
-    heart_attack = models.NullBooleanField()
-    kidney_disease = models.NullBooleanField()
-    rheumatic_heart = models.NullBooleanField()
-    heart_failure = models.NullBooleanField()
+    urine_culture = models.NullBooleanField()
+    blood_culture = models.NullBooleanField()
+    allergy_test = models.NullBooleanField()
+    blood_glucose = models.NullBooleanField()
+    thyroid = models.NullBooleanField()
+    viral_test = models.NullBooleanField()
+    pregnancy_test = models.NullBooleanField()
+    x_ray = models.CharField(max_length=50, choices=XRAY_CHOICES)
 
 
     def __str__(self):
-        return self.user.username
+        return self.last_name
 
 
 
-
+'''
 class LabTestOrder(models.Model):
     user = models.ForeignKey('auth.User')
     TEST_CHOICES = (('urine_culture', 'Urine Culture'),

@@ -19,9 +19,9 @@
                 </tr>
             </thead>
             <tbody>
-                {% for pres in prescription %}  
+                {% for pres in prescription %}
                     <tr>
-                        <td>{{ pres.patient.first_name }} {{ pres.patient.last_name }}</td>
+                        <td><a href="/prescription_details/{{pres.user.id}}">{{ pres.user.first_name }} {{ pres.user.last_name }}</td>
                         <td>{{ pres.drug_name }}</td>
                         <td>{{ pres.date_of_issuance }}</td>
                         <td>{{ pres.day_supply }}</td>
@@ -35,18 +35,18 @@
 
 <!-- ------- JavaScript for Filter --------- -->
 
-    <script type="text/javascript"> 
-        
+    <script type="text/javascript">
+
             jQuery(document).ready(function($) {
-                $(window).load(function() { 
-                
+                $(window).load(function() {
+
                     $('#prescription').filterable({
                     prependWild: true, // If a wild card should be added to the start of all filter input
                     appendWild: true, // If a wild card should be added to the end of all filter input
                     ignoreCase: true, // If case should be ignored
                     ignoreColumns: [], // Array. Column indexes to not make filterable
                     onlyColumns: null, // Array. Column indexes to make filterable, all other columns are left non-filterable.
-                    });   
+                    });
                 });
             });
         </script>

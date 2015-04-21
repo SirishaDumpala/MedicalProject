@@ -1,12 +1,13 @@
+
 {% extends 'base_doctor.html' %}
 {% load staticfiles %}
 
-{% block title %}Add Prescription{% endblock %}
+{% block title %}AddLabTest{% endblock %}
 
 {% block body_block %}
 
     <div class="page-header">
-          <h1>Add Prescription</h1>
+          <h1>Lab Tests</h1>
     </div>
 
       <div class="container">
@@ -19,7 +20,9 @@
         </div>
     <form action="{{ action }}" method="POST">{% csrf_token %}
       <table>
-        <td> {{ form.as_table }} </td>
+
+        <td> {{ formK.as_table }} </td>
+
       </table><br/><br/>
       <button type="submit" class="save btn btn-primary">Save</button>
 
