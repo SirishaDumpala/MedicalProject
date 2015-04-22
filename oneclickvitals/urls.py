@@ -16,7 +16,7 @@ urlpatterns = patterns('',
         url(r'^diagnosis/$', views.diagnosis, name='diagnosis'),
         url(r'^diagnosis_details/$', views.diagnosis_details, name='diagnosis_details'),
         url(r'^add_lab_test/$', views.add_lab_test, name='add_lab_test'),
-
+        url(r'^appointment/(?P<pk>[0-9]+)/edit/$', views.appointment_edit, name='appointment_edit'),
 
         #url(r'^patient_profile/$', views.patient_profile, name='patient_profile'),
 

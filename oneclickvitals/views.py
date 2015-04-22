@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, render_to_resp
 from django.http import HttpResponseRedirect, HttpResponse
 
 from oneclickvitals.models import LabTest, Pharmacy, Appointment, PageAdmin, UserDetail, EmergencyContact, PatientMedicalHistory, Radiology, DoctorDetail, Prescription, FamilyMedicalHistory, Diagnosis
-from oneclickvitals.forms import LabTestForm, PharmacyForm, UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm, PatientMedicalHistoryForm, FamilyMedicalHistoryForm,DiagnosisForm, PatientRadiologyImageForm, DoctorDetailForm, PrescriptionForm
+from oneclickvitals.forms import  LabTestForm, PharmacyForm, UserForm, UserDetailForm, NewPatientForm, AppointmentForm, EmergencyContactForm, PatientMedicalHistoryForm, FamilyMedicalHistoryForm,DiagnosisForm, PatientRadiologyImageForm, DoctorDetailForm, PrescriptionForm
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
@@ -143,6 +143,18 @@ def appointment(request):
     # Render the form with error messages (if any)
     return render(request, 'oneclickvitals/appointment.html', {'form': form})
 
+def appointment_edit(request, pk):
+    appointment = get_object_or_404(Appointment, pk=pk)
+    if request.method == "POST":
+        form = AppointmentForm(request.POST, instance=appointment)
+        if form.is_valid():
+            appointment = form.save(commit=False)
+            appointment.save()
+            return redirect('blog.views.appointment_detail')
+    else:
+        form = AppointmentForm(instance=appointment)
+    return render(request, 'blog/appointment_edit.html', {'form': form})
+
 @login_required
 def patient_details(request):
     details_list = UserDetail.objects.all()
@@ -153,6 +165,34 @@ def patient_details(request):
 def appointment_details(request):
     appointment_list = Appointment.objects.all()
     return render(request, 'oneclickvitals/appointment_details.html', {'appointment': appointment_list})
+'''
+@login_required
+def appointment_cancel(request):
+    if request.method == 'POST':
+        form = AppointmentCancelForm(request.POST)
+
+        if form.is_valid():
+            # Save the new category to the database.
+            appointment = form.save(commit=False)
+            appointment.save()
+            instance = Appointment.objects.get(id=id)
+            instance.delete()
+
+            # The user will be shown the appointment detail page view.
+            return appointment_details(request)
+        else:
+            print (form.errors)
+    else:
+        # If the request was not a POST, display the form to enter details.
+        form = AppointmentForm()
+
+    # Render the form with error messages (if any)
+    return render(request, 'oneclickvitals/appointment.html', {'form': form})
+
+
+        appointment_list = Appointment.objects.all()
+    return render(request, 'oneclickvitals/appointment_details.html', {'appointment': appointment_list})
+'''
 
 @login_required
 def patient_profile(request, pk):

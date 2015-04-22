@@ -17,18 +17,18 @@
                     <td style="padding-bottom:10px;">
                         <div class="fieldWrapper">
                             {{ form.user.errors }}
-                            <p><label class="col-sm-2" for="{{ form.user.id_for_label }}">Patient Username</label></p>
-                            <div class="col-sm-4">{{ form.user|add_class:"form-control" }}</div>
+                            <p><label class="col-sm-3" for="{{ form.user.id_for_label }}">Patient Username</label></p>
+                            <div class="col-sm-9">{{ form.user|add_class:"form-control" }}</div>
                         </div>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td style="padding-bottom:10px;">
                         <div class="fieldWrapper">
                             {{ form.title.errors }}
-                            <p><label class="col-sm-2" for="{{ form.title.id_for_label }}">Title</label></p>
-                            <div class="col-sm-4">{{ form.title|add_class:"form-control"}}</div>
+                            <p><label class="col-sm-3" for="{{ form.title.id_for_label }}">Title</label></p>
+                            <div class="col-sm-9">{{ form.title|add_class:"form-control"}}</div>
                         </div>
                     </td>
                 </tr>
@@ -37,18 +37,18 @@
                     <td style="padding-bottom:10px;">
                         <div class="fieldWrapper">
                             {{ form.caption.errors }}
-                            <p><label class="col-md-2" for="{{ form.caption.id_for_label }}">Caption</label></p>
-                            <div class="col-md-4">{{ form.caption|add_class:"form-control" }}</div>
+                            <p><label class="col-md-3" for="{{ form.caption.id_for_label }}">Caption</label></p>
+                            <div class="col-md-9">{{ form.caption|add_class:"form-control" }}</div>
                         </div>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td style="padding-bottom:10px;">
                         <div class="fieldWrapper">
                             {{ form.created_date.errors }}
-                            <p><label class="col-sm-2" for="{{ form.created_date.id_for_label }}">Date</label></p>
-                            <div class="col-sm-3">{{ form.created_date|add_class:"form-control" }}</div>
+                            <p><label class="col-sm-3" for="{{ form.created_date.id_for_label }}">Date</label></p>
+                            <div class="col-sm-9">{{ form.created_date|add_class:"form-control" }}</div>
                         </div>
                     </td>
                 </tr>
@@ -56,8 +56,8 @@
                     <td style="padding-bottom:10px;">
                         <div class="fieldWrapper">
                             {{ form.image.errors }}
-                            <p><label class="col-sm-2" for="{{ form.image.id_for_label }}">Image</label></p>
-                            <div style="padding-left:0px" class="col-sm-4">{{ form.image }}</div>
+                            <p><label class="col-sm-3" for="{{ form.image.id_for_label }}">Image</label></p>
+                            <div style="padding-left:0px" class="col-sm-9">{{ form.image }}</div>
 
                         </div>
                     </td>
@@ -67,7 +67,7 @@
             <!-- Provide a button to click to submit the form. -->
             <input class="btn btn-primary" type="submit" name="submit" value="Upload" style="margin-left:15px;"/>
         </form>
-        
+
         <div class="ocv-messages">
             {% if messages %}
                 <ul class="messages">
@@ -77,7 +77,7 @@
                 </ul>
             {% endif %}
         </div>
-    </div> 
+    </div>
 <!-- /container -->
 
 

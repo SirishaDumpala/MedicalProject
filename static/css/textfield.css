@@ -23,3 +23,11 @@
 	width : 400px;
 	height : 100px;
 }
+
+.container {
+	width : 100%;
+}
+
+.fieldWrapper {
+	width : 500px;
+}

@@ -32,6 +32,7 @@ class Appointment(models.Model):
             blank=True, null=True)
     appointment_time = models.TimeField(
             blank=True, null=True)
+    #cancel = models.NullBooleanField()
 
     def __str__(self):
         return self.last_name

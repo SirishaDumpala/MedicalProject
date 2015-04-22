@@ -43,7 +43,16 @@ class AppointmentForm(forms.ModelForm):
                   'appointment_time': TimeWidget(attrs= {'id':"yourtimeid"}, usel10n = True, bootstrap_version=3)}
         fields = ('user','type_of_appointment', 'reason_for_appointment', 'phone_number','appointment_date','appointment_time',)
 
+'''
+class AppointmentCancelForm(forms.ModelForm):
 
+    #appointment_date = forms.DateTimeField(widget = DateTimeWidget(usel10n = True, bootstrap_version = 3))
+    class Meta:
+        model = Appointment
+
+        widgets = {'cancel': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),}
+        fields = ('cancel',)
+'''
 class EmergencyContactForm(forms.ModelForm):
 
     class Meta:
