@@ -1,0 +1,147 @@
+{% extends 'base_doctor.html' %}
+{% load staticfiles %}
+
+{% block title %}Prescription Details{% endblock %}
+{% block body_block %}
+
+{% if user.is_authenticated %}
+
+    <div class="page-header">
+          <h1>Prescription Details</h1>
+    </div>
+    <div class="container">
+      <div class="header">
+      <ul style="padding-right:60px" class="nav nav-pills pull-right">
+
+        <li {% if bootstrap == 3 %} class="active"{% endif %}><a href="/model_form_v3/"></a></li>
+      </ul>
+
+    </div>
+    <div role="tabpanel">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#tabs-1" aria-controls="tabs-1" role="tab" data-toggle="tab">Prescription Information</a></li>
+      <li role="presentation"><a href="#tabs-2" aria-controls="tabs-2" role="tab" data-toggle="tab">Pharmacy Information</a></li>
+      <li role="presentation"><a href="#tabs-3" aria-controls="tabs-3" role="tab" data-toggle="tab">Prescribing Doctor</a></li>
+
+    </ul>
+
+        <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tabs-1">
+          <br/>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <th scope="row" class="col-md-2">Name</th>
+                <td>{{profile.user.first_name}} {{profile.user.last_name}}</td>
+            </tr>
+            <tr>
+                <th scope="row" class="col-md-2">Date of Birth</th>
+                <td>{{profile.date_of_birth}}</td>
+            </tr>
+            <tr>
+                <th scope="row" class="col-md-2">Gender</th>
+                <td>{{profile.gender}}</td>
+            </tr>
+            <tr>
+                <th scope="row" class="col-md-2">Phone Number</th>
+                <td>{{profile.phone_number}}</td>
+            </tr>
+            <tr>
+                <th scope="row" class="col-md-2">Precsription Date</th>
+                <td>{{prescription.date_of_issuance}}</td>
+            </tr>
+            <tr>
+                <th scope="row" class="col-md-2">Days Supply</th>
+                <td>{{prescription.days_supply}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+        </div><br/><br/>
+          <a class="btn btn-primary btnNext" >Next</a>
+
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="tabs-2">
+        <br/>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                  <th scope="row" class="col-md-2">Preferred Pharmacy</th>
+                  <td>{{pharmacy.pharmacy_name}}</td>
+              </tr>
+              <tr>
+                  <th scope="row" class="col-md-2">Phone Number</th>
+                  <td>{{pharmacy.pharmacy_phone_number}}</td>
+              </tr>
+              <tr>
+                  <th scope="row" class="col-md-2">Address</th>
+                  <td>{{pharmacy.address_1}} {{pharmacy.address_2}}, {{pharmacy.city}}, {{pharmacy.state}}, {{pharmacy.zip_code}}</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+      <br/><br/><br/>
+
+
+        <div class="btn-group" role="group" aria-label="...">
+        <a class="btn btn-primary btnPrevious" >Previous</a>
+        <a class="btn btn-primary btnNext" >Next</a>
+
+      </div>
+      </div>
+
+        <div role="tabpanel" class="tab-pane" id="tabs-3">
+          <br/>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tbody>
+              <tr>
+                  <th scope="row" class="col-md-2">Prescribing Doctor</th>
+                  <td>{{ doctor.doctor_first_name }} {{ doctor.doctor_last_name }}, {{ doctor.name_suffix }}</td>
+              </tr>
+              <tr>
+                  <th scope="row" class="col-md-2">Prescription Network Id</th>
+                  <td>{{ doctor.prescription_network_id }}</td>
+              </tr>
+              <tr>
+                  <th scope="row" class="col-md-2">DEA</th>
+                  <td>{{ doctor.dea }}</td>
+              </tr>
+              <tr>
+                  <th scope="row" class="col-md-2">Phone Number</th>
+                  <td>{{ doctor.doctor_phone_number }}</td>
+              </tr>
+
+              </tbody>
+          </table>
+        </div>
+        <br/><br/><br/>
+
+
+          <div class="btn-group" role="group" aria-label="...">
+          <a class="btn btn-primary btnPrevious" >Previous</a>
+          <a class="btn btn-primary btnNext" >Next</a>
+          <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        </div>
+        </div>
+
+
+      </div>
+</div>
+</div>
+
+
+<script type="text/javascript">
+$('.btnNext').click(function(){
+$('.nav-tabs > .active').next('li').find('a').trigger('click');
+});
+$('.btnPrevious').click(function(){
+$('.nav-tabs > .active').prev('li').find('a').trigger('click');
+});
+</script>
+
+{% endif %}
+{% endblock %}

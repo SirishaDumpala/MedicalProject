@@ -4,42 +4,30 @@
 {% block title %}IndexDoctor{% endblock %}
 {% block body_block %}
 
+{% if user.is_authenticated %}
+    <div class="page-header" style="padding-left:8.5cm;">
+        <h1>Welcome back, {{ user.first_name }}!</h1>
+    </div>
 
-<div style="padding-left:40px;" class="page-header">
-    {% if user.is_authenticated %}
-            <h1>Welcome to OneClickVitals, {{ user.username }}!</h1>
-    {% else %}
-            <h1>Welcome to OneClickVitals</h1>
-    {% endif %}
-</div>
-
-    <div class="doctor_calendar"></div>
-        <div class="container-fluid">
-            <div id='calendar'></div>
+    <div class="container-fluid">
+        <div class="icon_row">
+            <div class="col-md-3" style="font-size:100%; text-align:center;"><a href="/patient_details/"><img src="{% static "media/patients.png" %}" alt="" title="Patient" style="padding-bottom:0.5em;" /></a>Patient</div>
+            <div class="col-md-3" style="font-size:100%; text-align:center;"><a href="/appointment_details/"><img src="{% static "media/calendar.png" %}" alt="" title="Appointment" style="padding-bottom:0.5em;" /></a>Appointment</div>
+            <div class="col-md-3" style="font-size:100%; text-align:center;"><a href="/vitalsigns_list/"><img src="{% static "media/wood_green_vital.png" %}" alt="" title="Vital Signs" style="padding-bottom:0.5em;" /></a>Vital Signs</div>
+            <div class="col-md-3" style="font-size:100%; text-align:center;"><a href="/visit_records/"><img src="{% static "media/diagnosis.png" %}" alt="" title="Diagnosis" style="padding-bottom:0.5em;" /></a>Diagnosis</div>
         </div>
+        <div class="icon_row">
+            <div class="col-md-3" style="font-size:100%; text-align:center;"><a href="/radiology_list/"><img src="{% static "media/radiology.png" %}" alt="" title="Radiology" style="padding-bottom:0.5em;" /></a>Radiology</div>
+            <div class="col-md-3" style="font-size:100%; text-align:center;"><a href="/prescription_list/"><img src="{% static "media/pills.png" %}" alt="" title="Prescription" style="padding-bottom:0.5em;" /></a>Prescription</div>
+            <div class="col-md-3" style="font-size:100%; text-align:center;"><a href="#"><img src="{% static "media/lab_test.png" %}" alt="" title="Lab Results" style="padding-bottom:0.5em;" /></a>Lab Result</div>
+            <div class="col-md-3" style="font-size:100%; text-align:center;"><a href="#"><img src="{% static "media/forms.png" %}" alt="" title="Summary" style="padding-bottom:0.5em;" /></a>Summary</div>
+        </div>
+    </div>
+{% else %}
+    <div class="page-header">
+        <h1>You are not logged in.</h1>  
+    </div>
+    <p>Click <a href="/accounts/login/">here</a> to login.</p>
+{% endif %}
     
-
-
-
-<!-- ------------ Javascript ----------------- -->
-    <script type="text/javascript"> 
-        jQuery(document).ready(function($) {
-            $(window).load(function() { 
-            
-                var date = new Date();
-                var d = date.getDate();
-                var m = date.getMonth();
-                var y = date.getFullYear();
-
-                $('#calendar').fullCalendar({
-                    header: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'month,agendaWeek,agendaDay'
-                    },
-                    editable: true
-                });
-            });
-        });
-    </script>
 {% endblock %}

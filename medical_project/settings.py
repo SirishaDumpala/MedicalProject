@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'registration',
     'datetimewidget',
     'widget_tweaks',
+    'localflavor',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -144,12 +145,13 @@ PASSWORD_HASHERS = (
 )
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'yukhe.kasherman@gmail.com'
-EMAIL_HOST_PASSWORD = '7yghjuujhgy7'
+EMAIL_HOST = 'smtp.mail.yahoo.com'
+EMAIL_PORT = 995
+EMAIL_HOST_USER = 'homer51mp50n@yahoo.com'
+EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_SSL = True
 
 REGISTRATION_OPEN = True                # If True, users can register
 #ACCOUNT_ACTIVATION_DAYS = 7     # One-week activation window; you may, of course, use a different value.

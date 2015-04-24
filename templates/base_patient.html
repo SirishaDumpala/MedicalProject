@@ -47,10 +47,10 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/patient/">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li class="Appointment"><a href="/patient_appointment_details/" >Appointment</a></li>
-            <li><a href="#">Prescription</a></li>
-            <li><a href="#">Diagnosis</a></li>
+            <li class="Profile"><a href="/personal_profile/">Profile</a></li>
+            <li class="Appointment"><a href="/personal_appointment/" >Appointment</a></li>
+            <li class="Prescription"><a href="/personal_prescription/">Prescription</a></li>
+            <li class="Diagnosis"><a href="/personal_diagnosis/">Diagnosis</a></li>
             <li><a href="/accounts/logout">Logout</a></li>
           </ul>
         </div>
@@ -71,16 +71,20 @@
 
                 {% block side_block %}
                     <div class="text-left">
+                        <h4><strong>MY DOCTOR:</strong></h4>
                         <h4>Grand Pasteur Clinic</h4>
                         <p>515 Hamilton Ave</p>
-                        <p>Laguna Hills, CA 92652</p>
+                        <p>Fullerton, CA 92652</p>
                         <p>(717) 444-0880</p>
                         <br/>
                         <br/>
-                        <h4>Central Pharmacy</h4>
-                        <p>8367 Central Dr</p>
-                        <p>Laguna Hills, CA 92652</p>
-                        <p>(717) 601-8021</p>                        
+                        <h4><strong>MY PHARMACY:</strong></h4>
+                        <h4>{{pharmacy.pharmacy_name}}</h4>
+                        <p>{{pharmacy.address_1}}</p>
+                        <p>{{pharmacy.address_2}}</p>
+                        <p>{{pharmacy.city}}</p>
+                        <p>{{pharmacy.state}} {{pharmacy.zip_code}}</p></p>
+                        <p>{{pharmacy.pharmacy_phone_number}}</p>                
                     </div>
                 {% endblock %}
 

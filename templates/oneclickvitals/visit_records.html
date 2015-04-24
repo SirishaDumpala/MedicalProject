@@ -1,0 +1,59 @@
+{% extends 'base_doctor.html' %}
+{% load staticfiles %}
+
+{% block title %}Visit Records{% endblock %}
+{% block body_block %}
+    <div class="page-header">
+          <h1><i class="fa fa-hospital-o"></i>  Visit Records</h1>
+    </div>
+    <div class="container" style="width:100%">
+        <table id="visit_records" class="table table-hover" >
+            <thead>
+                <tr>
+                    <th class="col-md-1">Date</th>
+                    <th class="col-md-1">Patient First Name</th>
+                    <th class="col-md-1">Patient Last Name</th>
+                    <th class="col-md-1"></th>
+<!--                    <th class="col-md-1"></th>-->
+                </tr>
+            </thead>
+            <tbody>
+               
+                
+                   
+                    {% for d in diagnosis %}
+                    <tr>
+                        <td>{{ d.diagnosis_date }}</td>
+                        <td>{{ d.patient.first_name }}</td>
+                        <td>{{ d.patient.last_name }}</td>
+                    
+                        {% if diagnosis %}
+                        <td><a href="{% url 'diagnosis_details' d.pk %}">View Diagnosis</a></td>
+                        {% endif %}
+                    {% endfor %} 
+<!--
+                    {% for d in diagnosis %}  
+                        {% if v.pk == d.pk %}
+                        <td><a href="{% url 'diagnosis_details' d.pk %}">View Diagnosis</a></td>
+                        {% endif %}
+                    {% endfor %}
+-->
+                    </tr>
+                 
+                
+            </tbody>
+        </table>
+    </div>
+
+<!-- ------- JavaScript for Filter --------- -->
+
+    <script type="text/javascript"> 
+        
+            jQuery(document).ready(function($) {
+                $(window).load(function() { 
+                
+                    $('#visit_records').bdt();
+                });
+            });
+    </script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base_doctor.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block title %}Visit Summary{% endblock %}
+{% block body_block %}
+
+{% if user.is_authenticated %}
+
+<div class="page-header">
+          <h1><i class="fa fa-tasks"></i> Patient Visit Summary</h1>
+    </div>
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+                <th scope="row" class="col-md-2">Name</th>
+                <td>{{profile.user.first_name}} {{profile.user.last_name}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+{% endif %}
+{% endblock %}

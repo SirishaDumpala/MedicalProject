@@ -3,30 +3,31 @@
 
 {% block title %}Prescription List{% endblock %}
 {% block body_block %}
-    <div style="padding-left:40px;" class="page-header">
-          <h1>Prescription List</h1>
+    <div class="page-header">
+          <h1><i class="fa fa-eyedropper"></i> Prescription List</h1>
     </div>
     <div class="container">
         <table id="prescription" class="table table-hover">
             <thead>
                 <tr>
                     <th class="col-md-1">Patient</th>
+                    
                     <th class="col-md-1">Drug Name</th>
                     <th class="col-md-1">Date</th>
-                    <th class="col-md-1">Day Supply</th>
+                    <th class="col-md-1">Days Supply</th>
                     <th class="col-md-1">Refills</th>
-                    <th class="col-md-1"></th>
+                    
                 </tr>
             </thead>
             <tbody>
                 {% for pres in prescription %}  
                     <tr>
-                        <td>{{ pres.patient.first_name }} {{ pres.patient.last_name }}</td>
+                        <td><a href="{% url 'prescription_details' pres.pk %}">{{ pres.user.first_name }} {{ pres.user.last_name }}</a></td>
+                        
                         <td>{{ pres.drug_name }}</td>
                         <td>{{ pres.date_of_issuance }}</td>
-                        <td>{{ pres.day_supply }}</td>
+                        <td>{{ pres.days_supply }}</td>
                         <td>{{ pres.refills }}</td>
-                        <td><a class="btn btn-default" href="{% url 'email_confirmation' pk=pres.pk %}"><span class="glyphicon glyphicon-envelope"></span></a></td>
                     </tr>
                     {% endfor %}
             </tbody>
@@ -36,17 +37,10 @@
 <!-- ------- JavaScript for Filter --------- -->
 
     <script type="text/javascript"> 
-        
-            jQuery(document).ready(function($) {
+            
+           jQuery(document).ready(function($) {
                 $(window).load(function() { 
-                
-                    $('#prescription').filterable({
-                    prependWild: true, // If a wild card should be added to the start of all filter input
-                    appendWild: true, // If a wild card should be added to the end of all filter input
-                    ignoreCase: true, // If case should be ignored
-                    ignoreColumns: [], // Array. Column indexes to not make filterable
-                    onlyColumns: null, // Array. Column indexes to make filterable, all other columns are left non-filterable.
-                    });   
+                    $('#prescription').bdt();
                 });
             });
         </script>

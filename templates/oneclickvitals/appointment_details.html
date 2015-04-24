@@ -5,8 +5,9 @@
 {% block body_block %}
 
     <div class="page-header">
-          <h1>Appointment Details</h1>
-
+          <h1><i class="fa fa-calendar"></i> Appointment Details</h1>
+        </div>
+    <div class="container">
             <div class="table-responsive">
             <table id="appointment" class="table table-hover">
                 <thead>
@@ -17,6 +18,7 @@
                         <th>Appointment Time</th>
                         <th>Phone No.</th>
                         <th>Reason</th>
+                        <th>Cancel / Edit</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,7 +29,8 @@
                         <td>{{n.appointment_date}}</td>
                         <td>{{n.appointment_time}}</td>
                         <td>{{n.phone_number}}</td>
-                        <td>{{n.reason}}</td>
+                        <td>{{n.reason_for_appointment}}</td>
+                        <td><button type="button" class="btn btn-primary">Cancel</button> <a class="btn btn-default" href="/appointment/"><span class="glyphicon glyphicon-pencil"></span></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -36,17 +39,11 @@
     </div>
 
     <script type="text/javascript"> 
-        
+            
             jQuery(document).ready(function($) {
                 $(window).load(function() { 
-                
-                    $('#appointment').filterable({
-                    prependWild: true, // If a wild card should be added to the start of all filter input
-                    appendWild: true, // If a wild card should be added to the end of all filter input
-                    ignoreCase: true, // If case should be ignored
-                    ignoreColumns: [], // Array. Column indexes to not make filterable
-                    onlyColumns: null, // Array. Column indexes to make filterable, all other columns are left non-filterable.
-                    });   
+                    $('#appointment').bdt();
+            
                 });
             });
         </script>

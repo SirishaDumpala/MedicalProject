@@ -3,8 +3,8 @@
 
 {% block title %}Radiology Images{% endblock %}
 {% block body_block %}
-    <div style="padding-left:40px;" class="page-header">       
-        <h1>Radiology Image  <a class="btn btn-default" href="{% url 'edit_radiology' pk=img.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></h1>
+    <div class="page-header">       
+        <h1><i class="fa fa-film"></i> Radiology Image  <a class="btn btn-default" href="{% url 'edit_radiology' pk=img.pk %}"><span class="glyphicon glyphicon-pencil"></span></a></h1>
         
     </div>
     <div class="container">
