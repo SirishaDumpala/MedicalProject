@@ -52,10 +52,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+
 )
 
-SILENCED_SYSTEM_CHECKS = ["1_6.W002"] 
+SILENCED_SYSTEM_CHECKS = ["1_6.W002"]
 
 #TEMPLATE_CONTEXT_PROCESSORS = (
 #    'django.contrib.auth.context_processors.auth',
@@ -134,24 +134,19 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
 
+
 FILE_UPLOAD_HANDLERS = (
     "django.core.files.uploadhandler.MemoryFileUploadHandler",
-    "django.core.files.uploadhandler.TemporaryFileUploadHandler",   
+    "django.core.files.uploadhandler.TemporaryFileUploadHandler",
 )
+
 
 PASSWORD_HASHERS = (
 'django.contrib.auth.hashers.PBKDF2PasswordHasher',
 'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
 )
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.mail.yahoo.com'
-EMAIL_PORT = 995
-EMAIL_HOST_USER = 'homer51mp50n@yahoo.com'
-EMAIL_HOST_PASSWORD = ''
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_SSL = True
+
 
 REGISTRATION_OPEN = True                # If True, users can register
 #ACCOUNT_ACTIVATION_DAYS = 7     # One-week activation window; you may, of course, use a different value.

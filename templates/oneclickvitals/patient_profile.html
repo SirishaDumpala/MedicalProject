@@ -7,11 +7,14 @@
 {% if user.is_authenticated %}
 
     <div class="page-header">
+
           <h1><i class="fa fa-user"></i>  Patient Profile</h1>
+
     </div>
     <div class="container">
       <div class="header">
       <ul style="padding-right:60px" class="nav nav-pills pull-right">
+
 
         <li {% if bootstrap == 3 %} class="active"{% endif %}><a href="/model_form_v3/"></a></li>
       </ul>
@@ -75,10 +78,12 @@
             
           <div role="tabpanel" class="tab-pane" id="tabs-2">
             <br/>
+
             <div class="table-responsive">
               <table class="table table-bordered">
                 <tbody>
                   <tr>
+
                       <th scope="row" class="col-md-2">Preferred Pharmacy</th>
                       <td>{{pharmacy.pharmacy_name}}</td>
                   </tr>
@@ -194,6 +199,7 @@
 
 <!-- Family History tab -------------------------------------- -->
             
+
               <div role="tabpanel" class="tab-pane" id="tabs-5">
                 <br/>
                   <div class="table-responsive">
@@ -294,6 +300,7 @@
                     <a class="btn btn-primary btnPrevious" >Previous</a>
                     <a class="btn btn-primary btnNext" >Next</a>
                     <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
              </div>
             
 <!-- Vital Signs tab -------------------------------------- -->
@@ -389,6 +396,7 @@
 <!-- End container ------------------------------------------------ -->
 
 <!-- Javascript for Tabs ------------------------------------------- -->
+
 <script type="text/javascript">
 $('.btnNext').click(function(){
 $('.nav-tabs > .active').next('li').find('a').trigger('click');

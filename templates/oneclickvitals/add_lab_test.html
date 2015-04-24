@@ -1,12 +1,15 @@
+
 {% extends 'base_doctor.html' %}
 {% load staticfiles %}
 {% load widget_tweaks %}
+
 
 {% block title %}AddLabTest{% endblock %}
 
 {% block body_block %}
 
     <div class="page-header">
+
         {% if messages %}   
         <div style="display:none;">
             <audio autoplay="" controls>
@@ -20,11 +23,13 @@
             </ul>
         {% endif %}
           <h1><i class="fa fa-flask"></i> Lab Tests</h1>
+
     </div>
 
       <div class="container">
         <div class="header">
         <ul style="padding-right:60px" class="nav nav-pills pull-right">
+
 
           <li {% if bootstrap == 3 %} class="active"{% endif %}><a href="/model_form_v3/"></a></li>
         </ul>
@@ -114,6 +119,7 @@
 
             </td>
         </tr>
+
       </table><br/><br/>
       <button type="submit" class="save btn btn-primary">Save</button>
 

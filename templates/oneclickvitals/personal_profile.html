@@ -7,13 +7,17 @@
 {% if user.is_authenticated %}
 
     <div class="page-header">
+
           <h1>Patient Profile</h1>
+
     </div>
     <div class="container">
       <div class="header">
       <ul style="padding-right:60px" class="nav nav-pills pull-right">
 
+
         <li {% if bootstrap == 3 %} class="active"{% endif %}><a href="/model_form_v3/"></a></li>
+
       </ul>
 
     </div>
@@ -53,7 +57,9 @@
                 <td>{{profile.insurance}}</td>
             </tr>
             <tr>
+
                 <th scope="row" class="col-md-2">Preferred Pharmacy</th>
+
                 <td>{{pharmacy.pharmacy_name}}</td>
             </tr>
             <tr>
@@ -87,7 +93,9 @@
                   <th scope="row" class="col-md-2">Address</th>
                   <td>{{emergency.address_1}} {{emergency.address_2}}, {{emergency.city}}, {{emergency.state}}, {{emergency.zip_code}}</td>
               </tr>
+
             </tbody>
+
           </table>
         </div>
         <br/><br/><br/>
@@ -137,7 +145,7 @@
                       <th scope="row" class="col-md-2">Medical History</th>
                       <td>{{medical_history.medical_history}}</td>
                   </tr>
-                  
+
                   <tr>
                       <th scope="row" class="col-md-2">Social Habits</th>
                       <td>{{medical_history.social_habits}}</td>
@@ -155,6 +163,7 @@
                       <tbody>
                         <tr>
                             <th scope="row" class="col-md-2">Stroke</th>
+
                             <td>{{family_history.stroke}}</td>
                         </tr>
                         <tr>
@@ -196,6 +205,7 @@
                         <tr>
                             <th scope="row" class="col-md-2">Heart Failure</th>
                             <td>{{family_history.heart_failure}}</td>
+
                         </tr>
 
                       </tbody>

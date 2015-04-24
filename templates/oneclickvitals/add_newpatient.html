@@ -34,12 +34,14 @@
   <div role="tabpanel">
   <ul class="nav nav-tabs">
 
+
     <li role="presentation" class="active"><a href="#tabs-1" aria-controls="tabs-1" role="tab" data-toggle="tab"><i class="fa fa-user"></i> New Patient</a></li>
     <li role="presentation"><a href="#tabs-2" aria-controls="tabs-2" role="tab" data-toggle="tab"><i class="fa fa-user-secret"></i> Patient Details</a></li>
     <li role="presentation"><a href="#tabs-3" aria-controls="tabs-3" role="tab" data-toggle="tab"><i class="fa fa-heart"></i> Emergency Contact</a></li>
     <li role="presentation"><a href="#tabs-4" aria-controls="tabs-4" role="tab" data-toggle="tab"><i class="fa fa-medkit"></i> Medical History</a></li>
     <li role="presentation"><a href="#tabs-5" aria-controls="tabs-5" role="tab" data-toggle="tab"><i class="fa fa-plus-square"></i> Family History</a></li>
     <li role="presentation"><a href="#tabs-6" aria-controls="tabs-6" role="tab" data-toggle="tab"><i class="fa fa-building"></i> Pharmacy Details</a></li>
+
 
   </ul>
   <div class="tab-content">
@@ -49,7 +51,9 @@
       {% csrf_token %}
       {{ formA.non_field_errors }}
         <tr>
+
             <td style="padding-bottom:10px; padding-top:20px;">
+
                 <div class="fieldWrapper">
                     {{ formA.first_name.errors }}
                     <p><label class="col-sm-3" for="{{ formA.user.first_name.id_for_label }}">First Name</label></p>
@@ -95,6 +99,7 @@
         </tr>
       </table>
       <a class="btn btn-primary btnNext" >Next</a>
+
     
   </div>
     <div role="tabpanel" class="tab-pane" id="tabs-2">
@@ -104,6 +109,7 @@
         {{ formB.non_field_errors }}
         <tr>
             <td style="padding-bottom:10px; padding-top:20px;">
+
                 <div class="fieldWrapper">
                     {{ formB.gender.errors }}
                     <p><label class="col-sm-3" for="{{ formB.gender.id_for_label }}">Gender</label></p>
@@ -186,6 +192,7 @@
       </table>
       <a class="btn btn-primary btnPrevious" >Previous</a>
       <a class="btn btn-primary btnNext" >Next</a>
+
    
   </div>
     <div role="tabpanel" class="tab-pane" id="tabs-3">
@@ -195,6 +202,7 @@
         {{ formC.non_field_errors }}
         <tr>
             <td style="padding-bottom:10px; padding-top:20px;">
+
                 <div class="fieldWrapper">
                     {{ formC.contact_first_name.errors }}
                     <p><label class="col-sm-3" for="{{ formC.contact_first_name.id_for_label }}">First Name</label></p>
@@ -277,6 +285,7 @@
       </table>
       <a class="btn btn-primary btnPrevious" >Previous</a>
       <a class="btn btn-primary btnNext" >Next</a>
+
     
   </div>
     <div role="tabpanel" class="tab-pane" id="tabs-4">
@@ -286,6 +295,7 @@
         {{ formD.non_field_errors }}
         <tr>
             <td style="padding-bottom:10px; padding-top:20px;">
+
                 <div class="fieldWrapper">
                     {{ formD.height.errors }}
                     <p><label class="col-sm-3" for="{{ formD.height.id_for_label }}">Height(in inches)</label></p>
@@ -368,6 +378,7 @@
       </table>
       <a class="btn btn-primary btnPrevious" >Previous</a>
       <a class="btn btn-primary btnNext" >Next</a>
+
     
   </div>
     <div role="tabpanel" class="tab-pane" id="tabs-5">
@@ -381,6 +392,7 @@
                     {{ formE.stroke.errors }}
                     <p><label class="col-sm-3" for="{{ formE.stroke.id_for_label }}">Stroke</label></p>
                     <div class="col-sm-9">{{ formE.stroke|add_class:"radio-control"}}</div>
+
                 </div>
             </td>
         </tr>
@@ -389,7 +401,9 @@
                 <div class="fieldWrapper">
                     {{ formE.cancer.errors }}
                     <p><label class="col-sm-3" for="{{ formE.cancer.id_for_label }}">Cancer</label></p>
+
                     <div class="col-sm-9">{{ formE.cancer|add_class:"radio-control"}}</div>
+
                 </div>
             </td>
         </tr>
@@ -398,7 +412,9 @@
                 <div class="fieldWrapper">
                     {{ formE.high_bp.errors }}
                     <p><label class="col-sm-3" for="{{ formE.high_bp.id_for_label }}">High BP</label></p>
+
                     <div class="col-sm-9">{{ formE.high_bp|add_class:"radio-control"}}</div>
+
                 </div>
             </td>
         </tr>
@@ -407,7 +423,9 @@
                 <div class="fieldWrapper">
                     {{ formE.tuberculosis.errors }}
                     <p><label class="col-sm-3" for="{{ formE.tuberculosis.id_for_label }}">Tuberculosis</label></p>
+
                     <div class="col-sm-9">{{ formE.tuberculosis|add_class:"radio-control"}}</div>
+
                 </div>
             </td>
         </tr>
@@ -416,7 +434,9 @@
                 <div class="fieldWrapper">
                     {{ formE.diabetes.errors }}
                     <p><label class="col-sm-3" for="{{ formE.diabetes.id_for_label }}">Diabetes</label></p>
+
                     <div class="col-sm-9">{{ formE.diabetes|add_class:"radio-control"}}</div>
+
                 </div>
             </td>
         </tr>
@@ -425,7 +445,9 @@
                 <div class="fieldWrapper">
                     {{ formE.leukemia.errors }}
                     <p><label class="col-sm-3" for="{{ formE.leukemia.id_for_label }}">Leukemia</label></p>
+
                     <div class="col-sm-9">{{ formE.leukemia|add_class:"radio-control"}}</div>
+
                 </div>
             </td>
         </tr>
@@ -434,7 +456,9 @@
                 <div class="fieldWrapper">
                     {{ formE.bleeding_tendency.errors }}
                     <p><label class="col-sm-3" for="{{ formE.bleeding_tendency.id_for_label }}">Bleeding Tendency</label></p>
+
                     <div class="col-sm-9">{{ formE.bleeding_tendency|add_class:"radio-control"}}</div>
+
                 </div>
             </td>
         </tr>
@@ -443,7 +467,9 @@
                 <div class="fieldWrapper">
                     {{ formE.heart_attack.errors }}
                     <p><label class="col-sm-3" for="{{ formE.heart_attack.id_for_label }}">Heart Attack</label></p>
+
                     <div class="col-sm-9">{{ formE.heart_attack|add_class:"radio-control"}}</div>
+
                 </div>
             </td>
         </tr>
@@ -452,7 +478,9 @@
                 <div class="fieldWrapper">
                     {{ formE.kidney_disease.errors }}
                     <p><label class="col-sm-3" for="{{ formE.kidney_disease.id_for_label }}">Kidney Disease</label></p>
+
                     <div class="col-sm-9">{{ formE.kidney_disease|add_class:"radio-control"}}</div>
+
                 </div>
             </td>
         </tr>
@@ -461,7 +489,9 @@
                 <div class="fieldWrapper">
                     {{ formE.heart_failure.errors }}
                     <p><label class="col-sm-3" for="{{ formE.heart_failure.id_for_label }}">Heart Failure</label></p>
+
                     <div class="col-sm-9">{{ formE.heart_failure|add_class:"radio-control"}}</div>
+
                 </div>
             </td>
         </tr>
@@ -470,13 +500,16 @@
                 <div class="fieldWrapper">
                     {{ formE.rheumatic_heart.errors }}
                     <p><label class="col-sm-3" for="{{ formE.rheumatic_heart.id_for_label }}">Rheumatic Heart</label></p>
+
                     <div class="col-sm-9" >{{ formE.rheumatic_heart|add_class:"radio-control"}}</div>
+
                 </div>
             </td>
         </tr>
       </table>
       <a class="btn btn-primary btnPrevious" >Previous</a>
       <a class="btn btn-primary btnNext" >Next</a>
+
     
   </div>
     <div role="tabpanel" class="tab-pane" id="tabs-6">
@@ -486,6 +519,7 @@
         {{ formF.non_field_errors }}
         <tr>
             <td style="padding-bottom:10px; padding-top:20px;">
+
                 <div class="fieldWrapper">
                     {{ formF.pharmacy_name.errors }}
                     <p><label class="col-sm-3" for="{{ formF.pharmacy_name.id_for_label }}">Pharmacy Name</label></p>
@@ -552,10 +586,13 @@
       <a class="btn btn-primary btnNext" >Next</a>
       <button type="submit" class="save btn btn-primary">Save</button>
     </form>
+
+
   </div>
 
 
   </div>
+</div>
 </div>
 </div>
 

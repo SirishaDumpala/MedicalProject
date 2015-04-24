@@ -5,9 +5,11 @@
 {% block body_block %}
 
     <div class="page-header">
+
           <h1><i class="fa fa-calendar"></i> Appointment Details</h1>
         </div>
     <div class="container">
+
             <div class="table-responsive">
             <table id="appointment" class="table table-hover">
                 <thead>
@@ -24,7 +26,7 @@
                 <tbody>
                   {% for n in appointment %}
                     <tr>
-                        <td><a href="/patient_profile/">{{n.user.first_name}}</a></td>
+                        <td><a href="/patient_profile/{{n.user.id}}">{{n.user.first_name}}</a></td>
                         <td>{{n.user.last_name}}</td>
                         <td>{{n.appointment_date}}</td>
                         <td>{{n.appointment_time}}</td>
@@ -38,13 +40,16 @@
           </div>
     </div>
 
+
     <script type="text/javascript"> 
             
             jQuery(document).ready(function($) {
                 $(window).load(function() { 
                     $('#appointment').bdt();
             
+
                 });
             });
         </script>
+
 {% endblock %}

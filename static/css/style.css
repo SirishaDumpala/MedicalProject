@@ -54,12 +54,6 @@ table tbody tr td {
     
 }
 
-
-.new-patient-table {
-    background-color:red;
-    padding-top: 1cm;   
-}
-
 #invalid-login {
     text-align: center;
     width: 500px;
@@ -112,8 +106,6 @@ input[type="radio"]{
     height:30px;
     
 }
-
-
 
 
 .radio-control {

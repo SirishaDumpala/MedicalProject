@@ -7,14 +7,14 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('oneclickvitals', '0044_auto_20150416_2224'),
+        ('oneclickvitals', '0011_auto_20150423_1914'),
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.AddField(
             model_name='diagnosis',
-            name='patient_vital_signs',
-            field=models.OneToOneField(to='oneclickvitals.VitalSigns', default=1),
+            name='lab_test',
+            field=models.NullBooleanField(),
             preserve_default=True,
         ),
     ]

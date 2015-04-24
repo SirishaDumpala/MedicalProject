@@ -4,6 +4,7 @@
 {% block title %}IndexDoctor{% endblock %}
 {% block body_block %}
 
+
 {% if user.is_authenticated %}
     <div class="page-header" style="padding-left:8.5cm;">
         <h1>Welcome back, {{ user.first_name }}!</h1>
@@ -30,4 +31,5 @@
     <p>Click <a href="/accounts/login/">here</a> to login.</p>
 {% endif %}
     
+
 {% endblock %}

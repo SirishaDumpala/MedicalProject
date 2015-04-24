@@ -7,12 +7,12 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('oneclickvitals', '0039_prescription_patient'),
+        ('oneclickvitals', '0012_diagnosis_lab_test'),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='doctordetail',
-            name='user',
+            model_name='diagnosis',
+            name='lab_test',
         ),
     ]

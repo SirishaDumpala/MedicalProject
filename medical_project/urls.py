@@ -18,11 +18,9 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^patient/$', 'oneclickvitals.views.index_patient'),
     url(r'^oneclickvitals/$', 'oneclickvitals.views.index_doctor'),
-
-
-)
+    )
 
 if settings.DEBUG:
     urlpatterns += patterns('',
-        (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-    )
+        (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),)
+        
