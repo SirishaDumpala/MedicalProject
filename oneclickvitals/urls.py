@@ -39,7 +39,12 @@ urlpatterns = patterns('',
         url(r'^add_doctor_information/$', views.add_doctor_information, name='add_doctor_information'),
         url(r'^view_doctor_information/$', views.view_doctor_information, name='view_doctor_information'),
         url(r'^add_lab_test/$', views.add_lab_test, name='add_lab_test'),
-                      )
+        url(r'^labtest_list/$', views.labtest_list, name='labtest_list'),
+        #url(r'^results/$', views.add_result, name='add_result'),
+        url(r'^add_lab_result/(?P<pk>[0-9]+)/$', views.add_lab_result, name='add_lab_result'),
+        url(r'^result_list/$', views.result_list, name='result_list'),
+        url(r'^result_details/(?P<pk>[0-9]+)/$', views.result_details, name='result_details'),
+                     )
 
 if settings.DEBUG:
     urlpatterns += patterns(

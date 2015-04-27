@@ -34,14 +34,19 @@
                   </tr>
                   <tr>
                       <th scope="row" class="col-md-2">Follow Up Required</th>
-                      <td>{{diagnosis_info.follow_up}}</td>
+                      {% if diagnosis_info.follow_up %}
+                      <td>Yes</td>
+                      {% else %}
+                      <td>No</td>
+                      {% endif %}
                   </tr>
                 </tbody>
               </table>
             </div>
             <br/><br/>
-        <h4><a class="btn btn-default" href="/add_prescription/"><i class="fa fa-eyedropper fa-lg"></i>  Add Prescription</a></h4> 
-        <h4><a class="btn btn-default" href="/appointment/"><i class="fa fa-calendar-o fa-lg"></i>  Make New Appointment</a></h4> 
+        <h4><a class="btn btn-default" href="/add_prescription/"><i class="fa fa-eyedropper fa-lg"></i>  Add Prescription</a></h4>
+        <h4><a class="btn btn-default" href="/add_lab_test/"><i class="fa fa-flask fa-lg"></i>  Order Lab Test</a></h4>
+        <h4><a class="btn btn-default" href="/appointment/"><i class="fa fa-calendar-o fa-lg"></i>  Make New Appointment</a></h4>
         </div>
 
 

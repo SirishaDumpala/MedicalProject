@@ -7,8 +7,8 @@
 {% block body_block %}
 
     <div class="page-header">
-        
-        {% if messages %}   
+
+        {% if messages %}
         <div style="display:none;">
             <audio autoplay="" controls>
                 <source src="{% static 'media/errors.mp3' %}" type="audio/mpeg"></source>
@@ -20,18 +20,18 @@
                 {% endfor %}
             </ul>
         {% endif %}
-            
+
         <h1><i class="fa fa-calendar-o"></i> Add New Appointment</h1>
     </div>
 
     <div class="container">
         <div class="header">
             <ul style="padding-right:60px" class="nav nav-pills pull-right">
-             
+
               <li {% if bootstrap == 3 %} class="active"{% endif %}><a href="/model_form_v3/"></a></li>
             </ul>
 
-        </div>   
+        </div>
           <form action="{{ action }}" method="POST">
             <table>
                 <tbody>
@@ -44,8 +44,6 @@
                                 {{ form.user.errors }}
                                 <p><label class="col-sm-3" for="{{ form.user.id_for_label }}">Patient Username</label></p>
                                 <div class="col-sm-9">{{ form.user|add_class:"form-control"}}</div>
-
-
 
                             </div>
                         </td>
@@ -108,9 +106,9 @@
             </table>
             <br/><br/>
             <button type="submit" class="save btn btn-primary" style="margin-left:18px;">Save</button>
-                
+
         </form>
-        
+
 
     </div>
 

@@ -23,7 +23,6 @@ class UserDetailForm(forms.ModelForm):
         fields = ('gender','date_of_birth','insurance','phone_number','address_1','address_2','city','state','zip_code',)
 
 
-
 class NewPatientForm(forms.ModelForm):
 
     class Meta:
@@ -56,7 +55,7 @@ class PatientMedicalHistoryForm(forms.ModelForm):
         # Provide an association between the ModelForm and a model
         model = PatientMedicalHistory
         fields = ('height', 'weight', 'blood_type', 'allergies', 'current_medications', 'chief_complaint', 'surgical_history', 'medical_history','social_habits',)
-        
+
 class HorizontalRadioRenderer(forms.RadioSelect.renderer):
     def render(self):
         return mark_safe(u'\n'.join([u'%s\n' % w for w in self]))
@@ -97,22 +96,35 @@ class DiagnosisForm(forms.ModelForm):
 class LabTestForm(forms.ModelForm):
     class Meta:
         model = LabTest
-        widgets = {'urine_culture': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
+        widgets = {'test_date': DateWidget(attrs={'id':"testdate_id"}, usel10n = True, bootstrap_version=3),
+                    'urine_culture': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
                     'blood_culture': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
                     'blood_glucose': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
                     'allergy_test': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
                     'thyroid': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
                     'viral_test': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
                     'pregnancy_test': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),}
-        fields = ('urine_culture', 'blood_culture', 'blood_glucose', 'allergy_test', 'thyroid', 'viral_test', 'pregnancy_test', 'x_ray',)
+        fields = ('user','urine_culture', 'blood_culture', 'blood_glucose', 'allergy_test', 'thyroid', 'viral_test', 'pregnancy_test', 'x_ray',)
 
-        
+
+class LabResultForm(forms.ModelForm):
+    class Meta:
+        model = LabResults
+        #widgets = {'test_date': DateWidget(attrs={'id':"testdate_id"}, usel10n = True, bootstrap_version=3)}
+        fields = ('user','specific_gravity','pH','protein','glucose','ketones','blood','leukocyte_esterase','nitrite','bilirubin','urobilinogen',)
+'''
+class ResultForm(forms.ModelForm):
+    class Meta:
+        model = LabResults
+        widgets = {'test_date': DateWidget(attrs={'id':"testdate_id"}, usel10n = True, bootstrap_version=3)}
+        fields = ('user','test_date','test_type',)
+'''
+
 class VitalSignsForm(forms.ModelForm):
     class Meta:
         model = VitalSigns
         widgets = {'visit_date': DateWidget(attrs={'id':"vitalsigns_id"}, usel10n = True, bootstrap_version=3)}
         fields = ('user','visit_date','heart_rate','blood_pressure','temperature','current_weight','current_height','notes',)
-        
 
 
 class PatientRadiologyImageForm(forms.ModelForm):
@@ -127,18 +139,15 @@ class DoctorDetailForm(forms.ModelForm):
     class Meta:
         model = DoctorDetail
         fields = ('doctor_first_name', 'doctor_last_name', 'name_suffix', 'license_number', 'prescription_network_id', 'dea', 'doctor_phone_number', 'address_1','address_2', 'city','state','zip_code',)
-        
+
 class PharmacyDetailForm(forms.ModelForm):
     class Meta:
         model = PharmacyDetail
         fields = ('pharmacy_name','pharmacy_phone_number','address_1','address_2','city','state','zip_code',)
-        
+
 class PrescriptionForm(forms.ModelForm):
     class Meta:
         model = Prescription
         widgets = {
             'date_of_issuance': DateWidget(attrs={'id':"yourissuancedate"}, usel10n = True, bootstrap_version=3), 'refills': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No")))}
         fields = ('user', 'gender', 'date_of_issuance', 'days_supply', 'drug_name', 'drug_strength', 'dosage_form', 'frequency', 'quantity', 'npi_number', 'ndc_number', 'refills',)
-
-
-

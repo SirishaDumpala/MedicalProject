@@ -1,5 +1,5 @@
 {% extends 'base_doctor.html' %}
-{% load staticfiles %}\
+{% load staticfiles %}
 {% load widget_tweaks %}
 
 
@@ -7,7 +7,7 @@
 {% block body_block %}
 
     <div class="page-header">
-        {% if messages %}   
+        {% if messages %}
         <div style="display:none;">
             <audio autoplay="" controls>
                 <source src="{% static 'media/errors.mp3' %}" type="audio/mpeg"></source>
@@ -100,12 +100,12 @@
       </table>
       <a class="btn btn-primary btnNext" >Next</a>
 
-    
+
   </div>
     <div role="tabpanel" class="tab-pane" id="tabs-2">
-      
+
         <table>
-        
+
         {{ formB.non_field_errors }}
         <tr>
             <td style="padding-bottom:10px; padding-top:20px;">
@@ -193,12 +193,12 @@
       <a class="btn btn-primary btnPrevious" >Previous</a>
       <a class="btn btn-primary btnNext" >Next</a>
 
-   
+
   </div>
     <div role="tabpanel" class="tab-pane" id="tabs-3">
-      
+
         <table>
-       
+
         {{ formC.non_field_errors }}
         <tr>
             <td style="padding-bottom:10px; padding-top:20px;">
@@ -286,12 +286,12 @@
       <a class="btn btn-primary btnPrevious" >Previous</a>
       <a class="btn btn-primary btnNext" >Next</a>
 
-    
+
   </div>
     <div role="tabpanel" class="tab-pane" id="tabs-4">
-      
+
         <table>
-       
+
         {{ formD.non_field_errors }}
         <tr>
             <td style="padding-bottom:10px; padding-top:20px;">
@@ -379,12 +379,12 @@
       <a class="btn btn-primary btnPrevious" >Previous</a>
       <a class="btn btn-primary btnNext" >Next</a>
 
-    
+
   </div>
     <div role="tabpanel" class="tab-pane" id="tabs-5">
-      
+
         <table>
-        
+
         {{ formE.non_field_errors }}
         <tr>
             <td style="padding-bottom:10px; padding-top:20px;">
@@ -510,12 +510,12 @@
       <a class="btn btn-primary btnPrevious" >Previous</a>
       <a class="btn btn-primary btnNext" >Next</a>
 
-    
+
   </div>
     <div role="tabpanel" class="tab-pane" id="tabs-6">
-     
+
         <table>
-        
+
         {{ formF.non_field_errors }}
         <tr>
             <td style="padding-bottom:10px; padding-top:20px;">
@@ -587,21 +587,22 @@
       <button type="submit" class="save btn btn-primary">Save</button>
     </form>
 
-
   </div>
 
-
   </div>
-</div>
 </div>
 </div>
 
 <script type="text/javascript">
-$('.btnNext').click(function(){
-$('.nav-tabs > .active').next('li').find('a').trigger('click');
+jQuery(document).ready(function($) {
+    $(window).load(function() {
+      $('.btnNext').click(function(){
+      $('.nav-tabs > .active').next('li').find('a').trigger('click');
+      });
+      $('.btnPrevious').click(function(){
+      $('.nav-tabs > .active').prev('li').find('a').trigger('click');
 });
-$('.btnPrevious').click(function(){
-$('.nav-tabs > .active').prev('li').find('a').trigger('click');
+});
 });
     </script>
 {% endblock %}

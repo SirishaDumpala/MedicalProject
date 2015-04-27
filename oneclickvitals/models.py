@@ -8,17 +8,13 @@ from django.core.files import File
 from os.path import join as pjoin
 from tempfile import *
 from PIL import Image as PImage
-
-
-
-
 from django.utils.translation import ugettext as _
-
 from localflavor.us.models import USStateField
+
 
 class Appointment(models.Model):
 
-    user = models.ForeignKey('auth.User') 
+    user = models.ForeignKey('auth.User')
     APPOINTMENT_CHOICES = (('Routine Preventive Care', 'Routine Preventive Care',),
                             ('Follow-Up', 'Follow-Up',),
                             ('Routine Problem Visit', 'Routine Problem Visit'),
@@ -29,7 +25,7 @@ class Appointment(models.Model):
 
     type_of_appointment = models.CharField(max_length=100, choices=APPOINTMENT_CHOICES, null = True)
     reason_for_appointment = models.CharField(max_length=50, null = True)
-    phone_number = models.CharField(max_length=10, null = True)
+    phone_number = models.CharField(max_length=14, null = True)
     created_date = models.DateTimeField(
             default=timezone.now)
     appointment_date = models.DateTimeField(
@@ -68,7 +64,7 @@ class UserDetail(models.Model):
     date_of_birth = models.CharField(max_length=10, null = True)
     gender = models.CharField(max_length=50, choices=GENDER_CHOICES, null = True)
 
-   
+
 
     def __str__(self):
         return self.user.username
@@ -85,7 +81,7 @@ class EmergencyContact(models.Model):
     contact_last_name = models.CharField(max_length=50, null = True)
     relationship = models.CharField(max_length=50, choices=RELATIONSHIP_CHOICES, null = True)
 
-    contact_phone_number = models.CharField(max_length=10, null = True)
+    contact_phone_number = models.CharField(max_length=14, null = True)
 
     address_1 = models.CharField(_("address"), max_length=128, blank = True)
     address_2 = models.CharField(_("address cont'd"), max_length=128, blank=True)
@@ -142,32 +138,32 @@ class FamilyMedicalHistory(models.Model):
         return self.user.username
 
 
-    
+
 class VitalSigns(models.Model):
     user = models.ForeignKey('auth.User')
     visit_date = models.DateField(default=timezone.now)
     heart_rate = models.CharField(max_length=5)
-    blood_pressure = models.CharField(max_length=5)
+    blood_pressure = models.CharField(max_length=6)
     temperature = models.CharField(max_length=5)
     current_weight = models.CharField(max_length=5)
     current_height = models.CharField(max_length=5)
     notes = models.TextField(max_length=500, null=True, blank=True)
-    
+
     def __str__(self):
         return self.visit_date
-    
+
 class Diagnosis(models.Model):
-    
+
     patient = models.ForeignKey(User, null=True)
     diagnosis_date = models.DateField(default=timezone.now)
     complaint = models.TextField(max_length=500)
     diagnosis = models.TextField(max_length=1000)
     additional_comments = models.TextField(max_length=500)
     follow_up = models.NullBooleanField()
-    
+
     def __str__(self):
         return self.diagnosis
-    
+
 
 class LabTest(models.Model):
     # This line is required. Links UserProfile to a User model instance.
@@ -181,6 +177,7 @@ class LabTest(models.Model):
                     ('right ankle', 'Right Ankle'), ('left ankle', 'Left Ankle'),
                     ('right foot', 'Right Foot'),('left foot', 'Left Foot'),('other', 'Other'), ('none', 'None'),)
     # The additional attributes we wish to include.
+    test_date = models.DateField(default=timezone.now)
     urine_culture = models.NullBooleanField()
     blood_culture = models.NullBooleanField()
     allergy_test = models.NullBooleanField()
@@ -188,14 +185,37 @@ class LabTest(models.Model):
     thyroid = models.NullBooleanField()
     viral_test = models.NullBooleanField()
     pregnancy_test = models.NullBooleanField()
-    x_ray = models.CharField(max_length=50, choices=XRAY_CHOICES)
+    x_ray = models.CharField(max_length=50, choices=XRAY_CHOICES, null = True)
 
 
     def __str__(self):
         return self.last_name
 
-    
-class Radiology(models.Model):   
+class LabResults(models.Model):
+    user = models.ForeignKey(User)
+    TEST_CHOICES = (('urine culture', 'Urine Culture'), ('blood culture', 'Blood Culture'),
+                    ('allergy test', 'Allergy Test'), ('blood glucose', 'Blood Glucose'),
+                    ('thyroid', 'Thyroid'), ('pregnancy test', 'Pregnancy Test'),)
+    RESULT_CHOICES = (('positive', 'Positive'), ('negative', 'Negative'))
+    test_date = models.DateField(default=timezone.now)
+    test_type = models.CharField(max_length=50, choices=TEST_CHOICES, null = True)
+    specific_gravity = models.FloatField(max_length=6, null = True)
+    pH = models.FloatField(max_length=4, null = True)
+    protein = models.PositiveIntegerField(max_length=3, null = True)
+    glucose = models.PositiveIntegerField(max_length=3, null = True)
+    ketones = models.CharField(max_length=50, choices=RESULT_CHOICES, null = True)
+    blood = models.CharField(max_length=50, choices=RESULT_CHOICES, null = True)
+    leukocyte_esterase = models.CharField(max_length=50, choices=RESULT_CHOICES, null = True)
+    nitrite = models.CharField(max_length=50, choices=RESULT_CHOICES, null = True)
+    bilirubin = models.CharField(max_length=50, choices=RESULT_CHOICES, null = True)
+    urobilinogen = models.CharField(max_length=50, choices=RESULT_CHOICES, null = True)
+
+    def __str__(self):
+        return self.last_name
+
+
+
+class Radiology(models.Model):
 
     user = models.ForeignKey(User)
     title = models.CharField(max_length=60, blank=True)
@@ -210,7 +230,7 @@ class Radiology(models.Model):
 class DoctorDetail(models.Model):
     # This line is required. Links UserProfile to a User model instance.
 
-    
+
     doctor_first_name = models.CharField(max_length=50, default="Victor")
     doctor_last_name = models.CharField(max_length=50, default="Vitals")
     name_suffix = models.CharField(max_length=10, default="M.D.")
@@ -238,10 +258,10 @@ class PharmacyDetail(models.Model):
     pharmacy_phone_number = models.CharField(max_length=14, null=True)
     state = USStateField(_("state"), default="CA")
     zip_code = models.CharField(_("zip code"), max_length=5, default= '92614')
-    
+
     def __str__(self):
         return self.user.username
-    
+
 
 
 class Prescription(models.Model):
@@ -267,12 +287,6 @@ class Prescription(models.Model):
     ndc_number = models.CharField(max_length=11)
     refills = models.NullBooleanField()
 
-    
+
     def __str__(self):
         return self.drug_name
-    
-    
-
-
-
-

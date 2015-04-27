@@ -20,7 +20,7 @@
 
 <!--    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"> -->
 <!--    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">-->
-    
+
 <!--    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">-->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
@@ -30,10 +30,10 @@
 
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.jdigiclock.css' %}" />
-    
+
     <link href="{% static 'css/jquery.bdt.css' %}" rel="stylesheet">
 
-    
+
 
 
 <!-- --------- JavaScript ------------------------------- -->
@@ -46,12 +46,12 @@
 
 
      <script src="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.4/bootstrap-editable/js/bootstrap-editable.min.js"></script>
-    
+
     <script src="{% static 'js/jquery.sortelements.js' %}" type="text/javascript"></script>
     <script src="{% static 'js/jquery.bdt.js' %}" type="text/javascript"></script>
 
-    <script src="{% static 'js/jquery.jdigiclock.js' %}" type="text/javascript" ></script>  
-    
+    <script src="{% static 'js/jquery.jdigiclock.js' %}" type="text/javascript" ></script>
+
 
     <script type="text/javascript">var switchTo5x=true;</script>
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -139,8 +139,8 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lab Test <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="/add_lab_test/">Order Lab Test</a></li>
-                    <li><a href="#">Add Lab Result</a></li>
-                    <li><a href="#">View Result</a></li>
+                    <li><a href="/results/">Add Lab Result</a></li>
+                    <li><a href="/result_list/">View Result</a></li>
                   </ul>
                 </li>
                 <li class="Summary">
@@ -180,10 +180,10 @@
                         {% get_radiology_list %}
                     <ul class="nav nav-sidebar">
                         <div id="digiclock"  style="width:50%;"></div>
-                        <script type="text/javascript"> 
+                        <script type="text/javascript">
                             jQuery.noConflict();
                             jQuery(document).ready(function($) {
-    
+
                                    $('#digiclock').jdigiclock({
                                     // Configuration goes here
                                         clockImagesPath: "{% static 'media/digiclock/clock/' %}",
@@ -192,8 +192,8 @@
                                         weatherLocationCode: "NAM|US|CA|FULLERTON",
                                         weatherMetric: "F",
 
-                                    }); 
-    
+                                    });
+
                             });
                         </script>
                     </ul>
@@ -205,8 +205,8 @@
 
       </div>
 
-    
+
   </body>
-      
-    
+
+
 </html>
