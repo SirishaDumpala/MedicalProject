@@ -40,10 +40,14 @@ urlpatterns = patterns('',
         url(r'^view_doctor_information/$', views.view_doctor_information, name='view_doctor_information'),
         url(r'^add_lab_test/$', views.add_lab_test, name='add_lab_test'),
         url(r'^labtest_list/$', views.labtest_list, name='labtest_list'),
+        url(r'^personal_labtest/$', views.personal_labtest, name='personal_labtest'),
+        url(r'^personal_labresult/$', views.personal_labresult, name='personal_labresult'),
         #url(r'^results/$', views.add_result, name='add_result'),
         url(r'^add_lab_result/(?P<pk>[0-9]+)/$', views.add_lab_result, name='add_lab_result'),
         url(r'^result_list/$', views.result_list, name='result_list'),
         url(r'^result_details/(?P<pk>[0-9]+)/$', views.result_details, name='result_details'),
+        url(r'^visit_summary/(?P<pk>[0-9]+)/$', views.visit_summary, name='visit_summary'),
+        url(r'^zing/$', views.zing, name='zing'),
                      )
 
 if settings.DEBUG:

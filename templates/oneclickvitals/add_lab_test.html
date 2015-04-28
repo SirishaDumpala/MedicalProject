@@ -54,6 +54,16 @@
         <tr>
             <td>
                 <div class="fieldWrapper">
+                    {{ formK.test_date.errors }}
+                    <p><label class="col-sm-3" for="{{ formK.test_date.id_for_label }}">Test Date</label></p>
+                    <div class="col-sm-8">{{ formK.test_date|add_class:"form-control" }}</div>
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="fieldWrapper">
                     {{ formK.urine_culture.errors }}
                     <p><label class="col-sm-4" for="{{ formK.urine_culture.id_for_label }}">Urine Culture</label></p>
                     <div class="col-sm-8">{{ formK.urine_culture|add_class:"radio-control" }}</div>

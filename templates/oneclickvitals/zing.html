@@ -1,0 +1,39 @@
+{% extends 'base_doctor.html' %}
+{% load staticfiles %}
+
+
+{% block title %}PatientLabResult{% endblock %}
+
+{% block body_block %}
+
+{% if user.is_authenticated %}
+
+<script type="text/javascript" src="canvasjs.min.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            data: [
+            {
+                type: "column",
+                dataPoints: [
+                { x: 10, y: 10 },
+                { x: 20, y: 15 },
+                { x: 30, y: 25 },
+                { x: 40, y: 30 },
+                { x: 50, y: 28 }
+                ]
+            }
+            ]
+        });
+
+        chart.render();
+    }
+</script>
+
+
+<body>
+<div id="myChartDiv"></div>
+</body>
+
+{% endif %}
+{% endblock %}

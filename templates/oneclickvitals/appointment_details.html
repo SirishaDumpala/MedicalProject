@@ -16,11 +16,12 @@
                     <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Appointment Date</th>
-                        <th>Appointment Time</th>
+                        <th>Date</th>
+                        <th>Time</th>
                         <th>Phone No.</th>
                         <th>Reason</th>
-                        <th>Cancel / Edit</th>
+                        <!-- <th>User Id(REMOVE LATER)</th> -->
+                        <th>Cancel / Edit / Summary</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,7 +33,11 @@
                         <td>{{n.appointment_time}}</td>
                         <td>{{n.phone_number}}</td>
                         <td>{{n.reason_for_appointment}}</td>
-                        <td><button type="button" class="btn btn-primary">Cancel</button> <a class="btn btn-default" href="/appointment/"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                        <!-- <td>{{n.user.id}}</td> -->
+                        <td><button type="button" class="btn btn-default"><span class="fa fa-close"></span></button>
+                          <a class="btn btn-default" href="/appointment/"><span class="glyphicon glyphicon-pencil"></span></a>
+                          <a class="btn btn-default" href="/visit_summary/{{n.user.id}}"><span class="fa fa-tasks"></span>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -41,12 +46,12 @@
     </div>
 
 
-    <script type="text/javascript"> 
-            
+    <script type="text/javascript">
+
             jQuery(document).ready(function($) {
-                $(window).load(function() { 
+                $(window).load(function() {
                     $('#appointment').bdt();
-            
+
 
                 });
             });

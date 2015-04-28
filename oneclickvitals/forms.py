@@ -104,7 +104,7 @@ class LabTestForm(forms.ModelForm):
                     'thyroid': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
                     'viral_test': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),
                     'pregnancy_test': forms.RadioSelect(renderer=HorizontalRadioRenderer, choices=((1, "Yes"),(0, "No"))),}
-        fields = ('user','urine_culture', 'blood_culture', 'blood_glucose', 'allergy_test', 'thyroid', 'viral_test', 'pregnancy_test', 'x_ray',)
+        fields = ('user','test_date', 'urine_culture', 'blood_culture', 'blood_glucose', 'allergy_test', 'thyroid', 'viral_test', 'pregnancy_test', 'x_ray',)
 
 
 class LabResultForm(forms.ModelForm):

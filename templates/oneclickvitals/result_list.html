@@ -26,17 +26,7 @@
                     <tr>
                         <td><a href="{% url 'result_details' l.pk %}">{{ l.user.first_name }} {{ l.user.last_name }}</a></td>
                         <td>{{ l.test_date }}</td>
-                        {% for l in labtest %}
-                        <td>{% if labtest.urine_culture %} Urine Culture,{% endif %}
-                            {% if labtest.blood_culture %} blood_culture,{% endif %}
-                            {% if labtest.blood_glucose %} blood_glucose,{% endif %}
-                            {% if labtest.allergy_test %} allergy_test,{% endif %}
-                            {% if labtest.thyroid %} thyroid,{% endif %}
-                            {% if labtest.viral_test %} viral_test,{% endif %}
-                            {% if labtest.pregnancy_test %} pregnancy_test,{% endif %}
-
-                        </td>
-                        {% endfor %}
+                        <td>{{l.test_type}}</td>
                         <!-- <td>{{ l.test_type }}</td> -->
                         <!-- <td>{{ l.specific_gravity }}</td>
                         <td>{{ l.pH }}</td>

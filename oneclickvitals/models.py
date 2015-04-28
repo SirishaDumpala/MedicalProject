@@ -14,7 +14,7 @@ from localflavor.us.models import USStateField
 
 class Appointment(models.Model):
 
-    user = models.ForeignKey('auth.User')
+    user = models.ForeignKey(User)
     APPOINTMENT_CHOICES = (('Routine Preventive Care', 'Routine Preventive Care',),
                             ('Follow-Up', 'Follow-Up',),
                             ('Routine Problem Visit', 'Routine Problem Visit'),
@@ -35,7 +35,7 @@ class Appointment(models.Model):
     #cancel = models.NullBooleanField()
 
     def __str__(self):
-        return self.last_name
+        return self.user.username
 
 class PageAdmin(admin.ModelAdmin):
 
@@ -140,7 +140,7 @@ class FamilyMedicalHistory(models.Model):
 
 
 class VitalSigns(models.Model):
-    user = models.ForeignKey('auth.User')
+    user = models.ForeignKey(User)
     visit_date = models.DateField(default=timezone.now)
     heart_rate = models.CharField(max_length=5)
     blood_pressure = models.CharField(max_length=6)
@@ -150,7 +150,7 @@ class VitalSigns(models.Model):
     notes = models.TextField(max_length=500, null=True, blank=True)
 
     def __str__(self):
-        return self.visit_date
+        return self.user.username
 
 class Diagnosis(models.Model):
 
@@ -167,7 +167,7 @@ class Diagnosis(models.Model):
 
 class LabTest(models.Model):
     # This line is required. Links UserProfile to a User model instance.
-    user = models.ForeignKey('auth.User')
+    user = models.ForeignKey(User)
     XRAY_CHOICES = (('finger', 'Finger'),('palm', 'Palm'),('wrist', 'Wrist'),
                     ('right elbow', 'Right Elbow'),('left elbow', 'Left Elbow'),
                     ('right shoulder', 'Right Shoulder'),('neck', 'Neck'),('upper back', 'Upper Back'),
@@ -177,7 +177,7 @@ class LabTest(models.Model):
                     ('right ankle', 'Right Ankle'), ('left ankle', 'Left Ankle'),
                     ('right foot', 'Right Foot'),('left foot', 'Left Foot'),('other', 'Other'), ('none', 'None'),)
     # The additional attributes we wish to include.
-    test_date = models.DateField(default=timezone.now)
+    test_date = models.DateField(blank=True, null=True)
     urine_culture = models.NullBooleanField()
     blood_culture = models.NullBooleanField()
     allergy_test = models.NullBooleanField()
@@ -189,7 +189,7 @@ class LabTest(models.Model):
 
 
     def __str__(self):
-        return self.last_name
+        return self.user.username
 
 class LabResults(models.Model):
     user = models.ForeignKey(User)
@@ -197,7 +197,7 @@ class LabResults(models.Model):
                     ('allergy test', 'Allergy Test'), ('blood glucose', 'Blood Glucose'),
                     ('thyroid', 'Thyroid'), ('pregnancy test', 'Pregnancy Test'),)
     RESULT_CHOICES = (('positive', 'Positive'), ('negative', 'Negative'))
-    test_date = models.DateField(default=timezone.now)
+    test_date = models.DateField(blank=True, null=True)
     test_type = models.CharField(max_length=50, choices=TEST_CHOICES, null = True)
     specific_gravity = models.FloatField(max_length=6, null = True)
     pH = models.FloatField(max_length=4, null = True)
@@ -211,7 +211,7 @@ class LabResults(models.Model):
     urobilinogen = models.CharField(max_length=50, choices=RESULT_CHOICES, null = True)
 
     def __str__(self):
-        return self.last_name
+        return self.user.username
 
 
 
@@ -266,9 +266,13 @@ class PharmacyDetail(models.Model):
 
 class Prescription(models.Model):
     #DEFAULT_PK=1
-    user = models.ForeignKey('auth.User')
+    user = models.ForeignKey(User)
     FREQUENCY_CHOICES = (('daily','Daily',),('every other day','Every Other Day',),('Twice a Day','BID/b.i.d.',),('Three Times a Day','TID/t.id',), ('Four Times a Day','QID/q.i.d.',), ('Every Bedtime','QHS',), ('Every 4 Hours','Q4h',), ('Every 4 to 6 Hours','Q4-6h',), ('Every Week','QWK',),)
     GENDER_CHOICES = (('male','Male'), ('female', 'Female'))
+    ROUTE_CHOICES = (('po (by mouth)', 'PO (by mouth)'), ('pr (per rectum)', 'PR (per rectum)'),
+                     ('im (intramuscular)', 'IM (intramuscular)'), ('iv (intravenous)', 'IV (intravenous)'),
+                     ('id (intradermal)', 'ID (intradermal)'), ('in (intranasal)','IN (intranasal)'),
+                     ('tp (topical)', 'TP (topical)'))
     #REFILLS_CHOICES = (('yes', 'Yes',), ('no', 'No',),)
     #patient = models.ForeignKey('auth.User')
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, null=True)
@@ -277,7 +281,8 @@ class Prescription(models.Model):
     days_supply = models.CharField(max_length=5, blank=True, null=True)
     drug_name = models.CharField(max_length=100, blank=True, null=True)
     drug_strength = models.CharField(max_length=5, blank=True, null=True)
-    dosage_form = models.CharField(max_length=20, blank=True, null=True)
+    dosage_form = models.CharField(max_length=20, choices=ROUTE_CHOICES, null=True)
+    #dosage_form = models.CharField(max_length=20, blank=True, null=True)
 
     FREQUENCY_CHOICES = (('Daily','daily',),('Every Other Day','every other day',),('Twice a Day','BID/b.i.d.',),('Three Times a Day','TID/t.id',), ('Four Times a Day','QID/q.i.d.',), ('Every Bedtime','QHS',), ('Every 4 Hours','Q4h',), ('Every 4 to 6 Hours','Q4-6h',), ('Every Week','QWK',),)
 

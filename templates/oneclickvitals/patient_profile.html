@@ -20,7 +20,7 @@
       </ul>
 
     </div>
-<!-- Tab Panel ------------------------------------------  -->        
+<!-- Tab Panel ------------------------------------------  -->
     <div role="tabpanel">
         <ul class="nav nav-tabs">
           <li role="presentation" class="active"><a href="#tabs-1" aria-controls="tabs-1" role="tab" data-toggle="tab"><i class="fa fa-user-secret"></i> Personal Information</a></li>
@@ -30,13 +30,13 @@
           <li role="presentation"><a href="#tabs-5" aria-controls="tabs-5" role="tab" data-toggle="tab"><i class="fa fa-plus-square"></i> Family History</a></li>
           <li role="presentation"><a href="#tabs-6" aria-controls="tabs-6" role="tab" data-toggle="tab"><i class="fa fa-heartbeat"></i> Vital Signs</a></li>
           <li role="presentation"><a href="#tabs-7" aria-controls="tabs-7" role="tab" data-toggle="tab"><i class="fa fa-stethoscope"></i> Diagnosis</a></li>
-        </ul>   
-        
-<!-- Tab Content --------------------------------------- -->        
+        </ul>
+
+<!-- Tab Content --------------------------------------- -->
         <div class="tab-content">
-            
-<!-- Personal Information tab -------------------------------------- -->    
-            
+
+<!-- Personal Information tab -------------------------------------- -->
+
             <div role="tabpanel" class="tab-pane active" id="tabs-1">
               <br/>
             <div class="table-responsive">
@@ -75,7 +75,7 @@
           </div>
 
 <!-- Pharmacy Tab ---------------------------------------------- -->
-            
+
           <div role="tabpanel" class="tab-pane" id="tabs-2">
             <br/>
 
@@ -107,11 +107,11 @@
                 <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
             </div>
         </div>
-    
-            
-            
+
+
+
 <!-- Emergency Contact tab -------------------------------------- -->
-            
+
             <div role="tabpanel" class="tab-pane" id="tabs-3">
               <br/>
               <div class="table-responsive">
@@ -145,9 +145,9 @@
                   <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
               </div>
             </div>
-            
+
 <!-- Medical History tab -------------------------------------- -->
-            
+
             <div role="tabpanel" class="tab-pane" id="tabs-4">
               <br/>
                 <div class="table-responsive">
@@ -198,7 +198,7 @@
             </div>
 
 <!-- Family History tab -------------------------------------- -->
-            
+
 
               <div role="tabpanel" class="tab-pane" id="tabs-5">
                 <br/>
@@ -302,7 +302,7 @@
                     <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
 
              </div>
-            
+
 <!-- Vital Signs tab -------------------------------------- -->
             <div role="tabpanel" class="tab-pane" id="tabs-6">
               <br/>
@@ -334,7 +334,7 @@
                       <tr>
                           <th scope="row" class="col-md-2">Weight (pounds)</th>
                           <td>{{vitalsigns_info.current_weight}}</td>
-                      </tr>                                
+                      </tr>
                       <tr>
                           <th scope="row" class="col-md-2">Notes</th>
                           <td>{{vitalsigns_info.notes}}</td>
@@ -348,9 +348,9 @@
                   <a class="btn btn-primary btnNext" >Next</a>
                   <a class="btn btn-default" href="{% url 'edit_patient' pk=user.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
             </div>
-            
+
 <!-- Diagnosis tab -------------------------------------- -->
-            
+
                 <div role="tabpanel" class="tab-pane" id="tabs-7">
                   <br/>
                     <div class="table-responsive">
@@ -376,7 +376,11 @@
                           </tr>
                           <tr>
                               <th scope="row" class="col-md-2">Follow Up Required</th>
-                              <td>{{diagnosis_info.follow_up}}</td>
+                              {% if diagnosis_info.follow_up %}
+                              <td>Yes</td>
+                              {% else %}
+                              <td>No</td>
+                              {% endif %}
                           </tr>
 
 
@@ -391,7 +395,7 @@
               </div>
 <!-- End tab content --------------------------------------------- -->
         </div>
-<!-- End tab panel ------------------------------------------------ -->        
+<!-- End tab panel ------------------------------------------------ -->
     </div>
 <!-- End container ------------------------------------------------ -->
 

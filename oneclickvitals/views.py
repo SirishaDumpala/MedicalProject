@@ -82,6 +82,7 @@ def about(request):
     return render(request, 'oneclickvitals/about.html')
 
 # To creating a new patient account, contains all required forms
+@login_required
 def add_newpatient(request):
     print("in add_new")
     if request.method == 'POST':
@@ -144,6 +145,7 @@ def patient_details(request):
 
 
 # To make a new appointment
+@login_required
 def appointment(request):
     if request.method == 'POST':
         form = AppointmentForm(request.POST)
@@ -282,6 +284,7 @@ def personal_profile(request):
 
 
 # To edit an existing patient profile, for doctor and staff
+@login_required
 def edit_patient(request, pk):
     newpatient_instance = get_object_or_404(User, pk=pk)
     userdetail_instance = get_object_or_404(UserDetail, pk=pk)
@@ -359,9 +362,29 @@ def add_lab_test(request):
     # Render the form with error messages (if any)
     return render(request, 'oneclickvitals/add_lab_test.html', {'formK': formK})
 
+@login_required
 def labtest_list(request):
     labtest = LabTest.objects.all()
     return render(request, 'oneclickvitals/labtest_list.html', {'labtest': labtest})
+
+@login_required
+def personal_labtest(request):
+    me = request.user
+    labtest_list = LabTest.objects.all()
+    pharmacy = PharmacyDetail.objects.get(user=me)
+    return render(request, 'oneclickvitals/personal_labtest.html', {'labtest_list': labtest_list,'pharmacy': pharmacy,})
+
+
+@login_required
+def personal_labresult(request):
+    me = request.user
+    labtest = LabTest.objects.all()
+    labresult_list = LabResults.objects.all()
+    pharmacy = PharmacyDetail.objects.get(user=me)
+    context_dict = {'labresult_list': labresult_list, 'pharmacy': pharmacy, 'labtest': labtest}
+    return render(request, 'oneclickvitals/personal_labresult.html', context_dict)
+
+
 '''
 # Staff can fist select the patient and chose the type of test so appropriate fields are displayed
 @login_required
@@ -432,6 +455,7 @@ def result_details(request, pk):
 def result_list(request):
     results = LabResults.objects.all()
     labtest = LabTest.objects.all()
+    print("results.testtype:", results[1].test_type)
     return render(request, 'oneclickvitals/result_list.html', {'results': results, 'labtest': labtest})
 
 @login_required
@@ -459,20 +483,26 @@ def vitalsigns(request):
     # Render the form with error messages (if any)
     return render(request, 'oneclickvitals/vitalsigns.html', {'form': form})
 
+
+@login_required
 def vitalsigns_details(request, pk):
     #me = User.objects.get(id=pk)
     vitalsigns_info = get_object_or_404(VitalSigns, pk=pk)
     return render(request, 'oneclickvitals/vitalsigns_details.html', {'vitalsigns_info': vitalsigns_info})
 
+@login_required
 def vitalsigns_list(request):
     vitalsigns = VitalSigns.objects.all()
     return render(request, 'oneclickvitals/vitalsigns_list.html', {'vitalsigns': vitalsigns})
 
 
+@login_required
 def visit_records(request):
     diagnosis = Diagnosis.objects.all()
     return render(request, 'oneclickvitals/visit_records.html', {'diagnosis':diagnosis})
 
+
+@login_required
 def diagnosis(request, pk):
     vitalsigns_info = get_object_or_404(VitalSigns, pk=pk)
     #diagnosis should be connected to vital signs of the current visit
@@ -498,13 +528,13 @@ def diagnosis(request, pk):
     # Render the form with error messages (if any)
     return render_to_response('oneclickvitals/diagnosis.html', {'vitalsigns_info': vitalsigns_info, 'form': form}, context_instance=RequestContext(request))
 
-
+@login_required
 def diagnosis_details(request, pk):
     #me = User.objects.get(id=pk)
     diagnosis_info = get_object_or_404(Diagnosis, pk=pk)
     return render(request, 'oneclickvitals/diagnosis_details.html', {'diagnosis_info': diagnosis_info})
 
-
+@login_required
 def personal_diagnosis(request):
     me = request.user
     diagnosis_info = Diagnosis.objects.filter(patient=me)
@@ -512,7 +542,7 @@ def personal_diagnosis(request):
     return render(request, 'oneclickvitals/personal_diagnosis.html', {'diagnosis_info': diagnosis_info, 'pharmacy':pharmacy})
 
 
-
+@login_required
 def patient_radiology_image(request):
     if request.method == 'POST':
         form = PatientRadiologyImageForm(request.POST, request.FILES)
@@ -537,6 +567,7 @@ def patient_radiology_image(request):
     # Render the form with error messages (if any)
     return render(request, 'oneclickvitals/add_radiology.html', {'form': form})
 
+
 @login_required
 def radiology_list(request):
     radiology_images = Radiology.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
@@ -547,6 +578,7 @@ def radiology_list(request):
 def view_radiology(request, pk):
     img = get_object_or_404(Radiology, pk=pk)
     return render_to_response('oneclickvitals/view_radiology.html', {'img':img}, context_instance=RequestContext(request) )
+
 
 @login_required
 def edit_radiology(request, pk):
@@ -600,14 +632,13 @@ def add_prescription(request):
     return render(request, 'oneclickvitals/add_prescription.html', {'form': form })
 
 
-
+@login_required
 def prescription_list(request):
     prescription = Prescription.objects.all()
     return render(request, 'oneclickvitals/prescription_list.html', {'prescription': prescription})
 
 
-
-
+@login_required
 def prescription_details(request, pk):
     me = User.objects.get(id=pk)
     profile = UserDetail.objects.get(user=me)
@@ -621,7 +652,7 @@ def prescription_details(request, pk):
     return render(request, 'oneclickvitals/prescription_details.html', context_dict)
 
 
-
+@login_required
 def personal_prescription(request):
     me = request.user
     prescription_info = Prescription.objects.filter(user=me)
@@ -631,19 +662,24 @@ def personal_prescription(request):
     context_dict = {'prescription_info': prescription_info, 'pharmacy': pharmacy }
     return render(request, 'oneclickvitals/personal_prescription.html',context_dict)
 
-def visit_summary(request):
-    me = request.user
+
+@login_required
+def visit_summary(request, pk):
+    #me = request.user
     #form = SummaryForm(request.POST)
-    appointment_list = Appointment.objects.filter(user=me)
-    prescription_info = Prescription.objects.filter(user=me)
+    me = User.objects.get(id=pk)
+    appointment_list = Appointment.objects.filter(user=me).latest('appointment_date')
+    prescription_info = Prescription.objects.filter(user=me).latest('date_of_issuance')
+    vitalsigns_info = VitalSigns.objects.filter(user=me).latest('visit_date')
+    diagnosis_info = Diagnosis.objects.filter(patient=me).latest('diagnosis_date')
+    #diagnosis_info = Diagnosis.objects.filter(patient=me)
 
-    diagnosis_info = Diagnosis.objects.filter(patient=me)
-
-    context_dict = {'appointment_list': appointment_list, 'prescription_info': prescription_info, 'diagnosis_info':diagnosis_info }
+    context_dict = {'appointment_list': appointment_list, 'prescription_info': prescription_info,
+                    'vitalsigns_info':vitalsigns_info, 'diagnosis_info': diagnosis_info, }
 
     return render(request, 'oneclickvitals/visit_summary.html', context_dict)
 
-
+@login_required
 def add_doctor_information(request):
     if request.method == 'POST':
         form = DoctorDetailForm(request.POST)
@@ -669,3 +705,9 @@ def add_doctor_information(request):
 def view_doctor_information(request):
     doctor_details = DoctorDetail.objects.all()[0]
     return render(request, 'oneclickvitals/view_doctor_information.html', {'doctor_details':doctor_details})
+
+
+@login_required
+def zing(request):
+    #doctor_details = DoctorDetail.objects.all()[0]
+    return render(request, 'oneclickvitals/zing.html',)
