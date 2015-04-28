@@ -28,7 +28,7 @@ class Appointment(models.Model):
     phone_number = models.CharField(max_length=14, null = True)
     created_date = models.DateTimeField(
             default=timezone.now)
-    appointment_date = models.DateTimeField(
+    appointment_date = models.DateField(
             blank=True, null=True)
     appointment_time = models.TimeField(
             blank=True, null=True)
